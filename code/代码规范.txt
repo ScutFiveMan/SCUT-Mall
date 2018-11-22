@@ -1,0 +1,27 @@
+1.后端使用IDE为IntelliJ IDEA。所有代码需写上注释。添加注释模板如下：https://www.cnblogs.com/mmzs/p/8858634.html
+①类模版：
+/**
+ * @ Author     ：Bin Liu
+ * @ Date       ：${DATE} ${TIME} 
+ * @ Description：${description}
+ * @ Modified By：
+ 
+ */
+②方法模版：
+File-->Settings-->Editor-->Live Templates
+/**
+ * create by: Bin Liu
+ * description: $description$
+ * create time: $date$ $time$
+$params$
+ * @return $return$
+ */
+2.代码命名规范
+（1）方法名以小写字母开头，后面紧跟的是大写字母开头的单词，比如veryLongVariableName。
+（2）类名一般都是大写字母开头的单词组合。
+（3）常量的命名都是大写字母的单词，之间用下划线隔开，比如MY_CONSTANT。
+（4）左大括号应该跟if在同一行。
+
+3.保持方法简短扼要，编写的方法最好能在首屏完全显示。
+4.不要将同一个变量用于不同的目的，一个变量应该只能被用于一个目的。
+5.尽可能让变量和方法的名称能够描述要实现的功能，一段通俗易懂的程序代码，应该是任何人只要看了代码，就能明白程序是用来干嘛的。
