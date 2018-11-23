@@ -3,6 +3,12 @@ package com.scut.mall.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * @ Author     ：Bin Liu
+ * @ Date       ：2018/11/22 23:34
+ * @ Description：订单项实体类
+ * @ Modified By：
+ */
 @Entity
 public class OrderItem implements Serializable {
     @Id
@@ -30,6 +36,12 @@ public class OrderItem implements Serializable {
     @Column
     private Double subTotal;
 
+    /**
+     * 积分
+     */
+    @Column
+    private Integer subIntegral;
+
     @Transient
     private Product product;
 
@@ -43,12 +55,13 @@ public class OrderItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public OrderItem(Integer id, Integer orderId, Integer productId, Integer count, Double subTotal) {
-        this.id = id;
+    public OrderItem(Integer orderId, Integer productId, Integer count, Double subTotal, Integer subIntegral, Product product) {
         this.orderId = orderId;
         this.productId = productId;
         this.count = count;
         this.subTotal = subTotal;
+        this.subIntegral = subIntegral;
+        this.product = product;
     }
 
     public OrderItem() {
@@ -95,6 +108,18 @@ public class OrderItem implements Serializable {
         this.subTotal = subTotal;
     }
 
+    public Integer getSubIntegral() {
+        return subIntegral;
+    }
+
+    public void setSubIntegral(Integer subIntegral) {
+        this.subIntegral = subIntegral;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -111,7 +136,8 @@ public class OrderItem implements Serializable {
                 && (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
                 && (this.getProductId() == null ? other.getProductId() == null : this.getProductId().equals(other.getProductId()))
                 && (this.getCount() == null ? other.getCount() == null : this.getCount().equals(other.getCount()))
-                && (this.getSubTotal() == null ? other.getSubTotal() == null : this.getSubTotal().equals(other.getSubTotal()));
+                && (this.getSubTotal() == null ? other.getSubTotal() == null : this.getSubTotal().equals(other.getSubTotal()))
+                && (this.getSubIntegral() == null ? other.getSubIntegral() == null : this.getSubIntegral().equals(other.getSubIntegral()));
     }
 
     @Override
@@ -123,6 +149,7 @@ public class OrderItem implements Serializable {
         result = prime * result + ((getProductId() == null) ? 0 : getProductId().hashCode());
         result = prime * result + ((getCount() == null) ? 0 : getCount().hashCode());
         result = prime * result + ((getSubTotal() == null) ? 0 : getSubTotal().hashCode());
+        result = prime * result + ((getSubIntegral() == null) ? 0 : getSubIntegral().hashCode());
         return result;
     }
 
@@ -138,6 +165,7 @@ public class OrderItem implements Serializable {
         sb.append(", count=").append(count);
         sb.append(", subTotal=").append(subTotal);
         sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", subIntegral=").append(subIntegral);
         sb.append("]");
         return sb.toString();
     }

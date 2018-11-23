@@ -1,32 +1,77 @@
 package com.scut.mall.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
-@Entity(name = "`order`")
+/**
+ * @ Author     ：Bin Liu
+ * @ Date       ：2018/11/22 23:12
+ * @ Description：订单实体类
+ * @ Modified By：
+ */
+@Entity
+@Table(name = "`order`")
 public class Order implements Serializable {
     @Id
     @GeneratedValue
     @Column
     private Integer id;
-
+    /**
+     * 订单总价
+     */
     @Column
-    private Integer productId;
-
+    private Double total;
+    /**
+     * 订单状态 1:未付款 2:等待发货 3:等待收货 4:订单完成
+     */
+    @Column
+    private Integer state;
+    /**
+     * 订单时间
+     */
+    @Column
+    private Date orderTime;
+    /**
+     * 收货人姓名
+     */
+    @Column(name = "`name`")
+    private String name;
+    /**
+     * 收货人联系电话
+     */
+    @Column
+    private String phone;
+    /**
+     * 收货地址Id
+     */
+    @Column
+    private Integer addressId;
+    /**
+     * 用户Id
+     */
     @Column
     private Integer userId;
+    /**
+    *积分
+    */
+    private Integer totalIntegral;
 
-    @Column
-    private Integer number;
+    private static final long serialVersionUID = 1L;
 
-    public Order(Integer id,Integer productId,Integer userId,Integer number){
-        this.id=id;
-        this.productId=productId;
-        this.userId=userId;
-        this.number=number;
+    public Order(Double total, Integer state, Date orderTime, String name, String phone, Integer addressId, Integer userId, Integer totalIntegral) {
+        this.total = total;
+        this.state = state;
+        this.orderTime = orderTime;
+        this.name = name;
+        this.phone = phone;
+        this.addressId = addressId;
+        this.userId = userId;
+        this.totalIntegral = totalIntegral;
+    }
+
+    public Order() {
+        super();
     }
 
     public Integer getId() {
@@ -37,12 +82,63 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public Date getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
+    }
+
+    public Integer getTotalIntegral() {
+        return totalIntegral;
+    }
+
+    public void setTotalIntegral(Integer totalIntegral) {
+        this.totalIntegral = totalIntegral;
+    }
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Integer getUserId() {
@@ -53,11 +149,62 @@ public class Order implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getNumber() {
-        return number;
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        Order other = (Order) that;
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+                && (this.getTotal() == null ? other.getTotal() == null : this.getTotal().equals(other.getTotal()))
+                && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()))
+                && (this.getOrderTime() == null ? other.getOrderTime() == null : this.getOrderTime().equals(other.getOrderTime()))
+                && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+                && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
+                && (this.getAddressId() == null ? other.getAddressId() == null : this.getAddressId().equals(other.getAddressId()))
+                && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+                && (this.getTotalIntegral() == null ? other.getTotalIntegral() == null : this.getTotalIntegral().equals(other.getTotalIntegral()));
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getTotal() == null) ? 0 : getTotal().hashCode());
+        result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
+        result = prime * result + ((getOrderTime() == null) ? 0 : getOrderTime().hashCode());
+        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+        result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
+        result = prime * result + ((getAddressId() == null) ? 0 : getAddressId().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getTotalIntegral() == null) ? 0 : getTotalIntegral().hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", total=").append(total);
+        sb.append(", state=").append(state);
+        sb.append(", orderTime=").append(orderTime);
+        sb.append(", name=").append(name);
+        sb.append(", phone=").append(phone);
+        sb.append(", addrressId=").append(addressId);
+        sb.append(", userId=").append(userId);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append(", totalIntegral=").append(totalIntegral);
+        sb.append("]");
+        return sb.toString();
     }
 }

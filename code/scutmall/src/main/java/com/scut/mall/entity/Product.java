@@ -7,6 +7,12 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @ Author     ：Bin Liu
+ * @ Date       ：2018/11/22 10:35
+ * @ Description：订单项实体类
+ * @ Modified By：
+ */
 @Entity
 public class Product implements Serializable {
     @Id
@@ -15,8 +21,10 @@ public class Product implements Serializable {
     private Integer id;
 
     /**
-     * 数据库相关字段参见ER图与类图
+     * 商品标题
      */
+    @Column
+    private String title;
     @Column
     private Integer productCategoryId;
 
@@ -35,19 +43,166 @@ public class Product implements Serializable {
     @Column
     private Double shopPrice;
 
+    //积分
+    @Column Integer integral;
+
     @Column
     private Date date;
 
-    public Product(Integer id,Integer productCategoryId,String description,String image,Integer isHot,Double marketPrice,Double shopPrice,Date date)
-    {
-        this.id=id;
-        this.productCategoryId=productCategoryId;
-        this.description=description;
-        this.image=image;
-        this.isHot=isHot;
-        this.marketPrice=marketPrice;
-        this.shopPrice=shopPrice;
-        this.date=date;
+    public Product(String title, Integer productCategoryId, String description, String image, Integer isHot, Double marketPrice, Double shopPrice, Integer integral, Date date) {
+        this.title = title;
+        this.productCategoryId = productCategoryId;
+        this.description = description;
+        this.image = image;
+        this.isHot = isHot;
+        this.marketPrice = marketPrice;
+        this.shopPrice = shopPrice;
+        this.integral = integral;
+        this.date = date;
     }
 
+    public Product() {
+        super();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Integer getProductCategoryId() {
+        return productCategoryId;
+    }
+
+    public void setProductCategoryId(Integer productCategoryId) {
+        this.productCategoryId = productCategoryId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Integer getIsHot() {
+        return isHot;
+    }
+
+    public void setIsHot(Integer isHot) {
+        this.isHot = isHot;
+    }
+
+    public Double getMarketPrice() {
+        return marketPrice;
+    }
+
+    public void setMarketPrice(Double marketPrice) {
+        this.marketPrice = marketPrice;
+    }
+
+    public Double getShopPrice() {
+        return shopPrice;
+    }
+
+    public void setShopPrice(Double shopPrice) {
+        this.shopPrice = shopPrice;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Integer getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        Product other = (Product) that;
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+                && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+                && (this.getMarketPrice() == null ? other.getMarketPrice() == null : this.getMarketPrice().equals(other.getMarketPrice()))
+                && (this.getShopPrice() == null ? other.getShopPrice() == null : this.getShopPrice().equals(other.getShopPrice()))
+                && (this.getImage() == null ? other.getImage() == null : this.getImage().equals(other.getImage()))
+                && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
+                && (this.getIsHot() == null ? other.getIsHot() == null : this.getIsHot().equals(other.getIsHot()))
+                && (this.getProductCategoryId() == null ? other.getProductCategoryId() == null : this.getProductCategoryId().equals(other.getProductCategoryId()))
+                && (this.getDate() == null ? other.getDate() == null : this.getDate().equals(other.getDate()))
+                && (this.getIntegral() == null ? other.getIntegral() == null : this.getIntegral().equals(other.getIntegral()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
+        result = prime * result + ((getMarketPrice() == null) ? 0 : getMarketPrice().hashCode());
+        result = prime * result + ((getShopPrice() == null) ? 0 : getShopPrice().hashCode());
+        result = prime * result + ((getImage() == null) ? 0 : getImage().hashCode());
+        result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        result = prime * result + ((getIsHot() == null) ? 0 : getIsHot().hashCode());
+        result = prime * result + ((getProductCategoryId() == null) ? 0 : getProductCategoryId().hashCode());
+        result = prime * result + ((getDate() == null) ? 0 : getDate().hashCode());
+        result = prime * result + ((getIntegral() == null) ? 0 : getIntegral().hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", title=").append(title);
+        sb.append(", marketPrice=").append(marketPrice);
+        sb.append(", shopPrice=").append(shopPrice);
+        sb.append(", image=").append(image);
+        sb.append(", description=").append(description);
+        sb.append(", isHot=").append(isHot);
+        sb.append(", productCategoryId=").append(productCategoryId);
+        sb.append(", date=").append(date);
+        sb.append(", integral=").append(integral);
+        sb.append("]");
+        return sb.toString();
+    }
 }

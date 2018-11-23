@@ -6,6 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
+/**
+ * @ Author     ：Bin Liu
+ * @ Date       ：2018/11/22 22:34
+ * @ Description：订单项实体类
+ * @ Modified By：
+ */
 @Entity
 public class ProductCategory implements Serializable{
     @Id
