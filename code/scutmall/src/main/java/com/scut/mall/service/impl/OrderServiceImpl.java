@@ -167,6 +167,7 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setTotal(total);
         order.setTotalIntegral(totalIntegral);
+        loginUser.setIntegration(totalIntegral);
         orderDao.save(order);
         //重定向到订单列表页面
         response.sendRedirect("/mall/order/toList.html");
