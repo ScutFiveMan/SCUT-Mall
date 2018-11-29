@@ -3,14 +3,12 @@ package com.scut.mall.service.impl;
 import com.scut.mall.dao.ProductCategoryDao;
 import com.scut.mall.dao.ProductDao;
 import com.scut.mall.entity.Product;
-import com.scut.mall.entity.ProductCategory;
 import com.scut.mall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,17 +46,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findByProductCategoryId(int productCategoryId, Pageable pageable) {
-        //查找出所有二级分类
-        List<ProductCategory> productCategories = productCategoryDao.findByParentId(productCategoryId);
-        List<Integer> productCategoryIds = new ArrayList<>();
-        for (ProductCategory productCategory : productCategories) {
-            productCategoryIds.add(productCategory.getId());
-        }
-        return productDao.findByProductCategoryIdIn(productCategoryIds,pageable);
-    }
-
-    @Override
-    public List<Product> findByProductCategoriesId(int productCategoryId, Pageable pageable) {
         return productDao.findByProductCategoryId(productCategoryId,pageable);
     }
 

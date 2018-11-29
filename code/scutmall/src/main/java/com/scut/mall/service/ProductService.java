@@ -61,16 +61,6 @@ public interface ProductService {
 
     /**
      * create by: Bin Liu
-     * description: 根据二级分类查找商品
-     * create time: 2018/11/23 9:28
-     * @param productCategoryId
-     * @param pageable
-     * @return
-     */
-    List<Product> findByProductCategoriesId(int productCategoryId,Pageable pageable);
-
-    /**
-     * create by: Bin Liu
      * description: 更新
      * create time: 2018/11/23 9:29
      * @Param: product
