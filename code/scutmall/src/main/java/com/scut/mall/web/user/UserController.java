@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping("/user")
-public class userController {
+public class UserController {
     @Autowired
     private UserService userService;
 
@@ -49,7 +49,7 @@ public class userController {
          if (user != null){
              //登录成功 重定向至首页
              request.getSession().setAttribute("user",user);
-             response.sendRedirect("/scutmall/index.html");
+             response.sendRedirect("/mall/index.html");
          }
          else{
              throw  new LoginException("用户名或密码错误");

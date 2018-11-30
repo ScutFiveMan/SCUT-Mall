@@ -31,7 +31,7 @@ public class AdminController {
      */
     @RequestMapping("/toIndex.html")
     public String toIndex() {
-        return "admin/index";
+        return "/admin/index";
     }
 
     /**
@@ -50,7 +50,6 @@ public class AdminController {
      * @param username
      * @param password
      */
-    //@ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/login.do")
     public void login(String username, String password, HttpServletRequest request, HttpServletResponse response) throws IOException {
         AdminUser adminUser = adminUserService.checkLogin(request, username, password);
