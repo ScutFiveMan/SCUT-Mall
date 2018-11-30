@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta name="renderer" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>SkyMall | 商城</title>
+    <title>SCUTMALL | 商城</title>
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
     <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/common.css}" rel="stylesheet" type="text/css"/>
@@ -15,11 +15,36 @@
 <body class="site-home">
 <!--包含 头部模块-->
 <div th:replace="mall/common::head"></div>
+
+<div class="layui-carousel" id="test1">
+    <div carousel-item>
+        <div> <img th:src="@{/image/card1.png}"/></div>
+        <div> <img th:src="@{/image/card2.png}"/></div>
+        <div> <img th:src="@{/image/card3.png}"/></div>
+        <div> <img th:src="@{/image/card4.png}"/></div>
+        <div> <img th:src="@{/image/card5.png}"/></div>
+    </div>
+</div>
+<!-- 条目中可以是任意内容，如：<img src=""> -->
+
+<script src="/static/build/layui.js"></script>
+<script>
+    layui.use('carousel', function(){
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            ,width: '100%' //设置容器宽度
+            ,arrow: 'always' //始终显示箭头
+            //,anim: 'updown' //切换动画方式
+        });
+    });
+</script>
 <!--页面主体内容-->
 <div class="layui-container" id="content">
     <!--热门商品-->
     <div class="layui-row">
-        <div class="layui-col-md12"><h1 class="site-h1"><i class="fa fa-heart" style="color: #FF5722;"></i> &nbsp;热门商品
+        <div class="layui-col-md12"><h1 class="site-h1"><i class="fa fa-heart" style="color: #FFB280;"></i> &nbsp;热门商品
         </h1></div>
     </div>
     <div class="layui-row" id="product_hot">
@@ -27,7 +52,7 @@
     </div>
     <!--最新商品-->
     <div class="layui-row">
-        <div class="layui-col-md12"><h1 class="site-h1"><i class="fa fa-calendar" style="color: #FFB800;"></i>
+        <div class="layui-col-md12"><h1 class="site-h1"><i class="fa fa-calendar" style="color: #ffb280;"></i>
             &nbsp;最新商品</h1></div>
     </div>
     <div class="layui-row" style="text-align: center;">
