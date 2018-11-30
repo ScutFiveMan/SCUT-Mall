@@ -31,6 +31,9 @@ public class AdminUser implements Serializable {
         this.password=password;
         this.isSaleMan=isSaleMan;
     }
+    public AdminUser(){
+        super();
+    }
     //一系列get set操作
     public  void setId(Integer id){
         this.id=id;
