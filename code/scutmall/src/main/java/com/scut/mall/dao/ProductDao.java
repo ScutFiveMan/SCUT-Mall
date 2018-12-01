@@ -36,7 +36,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
 
     /**
      * create by: Bin Liu
-     * description:
+     * description: 通过标题搜索商品
      * create time: 2018/11/23 9:22
      * @param keyword
      * @param pageable

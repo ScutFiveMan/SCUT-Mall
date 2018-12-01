@@ -77,6 +77,13 @@ public class ProductController {
         return new ResultBean<>(products);
     }
 
+    @ResponseBody
+    @RequestMapping("/search.do")
+    public ResultBean<List<Product>> findByTitleIsLike(String keyword, Pageable pageable) {
+        List<Product> products = productService.findByTitleIsLike(keyword, pageable);
+        return new ResultBean<>(products);
+    }
+
     /**
      * create by: Bin Liu
      * description:
