@@ -63,4 +63,9 @@ public class ProductServiceImpl implements ProductService {
     public void deleteById(int id) {
         productDao.deleteById(id);
     }
+
+    @Override
+    public List<Product> findByTitleIsLike(String keyword, Pageable pageable) {
+        return productDao.findByTitleIsLike(keyword, pageable);
+    }
 }
