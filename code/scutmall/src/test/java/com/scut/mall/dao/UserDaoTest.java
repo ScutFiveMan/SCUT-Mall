@@ -1,5 +1,6 @@
 package com.scut.mall.dao;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +29,7 @@ public class UserDaoTest {
     }
 
     @Test
+    @Ignore
     public void deleteById() {
         userDao.deleteById(1);
     }
