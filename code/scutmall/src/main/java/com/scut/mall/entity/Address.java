@@ -31,8 +31,14 @@ public class Address implements Serializable {
     @Column(nullable = false)
     private String detail;
 
+    @Column
+    private String recevier;
+
+    @Column
+    private String phone;
+
     public Address(Integer id ,Integer userId, String province,String city,
-                   String town,String street,String detail){
+                   String town,String street,String detail,String recevier,String phone){
         this.id=id;
         this.userId=userId;
         this.province=province;
@@ -40,6 +46,8 @@ public class Address implements Serializable {
         this.town=town;
         this.street=street;
         this.detail=detail;
+        this.recevier=recevier;
+        this.phone=phone;
     }
 
     public Address(){
@@ -99,7 +107,21 @@ public class Address implements Serializable {
         return detail;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setDetail(String detail) { this.detail = detail; }
+
+    public String getRecevier() {
+        return recevier;
+    }
+
+    public void setRecevier(String recevier) {
+        this.recevier = recevier;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
