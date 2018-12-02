@@ -9,7 +9,7 @@
     这里包含了每个页面的公共模块
 -->
 <!--头部 导航条模块-->
-<div class="layui-header header" th:fragment="head">
+<div class="layui-header header layui-bg-green" th:fragment="head">
     <script>
         //        <![CDATA[
         var layer;
@@ -19,7 +19,7 @@
         //JavaScript代码区域
         //        ]]>
     </script>
-    <div class="layui-main">
+    <div class="layui-main layui-bg-green" >
         <a class="logo" href="/mall/index.html">
             <img th:src="@{/image/logo.png}"/>
         </a>
@@ -28,7 +28,7 @@
         <!---->
         <!--</ul>-->
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item" style="color:#393D49;">
+            <li class="layui-nav-item" style="color:rgba(37,178,189,0.7);">
                 <a href="javascript:;">分类</a>
                 <dl class="layui-nav-child" id="category">
 
@@ -71,9 +71,9 @@
 
 <!--底部模块-->
 <div class="footer footer-index" th:fragment="foot">
-    <hr style="color: #c2c2c2;" />
+    <hr style="color: #8fffff;" />
     <!-- 底部固定区域 -->
-    © jesse 2017
+    © SCUTMALL 2018
     <a href="/mall/admin/toLogin.html">后台管理系统</a>
 </div>
 

@@ -46,6 +46,7 @@ public class addressController {
      */
     @RequestMapping("/addAddress.do")
     public void addAddress(Integer userId,String province,String city,String town,String street,String detail,
+                            String recevier,String phone,
                             HttpServletResponse response){
         Address address= new Address();
         address.setUserId(userId);
@@ -54,6 +55,8 @@ public class addressController {
         address.setTown(town);
         address.setStreet(street);
         address.setDetail(detail);
+        address.setRecevier(recevier);
+        address.setPhone(phone);
         addressService.create(address);
     }
 
@@ -62,7 +65,8 @@ public class addressController {
      */
     @RequestMapping("/changeAddress.do")
     public void changeAddress(Integer id ,Integer userId, String province,String city,
-                                String town,String street,String detail,HttpServletResponse response){
+                                String town,String street,String detail,
+                              String recevier,String phone,HttpServletResponse response){
         Address address=addressService.findByIdAndUserId(id,userId);
         address.setUserId(userId);
         address.setProvince(province);
@@ -70,6 +74,8 @@ public class addressController {
         address.setTown(town);
         address.setStreet(street);
         address.setDetail(detail);
+        address.setRecevier(recevier);
+        address.setPhone(phone);
         addressService.update(address);
     }
 

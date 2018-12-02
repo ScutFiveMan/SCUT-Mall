@@ -36,7 +36,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
 
     /**
      * create by: Bin Liu
-     * description:
+     * description: 通过标题搜索商品
      * create time: 2018/11/23 9:22
      * @param keyword
      * @param pageable
@@ -71,6 +71,6 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
      * @param pageable
      * @return
      */
-    @Query(value = "SELECT * FROM (SELECT  * FROM product ORDER BY pdate DESC limit 0,24) a /*#pageable*/",nativeQuery = true)
+    @Query(value = "SELECT * FROM (SELECT  * FROM product ORDER BY date DESC limit 0,24) a /*#pageable*/",nativeQuery = true)
     List<Product> findNew(Pageable pageable);
 }
