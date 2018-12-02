@@ -52,7 +52,9 @@ public class UserController {
              response.sendRedirect("/mall/index.html");
          }
          else{
+             response.sendRedirect("/mall/error.html");
              throw  new LoginException("用户名或密码错误");
+
          }
      }
 
@@ -61,12 +63,15 @@ public class UserController {
      */
      @RequestMapping("/register.do")
     public void register(String userName,String password,String phone,
-                         HttpServletResponse response){
+                         HttpServletResponse response ,HttpServletRequest request)throws IOException, LoginException {
          User user=new User();
          user.setUserName(userName);
          user.setPassword(password);
+         user.setPhone(phone);
          user.setIntegration(0);//注册时都初始化积分为0
-         userService.create(user);
+         userService.create(user);//创建用户表单
+         request.getSession().setAttribute("user",user);//获取用户信息
+         response.sendRedirect("/mall/index.html");//登录完成后直接跳转主页面
     }
 
     /**
@@ -79,6 +84,7 @@ public class UserController {
         //未登录的首页
         response.sendRedirect("/mall/index.html");
     }
+
 
     /**
      * 错误页面

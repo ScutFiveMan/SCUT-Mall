@@ -176,48 +176,47 @@
 
             </li>
 
-            <li class="start active " id="user">
+            <li class="start active " id="userManage">
 
-                <a href="javascript:changePage('user');">
+                <a href="">
 
                     <i class="fa fa-user-circle"></i>
 
                     <span class="title">用户管理</span>
 
-                    <span class="selected"></span>
+                    <span class="arrow"></span>
 
                 </a>
+                <ul class="sub-menu">
+
+                    <li id="user">
+                        <a href="javascript:changePage('user');">
+                            <i class="fa fa-list"></i>
+                            用户管理
+                        </a>
+                    </li>
+                    <li id="adminUser">
+                        <a href="javascript:changePage('adminUser');">
+                            <i class="fa fa-list"></i>
+                            管理员管理
+                        </a>
+                    </li>
+                </ul>
 
             </li>
 
 
             <li class="" id="category">
 
-                <a href="#">
+                <a href="javascript:changePage('category');">
 
                     <i class="fa fa-object-group"></i>
 
                     <span class="title">分类管理</span>
 
-                    <span class="arrow "></span>
+                    <span class="selected "></span>
 
                 </a>
-
-                <ul class="sub-menu">
-
-                    <li id="category_1">
-                        <a href="javascript:changePage('category');">
-                            <i class="fa fa-list"></i>
-                            一级分类
-                        </a>
-                    </li>
-                    <li id="categorysec">
-                        <a href="javascript:changePage('categorySec');">
-                            <i class="fa fa-list"></i>
-                            二级分类
-                        </a>
-                    </li>
-                </ul>
             </li>
 
             <li class="" id="order">

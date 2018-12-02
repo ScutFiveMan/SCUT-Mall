@@ -57,6 +57,7 @@
                     <span th:if="${session.user != null}" th:text="'欢迎您!&nbsp;' + ${session.user.userName}">请登陆</span>
                 </a>
                 <dl class="layui-nav-child">
+                    <dd th:if="${session.user != null}"><a href="/mall/address/toAddress.html"><i class="fa fa-user-secret"></i> 地址管理</a></dd>
                     <dd th:if="${session.user != null}"><a href="/mall/user/logout.do"><i class="fa fa-sign-out"></i> 退出登录</a></dd>
                     <dd th:if="${session.user != null}"><a href="/mall/order/toList.html"><i class="fa fa-list"></i> 我的订单</a></dd>
                     <dd th:if="${session.user != null}"><a href="/mall/product/toCart.html"><i class="fa fa-shopping-cart"></i> 购物车</a></dd>

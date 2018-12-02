@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>SCUTMALL | 商城</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/common.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/layui/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <link th:href="@{/layui/css/module/city-picker.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/layui/lay/module/city-picker.data.js}"></script>
+    <script src =“/ LayuiAdmin/ layui/ layui_exts / city-picker / city-picker.data.js”> </ script>
+<link href =“/ LayuiAdmin/ layui / layui_exts / city-picker / city-picker.css “rel =”stylesheet“/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 </head>
-<body>
-$END$
+<body class="site-home">
+<!--包含 头部模块-->
+<div th:replace="mall/common::head"></div>
+<form class="form-horizontal" enctype="multipart/form-data" method="post" action="add.do>
+    <div class ="control-group">
+        <label class ="layui-form-label width_auto text-r" style ="margin-top：2px">省市县：</ label>
+        <div class ="layui- input-inline" style ="width：400px">
+            <input type ="text" autocomplete ="on" class ="layui-input"id ="city-picker" name ="city-picker" eadonly ="readonly" data-toggle ="ity-picker"placeholder ="请选择">
+        </div>
+    </div>
+</form>
+
+
+
 </body>
+<script>
+    layui.config({
+        base: '/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+        , citypicker: '{/}/layuiadmin/layui/layui_exts/city-picker/city-picker' // {/}的意思即代表采用自有路径，即不跟随 base 路径
+    }).use(['jquery', 'index', 'table', 'citypicker'], function () {
+        var $ = layui.$
+            , table = layui.table
+            , form = layui.form
+            , cityPicker = layui.citypicker;
+        var cityPicker = new cityPicker("#city-picker");
+
+
+    });
+
+</script>
 </html>

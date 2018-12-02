@@ -22,13 +22,13 @@
     <div class="layui-row" style="margin-top: 10px;">
         <div id="cont" class="layui-col-xs12 layui-col-sm12 layui-col-md12 smaller">
             <fieldset class="layui-elem-field layui-field-title">
-                <legend>欢迎注册</legend>
+                <legend>欢迎注册SCUTMALL</legend>
                 <div class="layui-field-box">
                     <form class="layui-form" action="register.do">
                         <div class="layui-form-item">
                             <label class="layui-form-label">用户名：</label>
                             <div class="layui-input-block">
-                                <input type="text" name="username" required="required" onblur="checkUsername()"
+                                <input type="text" name="userName" required="required" onblur="checkUsername()"
                                        lay-verify="required" placeholder="请输入用户名"
                                        autocomplete="off" class="layui-input"/>
                             </div>
@@ -43,14 +43,7 @@
                             </div>
                         </div>
 
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">姓名：</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="name" required="required" lay-verify="required"
-                                       placeholder="请输您的姓名"
-                                       autocomplete="off" class="layui-input"/>
-                            </div>
-                        </div>
+
 
                         <div class="layui-form-item">
                             <label class="layui-form-label">电话：</label>
@@ -60,22 +53,6 @@
                                        autocomplete="off" class="layui-input"/>
                             </div>
                         </div>
-
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">邮箱：</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="email" required="required" lay-verify="required|email"
-                                       placeholder="请输您的邮箱地址"
-                                       autocomplete="off" class="layui-input"/>
-                            </div>
-                        </div>
-
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">详细地址：</label>
-                            <div class="layui-input-block">
-                                <textarea name="addr" placeholder="请输入您的地址" class="layui-textarea"></textarea></div>
-                        </div>
-
                         <div class="layui-form-item">
                             <div class="layui-input-block">
                                 <button id="commit" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-danger"
@@ -101,8 +78,8 @@
 
         // ajax异步校验用户名是否唯一
         function checkUsername() {
-            var username = $("input[name='username']").val();
-            $.get("checkUsername.do?username=" + username, function (data) {
+            var userName = $("input[name='userName']").val();
+            $.get("checkUsername.do?userName=" + userName, function (data) {
                 if (!data.data) {
                     layer.msg("用户已存在！");
                     $("#commit").addClass("layui-btn-disabled");
