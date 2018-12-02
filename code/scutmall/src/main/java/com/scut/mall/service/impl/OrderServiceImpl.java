@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -48,6 +49,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Page<Order> findAll(Pageable pageable) {
         return orderDao.findAll(pageable);
+    }
+
+
+    @Override
+    public int getMoneySum(){
+        return orderDao.getMoneySum();
+    }
+    @Override
+    public int getUserSum(){
+        return orderDao.getUserSum();
     }
 
     @Override
@@ -169,6 +180,15 @@ public class OrderServiceImpl implements OrderService {
         order.setTotalIntegral(totalIntegral);
         loginUser.setIntegration(totalIntegral);
         orderDao.save(order);
+		//清空购物车
+        List<Integer> productIds = (List<Integer>) request.getSession().getAttribute("shop_cart_"+ loginUser.getId());
+        System.out.println(productIds);
+        Iterator<Integer> iterator = productIds.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next()!=null) {
+                iterator.remove();
+            }
+        }
         //重定向到订单列表页面
         response.sendRedirect("/mall/order/toList.html");
     }
