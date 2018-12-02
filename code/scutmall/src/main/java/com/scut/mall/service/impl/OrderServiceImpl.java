@@ -169,6 +169,15 @@ public class OrderServiceImpl implements OrderService {
         order.setTotalIntegral(totalIntegral);
         loginUser.setIntegration(totalIntegral);
         orderDao.save(order);
+		//清空购物车
+        List<Integer> productIds = (List<Integer>) request.getSession().getAttribute("shop_cart_"+ loginUser.getId());
+        System.out.println(productIds);
+        Iterator<Integer> iterator = productIds.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next()!=null) {
+                iterator.remove();
+            }
+        }
         //重定向到订单列表页面
         response.sendRedirect("/mall/order/toList.html");
     }
