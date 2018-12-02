@@ -44,6 +44,22 @@ public interface OrderService {
     Page<Order> findAll(Pageable pageable);
 
     /**
+     * create by: Shuo Lin
+     * description: 获取历史订单总额
+     * create time: 2018/12/2 21:56
+     * @Param:
+     * @return
+     */
+    int getMoneySum();
+    /**
+     * create by: Shuo Lin
+     * description: 获取历史订单总额
+     * create time: 2018/12/2 23:06
+     * @Param:
+     * @return
+     */
+    int getUserSum();
+    /**
      * create by: Bin Liu
      * description: 按条件查询
      * create time: 2018/11/22 23:52

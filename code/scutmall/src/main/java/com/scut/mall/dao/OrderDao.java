@@ -45,4 +45,20 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
      * @return 
      */
     List<Order> findByUserId(int userId);
+
+    /**
+     * create by: Shuo Lin
+     * description: 获取历史订单总额
+     * create time: 2018/12/2 21:59
+     */
+    @Query(value = "SELECT SUM(total)from `order`;",nativeQuery = true)
+    int getMoneySum();
+
+    /**
+     * create by: Shuo Lin
+     * description: 获取历史订单总额
+     * create time: 2018/12/2 23:05
+     */
+    @Query(value = "SELECT COUNT(*) from `user`;",nativeQuery = true)
+    int getUserSum();
 }
