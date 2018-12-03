@@ -18,10 +18,9 @@ import java.io.OutputStream;
 import java.util.HashMap;
 
 /**
- * 权限拦截器
- *
- * @author hfb
- * @date 2017/9/18
+ * create time: 2018/11/20
+ * @author Kobe
+ * 一些地址相关操作的接口
  */
 @WebFilter
 public class AuthorizationFilter implements Filter {
@@ -65,7 +64,7 @@ public class AuthorizationFilter implements Filter {
                     || path.endsWith("checkUsername.do")
                     || path.indexOf("/mall/admin/product/img/") != -1
                     || path.endsWith("index.html")
-                    || path.endsWith("classification/list.do")
+                    || path.endsWith("productCategory/list.do")
                     || path.indexOf("product") != -1) {
                 chain.doFilter(request, response);
             } else {

@@ -1,5 +1,11 @@
 package com.scut.mall.service.exception;
 
+/**
+ * create time: 2018/11/20
+ * @author Kobe
+ * 两种角色用户登录异常处理
+ */
+
 public class LoginException extends RuntimeException {
     public LoginException() {
     }

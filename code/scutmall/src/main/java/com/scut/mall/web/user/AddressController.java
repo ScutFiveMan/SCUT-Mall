@@ -37,7 +37,7 @@ public class AddressController {
      */
     @RequestMapping("/toAddAddress.html")
     public String toAddAddress(){
-        return "mall/address/add.html";
+        return "/mall/address/add.html";
     }
 
     /**
