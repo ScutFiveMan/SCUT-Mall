@@ -18,9 +18,9 @@ public class addressController {
      * 地址管理页面
      * @return
      */
-    @RequestMapping("/toAddressManager.html")
+    @RequestMapping("/toAddress.html")
     public  String toAddressManager(){
-        return "/toAddressManager.html";
+        return "/mall/address/list";
     }
 
     /**
@@ -29,16 +29,16 @@ public class addressController {
      */
     @RequestMapping("/toAddAddress.html")
     public String toAddAddress(){
-        return "/toAddAddress.html";
+        return "/mall/address/add";
     }
 
     /**
      * 修改地址页面
      * @return
      */
-    @RequestMapping("/toChangeAddress.html")
+    @RequestMapping("/toEditAddress.html")
     public String toChangeAddress(){
-        return "/toChangeAddress.html";
+        return "/mall/address/edit";
     }
 
     /**
