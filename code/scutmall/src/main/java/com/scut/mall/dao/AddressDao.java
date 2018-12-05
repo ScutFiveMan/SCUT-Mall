@@ -1,7 +1,9 @@
 package com.scut.mall.dao;
 
 import com.scut.mall.entity.Address;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 
 import java.util.List;
 
@@ -22,7 +24,7 @@ public interface AddressDao extends JpaRepository<Address,Integer> {
      * @return
      * @author Kobe
      */
-    List<Address> findAllByUserId(Integer userId);
+    List<Address> findByUserId(Integer userId);
 
     /**
      * 删除地址

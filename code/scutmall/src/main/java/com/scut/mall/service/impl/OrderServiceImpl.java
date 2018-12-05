@@ -51,7 +51,6 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.findAll(pageable);
     }
 
-
     @Override
     public int getMoneySum(){
         return orderDao.getMoneySum();

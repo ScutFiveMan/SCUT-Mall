@@ -2,12 +2,15 @@ package com.scut.mall.service.impl;
 
 import com.scut.mall.dao.AddressDao;
 import com.scut.mall.entity.Address;
+import com.scut.mall.entity.User;
 import com.scut.mall.service.AddressService;
+import com.scut.mall.service.exception.LoginException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -26,8 +29,13 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<Address> findAllByUserId(Integer userId) {
-        return addressDao.findAllByUserId(userId);
+    public List<Address> findByUserId(HttpServletRequest request) {
+        Object user = request.getSession().getAttribute("user");
+        if (user == null)
+            throw new LoginException("请登录！");
+        User loginUser = (User) user;
+        List<Address> addresses=addressDao.findByUserId(loginUser.getId());
+        return addresses;
     }
 
     @Override

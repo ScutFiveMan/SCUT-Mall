@@ -29,21 +29,19 @@ public class Address implements Serializable {
     private String detail;
 
     @Column
-    private String recevier;
+    private String receiver;
 
     @Column
     private String phone;
 
-    public Address(Integer id ,Integer userId, String province,String city,
-                   String district,String detail,String recevier,String phone){
-        this.id=id;
-        this.userId=userId;
-        this.province=province;
-        this.city=city;
-        this.district=district;
-        this.detail=detail;
-        this.recevier=recevier;
-        this.phone=phone;
+    public Address(Integer userId, String province, String city, String district, String detail, String receiver, String phone) {
+        this.userId = userId;
+        this.province = province;
+        this.city = city;
+        this.district = district;
+        this.detail = detail;
+        this.receiver = receiver;
+        this.phone = phone;
     }
 
     public Address(){
@@ -97,12 +95,12 @@ public class Address implements Serializable {
 
     public void setDetail(String detail) { this.detail = detail; }
 
-    public String getRecevier() {
-        return recevier;
+    public String getReceiver() {
+        return receiver;
     }
 
-    public void setRecevier(String recevier) {
-        this.recevier = recevier;
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
     }
 
     public String getPhone() {

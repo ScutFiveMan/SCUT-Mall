@@ -32,10 +32,10 @@ public interface AddressService {
 
     /**
      * 查看用户所有相关的地址
-     * @param userId
+     * @param request
      * @return
      */
-    List<Address> findAllByUserId(Integer userId);
+    List<Address> findByUserId(HttpServletRequest request);
 
     /**
      * create by: Kobe

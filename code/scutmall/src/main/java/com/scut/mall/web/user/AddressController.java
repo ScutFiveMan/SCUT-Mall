@@ -1,14 +1,14 @@
 package com.scut.mall.web.user;
 
 import com.scut.mall.entity.Address;
+import com.scut.mall.entity.User;
 import com.scut.mall.entity.pojo.ResultBean;
 import com.scut.mall.service.AddressService;
+import com.scut.mall.service.exception.LoginException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,75 +26,100 @@ public class AddressController {
      * @return
      */
     @RequestMapping("/toAddress.html")
-    public  String toAddressManager(){
-        return "/mall/address/list";
+    public String toAddressList() {
+        return "mall/address/list";
     }
 
+    @ResponseBody
+    @RequestMapping("/list.do")
+    public ResultBean<List<Address>> list(HttpServletRequest request){
+        List<Address> addresses = addressService.findByUserId(request);
+        return new ResultBean<>(addresses);
+    }
 
     /**
      * 增加地址页面
      * @return
      */
-    @RequestMapping("/toAddAddress.html")
+    @RequestMapping("/toAdd.html")
     public String toAddAddress(){
-        return "/mall/address/add";
+        return "mall/address/add";
     }
 
     /**
      * 修改地址页面
      * @return
      */
-    @RequestMapping("/toEditAddress.html")
+    @RequestMapping("/toEdit.html")
     public String toEditAddress(){
-        return "/mall/address/edit";
+        return "mall/address/edit";
     }
 
-//    @ResponseBody
-//    @RequestMapping("/list.do")
-//    public ResultBean<List<Address>> list(HttpServletRequest request){
-//        List<Address> list = addressService.findAllByUserId( request );
-//        return new ResultBean<>(list);
-//    }
     /**
      * 用户增加地址
      */
-    @RequestMapping("/addAddress.do")
-    public void addAddress(Integer userId,String province,String city,String district,String detail,
-                            String recevier,String phone,
-                            HttpServletResponse response){
+    @RequestMapping( method = RequestMethod.POST, value = "/add.do")
+    public void addAddress(String province,String city,String district,String detail,
+                            String receiver,String phone,HttpServletRequest request,
+                            HttpServletResponse response)throws Exception{
         Address address= new Address();
-        address.setUserId(userId);
+        Object user = request.getSession().getAttribute("user");
+        if (user == null)
+            throw new LoginException("请登录！");
+        User loginUser = (User) user;
+        address.setUserId(loginUser.getId());
         address.setProvince(province);
         address.setCity(city);
         address.setDistrict(district);
         address.setDetail(detail);
-        address.setRecevier(recevier);
+        address.setReceiver(receiver);
         address.setPhone(phone);
-        addressService.create(address);
+        int id = addressService.create(address);
+        if (id <= 0) {
+            request.setAttribute("message", "添加失败！");
+            request.getRequestDispatcher("toAdd.html").forward(request, response);
+        } else {
+            request.getRequestDispatcher("toAddress.html?id=").forward(request, response);
+        }
     }
 
     /**
      * 用户修改地址
      */
-    @RequestMapping("/changeAddress.do")
-    public void changeAddress(Integer id ,Integer userId, String province,String city,
+    @RequestMapping("/edit.do")
+    public void changeAddress(Integer id , String province,String city,
                                 String district,String detail,
-                              String recevier,String phone,HttpServletResponse response){
-        Address address=addressService.findByIdAndUserId(id,userId);
-        address.setUserId(userId);
+                              String receiver,String phone,HttpServletRequest request,
+                              HttpServletResponse response) throws Exception {
+        Object user = request.getSession().getAttribute("user");
+        if (user == null)
+            throw new LoginException("请登录！");
+        User loginUser = (User) user;
+        Address address=addressService.findByIdAndUserId(id,loginUser.getId());
+        address.setUserId(loginUser.getId());
         address.setProvince(province);
         address.setCity(city);
         address.setDistrict(district);
         address.setDetail(detail);
-        address.setRecevier(recevier);
+        address.setReceiver(receiver);
         address.setPhone(phone);
-        addressService.update(address);
+        boolean flag = false;
+        try {
+            addressService.update(address);
+            flag = true;
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
+        if (!flag) {
+            request.setAttribute("message", "更新失败！");
+        }
+        response.sendRedirect("toAddress.html");
     }
 
     /**
      * 用户删除地址
      */
-    @RequestMapping("/deleteAddress.do")
+    @RequestMapping("/delete.do")
     public void deleteAddress(Integer id,Integer userId,HttpServletResponse response){
         addressService.deleteById(id);
     }

@@ -33,7 +33,7 @@
     <div class="layui-row">
         <div class="layui-col-md12"><h1 class="site-h1"><i class="fa fa-gift" style="color: #FF5722;"></i>
             &nbsp;我的地址</h1> <div class="tools">
-            <button onclick="window.location.href='toAddAddress.html';" class="btn mini"><i class="fa fa-plus"></i>添加
+            <button onclick="window.location.href='toAdd.html';" class="btn mini"><i class="fa fa-plus"></i>添加
             </button>
         </div></div>
     </div>
@@ -46,8 +46,7 @@
                         <th>收件人</th>
                         <th>省份</th>
                         <th>城市</th>
-                        <th>城镇</th>
-                        <th>街道</th>
+                        <th>区域</th>
                         <th>详细地址</th>
                         <th>电话</th>
                         <th>操作</th>
@@ -75,11 +74,37 @@
         });
         //            <![CDATA[
         $(function () {
-            loadOrder();
+            loadAddress();
         });
 
-        // 加载我的订单列表
-        function loadOrder() {
+        function edit(id) {
+            window.location.href = "toEdit.html?id=" + id;
+        }
+
+        function del(id, btn) {
+            if (!confirm("是否删除id为" + id + "的地址？")) {
+                return;
+            }
+            $.ajax({
+                url: "del.do?id=" + id,
+                type: "get",
+                success: function (result) {
+                    if (result.state == 0) {
+                        if (result.data == true) {
+                            alert("删除成功！");
+                            $(btn).parent().parent().fadeOut();
+                        } else {
+                            alert("删除失败！");
+                        }
+                    } else {
+                        alert(result.message);
+                    }
+                }
+            });
+        }
+
+        // 加载我的列表
+        function loadAddress() {
             $.get("list.do", function (data) {
                 if (data.state == 0) {
                     var tbody = $("#list");
@@ -93,86 +118,20 @@
         function appendToPage(items, tbody) {
             $(items).each(function (index, item) {
                 var tr = $("<tr></tr>");
-                tr.append($("<td>" + item.id + "</td>"));
-                tr.append($("<td width='200'>" + item.reciever + "</td>"));
+                tr.append($("<td width='200'>" + item.receiver + "</td>"));
                 tr.append($("<td width='80'>" + item.province+ "</td>"));
                 tr.append($("<td width='100'>" + item.city+ "</td>"));
-                tr.append($("<td width='100'>" + item.town + "</td>"));
-                tr.append($("<td width='80'>" + item.stress + "</td>"));
+                tr.append($("<td width='100'>" + item.district + "</td>"));
                 tr.append($("<td width='80'>" + item.detail + "</td>"));
-                tr.append($("<td width='80'>" + item.phone + "</td>"));
+                tr.append($("<td width='80'>" + item.phone+ "</td>"));
                 var operter = $("<td ><button onclick='edit(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-primary'>编辑</button></td>");
-                    operter.append($("<button onclick='recieve(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-danger'>删除</button>"));
+                    operter.append($("<button onclick='recieve(" + item.id + ",this)' class='layui-btn layui-btn-radius layui-btn-danger'>删除</button>"));
                 tr.append(operter);
                 tbody.append(tr);
 
             });
         }
 
-        // 获取订单详情
-        function getDetail(id) {
-            $.get("getDetail.do?orderId=" + id, function (data) {
-                if (data.state == 0) {
-                    var div = $("<div></div>");
-                    var table = $("<table class='layui-table' style='overflow: auto;min-width: 650px' lay-skin='line' ></table>");
-                    var tbody = $("<tbody></tbody>");
-                    $(data.data).each(function (index, item) {
-                        var tr = $("<tr style='max-height: 200px;'></tr>");
-                        tr.append($("<td ><img class='img_responsive' src='" + item.product.image + "'/></td>"));
-                        tr.append($("<td style='text-align: left;width: 200px;'><a style='color: #01AAED;text-decoration: underline;' href='/mall/product/get.html?id="+item.productId+"'>" + item.product.title + "</a></td>"));
-                        tr.append($("<td>单价：" + item.product.shopPrice + "</td>"));
-                        tr.append($("<td>数量：" + item.count + "</td>"));
-                        tr.append($("<td>总价：￥" + item.subTotal + "</td>"));
-                        tbody.append(tr);
-                    });
-                    table.append(tbody);
-                    div.append(table);
-                    layer.open({
-                        type: 1,
-                        title: false,
-                        closeBtn: 0,
-                        shadeClose: true,
-                        skin: 'detail',
-                        content: div.html()
-                    });
-                } else {
-                    layer.msg(data.message);
-                }
-            });
-        }
-
-        //付款
-        function pay(id) {
-            $.get("pay.do?orderId=" + id, function (data) {
-                if (data.state == 0) {
-                    layer.msg("付款成功！");
-                    window.setTimeout(function () {
-                        window.location.reload();
-                    },500);
-                } else {
-                    layer.msg(data.message);
-                }
-            });
-
-        }
-
-        //确认收货
-        function recieve(id) {
-            layer.confirm('您确认已经收到货了吗？', {
-                btn: ['确定','取消'] //按钮
-            }, function(){
-                $.get("receive.do?orderId=" + id, function (data) {
-                    if (data.state == 0) {
-                        window.setTimeout(function () {
-                            window.location.reload();
-                        },500);
-                    } else {
-                        layer.msg(data.message);
-                    }
-                });
-            });
-
-        }
     </script>
 </div>
 <!--底部-->
