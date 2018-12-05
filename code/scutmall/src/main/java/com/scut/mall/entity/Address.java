@@ -13,22 +13,19 @@ public class Address implements Serializable {
     @Column(nullable = false)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column
     private Integer userId;
 
-    @Column(nullable = false)
+    @Column
     private String province;
 
-    @Column(nullable = false)
+    @Column
     private String city;
 
-    @Column(nullable = false)
-    private String town;
+    @Column
+    private String district;
 
-    @Column(nullable = false)
-    private String street;
-
-    @Column(nullable = false)
+    @Column
     private String detail;
 
     @Column
@@ -38,13 +35,12 @@ public class Address implements Serializable {
     private String phone;
 
     public Address(Integer id ,Integer userId, String province,String city,
-                   String town,String street,String detail,String recevier,String phone){
+                   String district,String detail,String recevier,String phone){
         this.id=id;
         this.userId=userId;
         this.province=province;
         this.city=city;
-        this.town=town;
-        this.street=street;
+        this.district=district;
         this.detail=detail;
         this.recevier=recevier;
         this.phone=phone;
@@ -87,20 +83,12 @@ public class Address implements Serializable {
         this.city = city;
     }
 
-    public String getTown() {
-        return town;
+    public String getDistrict() {
+        return district;
     }
 
-    public void setTown(String town) {
-        this.town = town;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     public String getDetail() {

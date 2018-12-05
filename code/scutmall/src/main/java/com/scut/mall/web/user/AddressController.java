@@ -59,15 +59,14 @@ public class AddressController {
      * 用户增加地址
      */
     @RequestMapping("/addAddress.do")
-    public void addAddress(Integer userId,String province,String city,String town,String street,String detail,
+    public void addAddress(Integer userId,String province,String city,String district,String detail,
                             String recevier,String phone,
                             HttpServletResponse response){
         Address address= new Address();
         address.setUserId(userId);
         address.setProvince(province);
         address.setCity(city);
-        address.setTown(town);
-        address.setStreet(street);
+        address.setDistrict(district);
         address.setDetail(detail);
         address.setRecevier(recevier);
         address.setPhone(phone);
@@ -79,14 +78,13 @@ public class AddressController {
      */
     @RequestMapping("/changeAddress.do")
     public void changeAddress(Integer id ,Integer userId, String province,String city,
-                                String town,String street,String detail,
+                                String district,String detail,
                               String recevier,String phone,HttpServletResponse response){
         Address address=addressService.findByIdAndUserId(id,userId);
         address.setUserId(userId);
         address.setProvince(province);
         address.setCity(city);
-        address.setTown(town);
-        address.setStreet(street);
+        address.setDistrict(district);
         address.setDetail(detail);
         address.setRecevier(recevier);
         address.setPhone(phone);

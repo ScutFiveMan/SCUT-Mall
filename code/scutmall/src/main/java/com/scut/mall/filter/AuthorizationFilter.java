@@ -22,6 +22,7 @@ import java.util.HashMap;
  * @author Kobe
  * 一些地址相关操作的接口
  */
+
 @WebFilter
 public class AuthorizationFilter implements Filter {
 
@@ -64,7 +65,7 @@ public class AuthorizationFilter implements Filter {
                     || path.endsWith("checkUsername.do")
                     || path.indexOf("/mall/admin/product/img/") != -1
                     || path.endsWith("index.html")
-                    || path.endsWith("productCategory/list.do")
+                    || path.endsWith("classification/list.do")
                     || path.indexOf("product") != -1) {
                 chain.doFilter(request, response);
             } else {
