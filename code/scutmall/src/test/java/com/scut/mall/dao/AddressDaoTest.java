@@ -20,12 +20,12 @@ public class AddressDaoTest {
     @Test
     public void findByIdAndUserId() {
         int userId=1;
-        System.out.println(addressDao.findAllByUserId(1));
+        System.out.println(addressDao.findByUserId(1));
     }
 
     @Test
     public void findAllByUserId() {
-        System.out.println(addressDao.findAllByUserId(1));
+        System.out.println(addressDao.findByUserId(1));
     }
 
     @Test
