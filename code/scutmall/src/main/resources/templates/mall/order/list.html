@@ -11,6 +11,7 @@
     <link th:href="@{/css/common.css}" rel="stylesheet" type="text/css"/>
     <script th:src="@{/layui/jquery-3.2.1.min.js}"></script>
     <script th:src="@{/layui/layui.js}"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <style>
         #list {
 
@@ -45,6 +46,7 @@
                         <th>电话</th>
                         <th>地址</th>
                         <th>总价</th>
+                        <th>积分</th>
                         <th>状态</th>
                         <th>操作</th>
                     </tr>
@@ -84,6 +86,7 @@
                 tr.append($("<td width='100'>" + item.phone + "</td>"));
                 tr.append($("<td width='100'>" + item.addr + "</td>"));
                 tr.append($("<td width='80'>" + item.total + "</td>"));
+                tr.append($("<td width='80'>" + item.totalIntegral + "</td>"));
                 var state = item.state;
                 var status;//1:未付款 2:等待发货 3:等待收货 4:订单完成
                 switch (state) {
@@ -133,6 +136,7 @@
                         tr.append($("<td>单价：" + item.product.shopPrice + "</td>"));
                         tr.append($("<td>数量：" + item.count + "</td>"));
                         tr.append($("<td>总价：￥" + item.subTotal + "</td>"));
+                        tr.append($("<td>积分：" + item.subIntegral + "</td>"));
                         tbody.append(tr);
                     });
                     table.append(tbody);

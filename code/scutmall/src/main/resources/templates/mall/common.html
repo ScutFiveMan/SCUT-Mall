@@ -37,7 +37,7 @@
                 <script>
                     //                    <![CDATA[
                     //加载分类
-                    $.get("/mall/admin/classification/list.do?type=1&pageindex=-1", function (data) {
+                    $.get("/mall/admin/category/list.do?pageindex=-1", function (data) {
                         if (data.state == 0) {
                             var list = $("#category");
                             $(data.data).each(function (index, item) {
@@ -58,6 +58,7 @@
                     <span th:if="${session.user != null}" th:text="'欢迎您!&nbsp;' + ${session.user.userName}">请登陆</span>
                 </a>
                 <dl class="layui-nav-child">
+                    <dd th:if="${session.user != null}"><a href="#" th:text="'积分：'+${session.user.integration}"></a></dd>
                     <dd th:if="${session.user != null}"><a href="/mall/address/toAddress.html"><i class="fa fa-user-secret"></i> 地址管理</a></dd>
                     <dd th:if="${session.user != null}"><a href="/mall/user/logout.do"><i class="fa fa-sign-out"></i> 退出登录</a></dd>
                     <dd th:if="${session.user != null}"><a href="/mall/order/toList.html"><i class="fa fa-list"></i> 我的订单</a></dd>
