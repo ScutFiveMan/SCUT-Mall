@@ -25,12 +25,12 @@ public interface ProductCategoryService {
 
     /**
      * create by: Bin Liu
-     * description: 找到所有分类
+     * description: 按分类查询所有分类
      * create time: 2018/11/29 10:52
-     * @Param: null
+     * @Param: type
      * @return
      */
-    List<ProductCategory> findAll();
+    List<ProductCategory> findAll(int type);
 
     /**
      * create by: Bin Liu
@@ -39,7 +39,7 @@ public interface ProductCategoryService {
      * @Param: null
      * @return
      */
-    Page<ProductCategory> findAll(Pageable pageable);
+    Page<ProductCategory> findAll(int type,Pageable pageable);
 
     /**
      * create by: Bin Liu
@@ -76,4 +76,13 @@ public interface ProductCategoryService {
      * @return
      */
     void delById(int id);
+
+    /**
+     * create by: Bin Liu
+     * description: 通过一级分类id查找它所有的二级分类
+     * create time: 2018/12/5 18:28
+     * @Param: cid
+     * @return 
+     */
+    List<ProductCategory> findByParentId(int cid);
 }

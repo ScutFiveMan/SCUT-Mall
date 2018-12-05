@@ -53,11 +53,21 @@ public interface ProductService {
      * create by: Bin Liu
      * description: 根据一级分类查找商品
      * create time: 2018/11/23 9:28
-     * @param productCategoryId
+     * @param cId
      * @param pageable
      * @return
      */
-    List<Product> findByProductCategoryId(int productCategoryId,Pageable pageable);
+    List<Product> findByProductCategoryId(int cId,Pageable pageable);
+    
+    /**
+     * create by: Bin Liu
+     * description: 根据二级分类查找商品
+     * create time: 2018/12/5 18:40
+     * @param csId
+     * @param pageable
+     * @return 
+     */
+    List<Product> findByProductCategorySecondId(int csId,Pageable pageable);
 
     /**
      * create by: Bin Liu

@@ -121,7 +121,7 @@ public class ProductController {
 
     /**
      * create by: Bin Liu
-     * description: 按分类查找商品
+     * description: 根据一级分类查找商品
      * create time: 2018/11/29 11:03
      * @param cid
      * @param pageNo
@@ -136,6 +136,35 @@ public class ProductController {
         return new ResultBean<>(products);
     }
 
+    /**
+     * create by: Bin Liu
+     * description: 按二级分类查找商品
+     * create time: 2018/12/5 19:23
+     * @param csId
+     * @param pageNo
+     * @param pageSize
+     * @return 
+     */
+    @ResponseBody
+    @RequestMapping("/categorySec.do")
+    public ResultBean<List<Product>> getCategorySecProduct(int csId, int pageNo, int pageSize) {
+        Pageable pageable = new PageRequest(pageNo, pageSize);
+        List<Product> products = productService.findByProductCategorySecondId(csId, pageable);
+        return new ResultBean<>(products);
+    }
+
+    /**
+     * 根据一级分类查询它所有的二级分类
+     * @param cid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/getCategorySec.do")
+    public ResultBean<List<ProductCategory>> getCategorySec(int cid){
+        List<ProductCategory> list = productCategoryService.findByParentId(cid);
+        return new ResultBean<>(list);
+    }
+    
     /**
      * create by: Bin Liu
      * description: 加购物车

@@ -1,7 +1,11 @@
 package com.scut.mall.dao;
 
 import com.scut.mall.entity.ProductCategory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 /**
  * @ Author     ：Bin Liu
@@ -12,11 +16,37 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ProductCategoryDao extends JpaRepository<ProductCategory, Integer> {
     /**
      * create by: Bin Liu
-     * description: 通过id查找分类信息
-     * create time: 2018/11/29 10:19
+     * description: 通过id
+     * create time: 2018/12/5 18:33
      * @Param: null
-     * @return
+     * @return 
      */
     ProductCategory findProductCategoryById(int id);
+    /**
+     * create by: Bin Liu
+     * description: 通过类型查询分类
+     * create time: 2018/12/5 18:08
+     * @Param: type
+     * @return 
+     */
+    List<ProductCategory> findByType(int type);
 
+    /**
+     * create by: Bin Liu
+     * description: 通过类型查询分类
+     * create time: 2018/12/5 18:08
+     * @Param: type
+     * @Param: pageable
+     * @return 
+     */
+    Page<ProductCategory> findByType(int type, Pageable pageable);
+
+    /**
+     * create by: Bin Liu
+     * description: 通过父类id查询分类
+     * create time: 2018/12/5 18:11
+     * @Param: cid
+     * @return
+     */
+    List<ProductCategory> findByParentId(int cid);
 }

@@ -28,13 +28,13 @@ public class ProductCategoryImpl implements ProductCategoryService {
     }
 
     @Override
-    public List<ProductCategory> findAll() {
-        return productCategoryDao.findAll();
+    public List<ProductCategory> findAll(int type) {
+        return productCategoryDao.findByType(type);
     }
 
     @Override
-    public Page<ProductCategory> findAll(Pageable pageable) {
-        return productCategoryDao.findAll(pageable);
+    public Page<ProductCategory> findAll(int type,Pageable pageable) {
+        return productCategoryDao.findByType(type,pageable);
     }
 
     @Override
@@ -57,4 +57,11 @@ public class ProductCategoryImpl implements ProductCategoryService {
     public void delById(int id) {
         productCategoryDao.deleteById(id);
     }
+
+    @Override
+    public List<ProductCategory> findByParentId(int cid) {
+        return productCategoryDao.findByParentId(cid);
+    }
+
+
 }

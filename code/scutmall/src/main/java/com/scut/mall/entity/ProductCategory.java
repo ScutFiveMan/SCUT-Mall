@@ -19,16 +19,28 @@ public class ProductCategory implements Serializable{
     @Column
     private Integer id;
     /**
+     * 上级分类Id
+     */
+    @Column
+    private Integer parentId;
+    /**
      * 分类名称
      */
     @Column
     private String cname;
+    /**
+     * 类型 1一级分类 2二级分类
+     */
+    @Column
+    private Integer type;
 
     private static final long serialVersionUID = 1L;
 
-    public ProductCategory(Integer id,String cname ) {
+    public ProductCategory(Integer id,Integer parentId, String cname, Integer type) {
         this.id = id;
+        this.parentId = parentId;
         this.cname = cname;
+        this.type = type;
     }
 
     public ProductCategory() {
@@ -51,6 +63,26 @@ public class ProductCategory implements Serializable{
         this.cname = cname == null ? null : cname.trim();
     }
 
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -64,7 +96,9 @@ public class ProductCategory implements Serializable{
         }
         ProductCategory other = (ProductCategory) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-                && (this.getCname() == null ? other.getCname() == null : this.getCname().equals(other.getCname()));
+                && (this.getParentId() == null ? other.getParentId() == null : this.getParentId().equals(other.getParentId()))
+                && (this.getCname() == null ? other.getCname() == null : this.getCname().equals(other.getCname()))
+                && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()));
     }
 
     @Override
@@ -72,7 +106,9 @@ public class ProductCategory implements Serializable{
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getParentId() == null) ? 0 : getParentId().hashCode());
         result = prime * result + ((getCname() == null) ? 0 : getCname().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
         return result;
     }
 
@@ -83,7 +119,9 @@ public class ProductCategory implements Serializable{
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", parentId=").append(parentId);
         sb.append(", cname=").append(cname);
+        sb.append(", type=").append(type);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

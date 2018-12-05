@@ -37,8 +37,14 @@ public class AdminProductCategoryController {
      * @return
      */
     @RequestMapping("/toList.html")
-    public String toList() {
-        return "admin/category/list";
+    public String toList(int type) {
+        if (type == 1) {// 一级分类页面
+            return "admin/category/list";
+        } else if (type == 2) {// 二级分类页面
+            return "admin/categorysec/list";
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -49,8 +55,14 @@ public class AdminProductCategoryController {
      * @return
      */
     @RequestMapping("/toAdd.html")
-    public String toAdd() {
-        return "admin/category/add";
+    public String toAdd(int type) {
+        if (type == 1) {// 一级分类页面
+            return "admin/category/add";
+        } else if (type == 2) {// 二级分类页面
+            return "admin/categorysec/add";
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -62,26 +74,39 @@ public class AdminProductCategoryController {
      * @return
      */
     @RequestMapping("/toEdit.html")
-    public String toEdit(int id, Map<String, Object> map) {
-        ProductCategory productCategory=productCategoryService.findById(id);
-        map.put("productCategory", productCategory);
-        return "admin/category/edit";
+    public String toEdit(int id,int type, Map<String, Object> map) {
+        ProductCategory productCategory = productCategoryService.findById(id);
+        map.put("cate", productCategory);
+        if (type == 1) {// 一级分类页面
+            return "admin/category/edit";
+        } else if (type == 2) {// 二级分类页面
+            ProductCategory productCategory1 = productCategoryService.findById(productCategory.getParentId());
+            map.put("cate", productCategory1);
+            map.put("catese",productCategory);
+            return "admin/categorysec/edit";
+        } else {
+            return "";
+        }
     }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/add.do")
-    public ResultBean<Boolean> add(String cname) {
+    public ResultBean<Boolean> add(String cname, int parentId, int type) {
         ProductCategory productCategory=new ProductCategory();
+        productCategory.setParentId(parentId);
         productCategory.setCname(cname);
+        productCategory.setType(type);
         productCategoryService.create(productCategory);
         return new ResultBean<>(true);
     }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/update.do")
-    public ResultBean<Boolean> update(int id, String cname) {
+    public ResultBean<Boolean> update(int id, String cname, int parentId, int type) {
         ProductCategory productCategory = productCategoryService.findById(id);
         productCategory.setCname(cname);
+        productCategory.setParentId(parentId);
+        productCategory.setType(type);
         productCategoryService.update(productCategory);
         return new ResultBean<>(true);
     }
@@ -95,22 +120,23 @@ public class AdminProductCategoryController {
 
     @RequestMapping("/list.do")
     @ResponseBody
-    public ResultBean<List<ProductCategory>> findAll(int pageindex, @RequestParam(value = "pageSize", defaultValue = "15") int pageSize) {
+    public ResultBean<List<ProductCategory>> findAll(int type,
+                                                     int pageindex, @RequestParam(value = "pageSize", defaultValue = "15") int pageSize) {
         List<ProductCategory> list = new ArrayList<>();
         if (pageindex == -1)
-            list = productCategoryService.findAll();
+            list = productCategoryService.findAll(type);
         else {
             Pageable pageable = new PageRequest(pageindex, pageSize, null);
-            list = productCategoryService.findAll(pageable).getContent();
+            list = productCategoryService.findAll(type,pageable).getContent();
         }
         return new ResultBean<>(list);
     }
 
     @ResponseBody
     @RequestMapping("/getTotal.do")
-    public ResultBean<Integer> getTotal() {
+    public ResultBean<Integer> getTotal(int type) {
         Pageable pageable = new PageRequest(1, 15, null);
-        int count = (int) productCategoryService.findAll(pageable).getTotalElements();
+        int count = (int) productCategoryService.findAll(type,pageable).getTotalElements();
         return new ResultBean<>(count);
     }
 }

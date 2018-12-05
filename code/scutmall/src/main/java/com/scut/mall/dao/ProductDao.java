@@ -15,6 +15,7 @@ import java.util.List;
  * @ Modified By：
  */
 public interface ProductDao extends JpaRepository<Product, Integer> {
+
     /**
      * create by: Bin Liu
      * description: 通过id获得产品信息
@@ -26,13 +27,15 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
     
     /**
      * create by: Bin Liu
-     * description: 通过分类查找商品列表
+     * description: 通过二级分类查找商品列表
      * create time: 2018/11/23 9:21
      * @param productCategoryId
      * @param pageable
      * @return
      */
     List<Product> findByProductCategoryId(int productCategoryId, Pageable pageable);
+
+    List<Product> findByProductCategoryIdIn(List<Integer> productCategoryIds, Pageable pageable);
 
     /**
      * create by: Bin Liu
