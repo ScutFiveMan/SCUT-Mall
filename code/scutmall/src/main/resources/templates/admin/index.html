@@ -208,15 +208,31 @@
 
             <li class="" id="category">
 
-                <a href="javascript:changePage('category');">
+                <a href="#">
 
                     <i class="fa fa-object-group"></i>
 
                     <span class="title">分类管理</span>
 
-                    <span class="selected "></span>
+                    <span class="arrow "></span>
 
                 </a>
+
+                <ul class="sub-menu">
+
+                    <li id="category_1">
+                        <a href="javascript:changePage('category');">
+                            <i class="fa fa-list"></i>
+                            一级分类
+                        </a>
+                    </li>
+                    <li id="categorysec">
+                        <a href="javascript:changePage('categorySec');">
+                            <i class="fa fa-list"></i>
+                            二级分类
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="" id="order">
@@ -383,12 +399,12 @@
         if ('categorySec' == page) {
             $("#category").addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
             $("#categorysec").addClass("active");
-            $("#mainFrame").attr("src", "classification/toList.html?type=2");
+            $("#mainFrame").attr("src", "productCategory/toList.html?type=2");
             return;
         } else if ('category' == page) {
             $("#category").addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
             $("#category_1").addClass("active");
-            $("#mainFrame").attr("src", "classification/toList.html?type=1");
+            $("#mainFrame").attr("src", "productCategory/toList.html?type=1");
             return;
         } else {
             $("#" + page).addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
