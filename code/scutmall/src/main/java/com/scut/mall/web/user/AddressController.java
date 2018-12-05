@@ -79,7 +79,7 @@ public class AddressController {
             request.setAttribute("message", "添加失败！");
             request.getRequestDispatcher("toAdd.html").forward(request, response);
         } else {
-            request.getRequestDispatcher("toAddress.html?id=").forward(request, response);
+            request.getRequestDispatcher("toAddress.html").forward(request, response);
         }
     }
 
