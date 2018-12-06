@@ -55,7 +55,7 @@ public class ProductCategoryImpl implements ProductCategoryService {
 
     @Override
     public void delById(int id) {
-        productCategoryDao.deleteById(id);
+        productCategoryDao.deleteById( id );
     }
 
     @Override

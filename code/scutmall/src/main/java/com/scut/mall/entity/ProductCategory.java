@@ -79,9 +79,6 @@ public class ProductCategory implements Serializable{
         this.type = type;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     @Override
     public boolean equals(Object that) {

@@ -82,11 +82,11 @@
                 var tr = $("<tr></tr>");
                 tr.append($("<td>" + item.id + "</td>"));
                 tr.append($("<td width='200'>" + item.orderTime + "</td>"));
-                tr.append($("<td width='80'>" + item.name + "</td>"));
+                tr.append($("<td width='60'>" + item.name + "</td>"));
                 tr.append($("<td width='100'>" + item.phone + "</td>"));
                 tr.append($("<td width='100'>" + item.addr + "</td>"));
-                tr.append($("<td width='80'>" + item.total + "</td>"));
-                tr.append($("<td width='80'>" + item.totalIntegral + "</td>"));
+                tr.append($("<td width='60'>" + item.total + "</td>"));
+                tr.append($("<td width='60'>" + item.totalIntegral + "</td>"));
                 var state = item.state;
                 var status;//1:未付款 2:等待发货 3:等待收货 4:订单完成
                 switch (state) {
@@ -107,7 +107,7 @@
                         break;
                 }
 
-                tr.append($("<td width='100'>" + status + "</td>"));
+                tr.append($("<td width='140'>" + status + "</td>"));
 
                 var operter = $("<td ><button onclick='getDetail(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-primary'>查看详情</button></td>");
                 if (state == 3) {

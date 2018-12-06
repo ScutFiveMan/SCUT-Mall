@@ -37,7 +37,7 @@
                 <script>
                     //                    <![CDATA[
                     //加载分类
-                    $.get("/mall/admin/category/list.do?pageindex=-1", function (data) {
+                    $.get("/mall/admin/productCategory/list.do?pageindex=-1", function (data) {
                         if (data.state == 0) {
                             var list = $("#category");
                             $(data.data).each(function (index, item) {

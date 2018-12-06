@@ -24,10 +24,15 @@
 <div class="layui-container" id="content">
     <!--一级分类商品-->
     <div class="layui-row">
-        <input type="hidden" id="cid" th:value="${category.id}"/>
+        <input type="hidden" id="cid" th:value="${productCategory.id}"/>
+        <input type="hidden" id="type" th:value="${productCategory.type}"/>
         <div class="layui-col-md12"><h1 class="site-h1"><i class="fa fa-gift" style="color: #FF5722;"></i>
-            &nbsp;<span th:text="${category.cname}"></span></h1></div>
-
+            &nbsp;<span th:text="${productCategory.cname}"></span></h1></div>
+        <div th:if="${productCategory.type == 1}" style="margin-top: 10px;margin-bottom: 20px;">
+            <span class="layui-breadcrumb" lay-separator="|" id="categorysec">
+                <!--这里显示二级分类-->
+            </span>
+        </div>
     </div>
     <div class="layui-row" style="text-align: center;">
         <div class="layui-row" id="product_cate">
