@@ -29,13 +29,13 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
      * create by: Bin Liu
      * description: 通过二级分类查找商品列表
      * create time: 2018/11/23 9:21
-     * @param productCategoryId
+     * @param csId
      * @param pageable
      * @return
      */
-    List<Product> findByProductCategoryId(int productCategoryId, Pageable pageable);
+    List<Product> findByCsId(int csId, Pageable pageable);
 
-    List<Product> findByProductCategoryIdIn(List<Integer> productCategoryIds, Pageable pageable);
+    List<Product> findByCsIdIn(List<Integer> csIds, Pageable pageable);
 
     /**
      * create by: Bin Liu

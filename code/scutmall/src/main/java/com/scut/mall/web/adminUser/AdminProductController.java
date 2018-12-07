@@ -55,8 +55,8 @@ public class AdminProductController {
     @RequestMapping("/toEdit.html")
     public String toEdit(int id, Map<String, Object> map) {
         Product product = productService.findById(id);
-        ProductCategory productCategory = productCategoryService.findById(product.getProductCategoryId());
-        product.setProductCategoryId(productCategory.getId());
+        ProductCategory productCategory = productCategoryService.findById(product.getCsId());
+        product.setCategorySec(productCategory);
         map.put("product", product);
         return "admin/product/edit";
     }
@@ -92,7 +92,7 @@ public class AdminProductController {
                     Double shopPrice,
                     int isHot,
                     String desc,
-                    int productCategoryId,
+                    int csId,
                     HttpServletRequest request,
                     HttpServletResponse response) throws Exception {
         Product product = new Product();
@@ -101,7 +101,7 @@ public class AdminProductController {
         product.setShopPrice(shopPrice);
         product.setDescription(desc);
         product.setIsHot(isHot);
-        product.setProductCategoryId(productCategoryId);
+        product.setCsId(csId);
         product.setDate(new Date());
         String imgUrl = FileUtil.saveFile(image);
         product.setImage(imgUrl);
@@ -132,7 +132,7 @@ public class AdminProductController {
         product.setShopPrice(shopPrice);
         product.setDescription(desc);
         product.setIsHot(isHot);
-        product.setProductCategoryId(productCategoryId);
+        product.setCsId(productCategoryId);
         product.setDate(new Date());
         String imgUrl = FileUtil.saveFile(image);
         if (StringUtils.isNotBlank(imgUrl)) {

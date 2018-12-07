@@ -62,7 +62,7 @@ public class ProductServiceImpl implements ProductService {
         for (ProductCategory productCategory : productCategories) {
             secIds.add(productCategory.getId());
         }
-        return productDao.findByProductCategoryIdIn(secIds,pageable);
+        return productDao.findByCsIdIn(secIds,pageable);
     }
 
     /**
@@ -75,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public List<Product> findByProductCategorySecondId(int csId, Pageable pageable) {
-        return productDao.findByProductCategoryId(csId,pageable);
+        return productDao.findByCsId(csId,pageable);
     }
 
 

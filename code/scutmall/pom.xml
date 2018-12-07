@@ -72,6 +72,11 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
+        <!--SpringBoot2.0thymeleaf布局模块 -->
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-layout-dialect</artifactId>
+        </dependency>
         <!--热加载代码方便调试用 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -88,7 +93,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
-            <version>2.0.2.RELEASE</version>
+            <version>2.1.0.RELEASE</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

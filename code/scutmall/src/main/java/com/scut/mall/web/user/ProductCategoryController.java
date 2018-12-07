@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping("/productCategory")
+@RequestMapping("/classification")
 public class ProductCategoryController {
 }

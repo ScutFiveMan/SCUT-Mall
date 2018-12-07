@@ -10,6 +10,7 @@ import com.scut.mall.service.ShopCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -110,7 +111,7 @@ public class ProductController {
     @RequestMapping("/category.html")
     public String toCatePage(int cid, Map<String, Object> map) {
         ProductCategory productCategory = productCategoryService.findById(cid);
-        map.put("productCategory", productCategory);
+        map.put("category", productCategory);
         return "mall/product/category";
     }
 
@@ -131,7 +132,7 @@ public class ProductController {
     @ResponseBody
     @RequestMapping("/category.do")
     public ResultBean<List<Product>> getCategoryProduct(int cid, int pageNo, int pageSize) {
-        Pageable pageable = new PageRequest(pageNo, pageSize);
+        Pageable pageable =PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.ASC,"id"));
         List<Product> products = productService.findByProductCategoryId(cid, pageable);
         return new ResultBean<>(products);
     }
@@ -148,7 +149,7 @@ public class ProductController {
     @ResponseBody
     @RequestMapping("/categorySec.do")
     public ResultBean<List<Product>> getCategorySecProduct(int csId, int pageNo, int pageSize) {
-        Pageable pageable = new PageRequest(pageNo, pageSize);
+        Pageable pageable =PageRequest.of(pageNo, pageSize, Sort.by(Sort.Direction.ASC,"id"));
         List<Product> products = productService.findByProductCategorySecondId(csId, pageable);
         return new ResultBean<>(products);
     }

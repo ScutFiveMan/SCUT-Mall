@@ -1,9 +1,6 @@
 package com.scut.mall.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,8 +22,6 @@ public class Product implements Serializable {
      */
     @Column
     private String title;
-    @Column
-    private Integer productCategoryId;
 
     @Column
     private String description;
@@ -43,15 +38,24 @@ public class Product implements Serializable {
     @Column
     private Double shopPrice;
 
+    /**
+     * 二级分类Id
+     */
+    @Column
+    private Integer csId;
+
     //积分
     @Column Integer integral;
 
     @Column
     private Date date;
 
-    public Product(String title, Integer productCategoryId, String description, String image, Integer isHot, Double marketPrice, Double shopPrice, Integer integral, Date date) {
+    @Transient
+    private  ProductCategory categorySec;
+
+    public Product(String title, Integer csId, String description, String image, Integer isHot, Double marketPrice, Double shopPrice, Integer integral, Date date) {
         this.title = title;
-        this.productCategoryId = productCategoryId;
+        this.csId = csId;
         this.description = description;
         this.image = image;
         this.isHot = isHot;
@@ -81,12 +85,20 @@ public class Product implements Serializable {
         this.title = title;
     }
 
-    public Integer getProductCategoryId() {
-        return productCategoryId;
+    public Integer getCsId() {
+        return csId;
     }
 
-    public void setProductCategoryId(Integer productCategoryId) {
-        this.productCategoryId = productCategoryId;
+    public void setCsId(Integer csId) {
+        this.csId = csId;
+    }
+
+    public ProductCategory getCategorySec() {
+        return categorySec;
+    }
+
+    public void setCategorySec(ProductCategory categorySec) {
+        this.categorySec = categorySec;
     }
 
     public String getDescription() {
@@ -164,7 +176,7 @@ public class Product implements Serializable {
                 && (this.getImage() == null ? other.getImage() == null : this.getImage().equals(other.getImage()))
                 && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
                 && (this.getIsHot() == null ? other.getIsHot() == null : this.getIsHot().equals(other.getIsHot()))
-                && (this.getProductCategoryId() == null ? other.getProductCategoryId() == null : this.getProductCategoryId().equals(other.getProductCategoryId()))
+                && (this.getCsId() == null ? other.getCsId() == null : this.getCsId().equals(other.getCsId()))
                 && (this.getDate() == null ? other.getDate() == null : this.getDate().equals(other.getDate()))
                 && (this.getIntegral() == null ? other.getIntegral() == null : this.getIntegral().equals(other.getIntegral()));
     }
@@ -180,7 +192,7 @@ public class Product implements Serializable {
         result = prime * result + ((getImage() == null) ? 0 : getImage().hashCode());
         result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
         result = prime * result + ((getIsHot() == null) ? 0 : getIsHot().hashCode());
-        result = prime * result + ((getProductCategoryId() == null) ? 0 : getProductCategoryId().hashCode());
+        result = prime * result + ((getCsId() == null) ? 0 : getCsId().hashCode());
         result = prime * result + ((getDate() == null) ? 0 : getDate().hashCode());
         result = prime * result + ((getIntegral() == null) ? 0 : getIntegral().hashCode());
         return result;
@@ -199,7 +211,7 @@ public class Product implements Serializable {
         sb.append(", image=").append(image);
         sb.append(", description=").append(description);
         sb.append(", isHot=").append(isHot);
-        sb.append(", productCategoryId=").append(productCategoryId);
+        sb.append(", csId=").append(csId);
         sb.append(", date=").append(date);
         sb.append(", integral=").append(integral);
         sb.append("]");

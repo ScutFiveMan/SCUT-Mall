@@ -23,8 +23,8 @@ public class ProductDaoTest {
     }
 
     @Test
-    public void findByProductCategoryId() {
-        productDao.findByProductCategoryId(1,null);
+    public void findByCsId() {
+        productDao.findByCsId(1,null);
     }
 
     @Test
