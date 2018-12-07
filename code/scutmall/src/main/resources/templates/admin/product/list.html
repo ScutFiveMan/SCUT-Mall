@@ -53,6 +53,7 @@
                         <th>商品名称</th>
                         <th>商品价格</th>
                         <th>热门商品</th>
+                        <th>商品积分</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -165,6 +166,7 @@
                 tr.append($("<td></td>").html("<b style='color:red;'>是</b>"));
             else
                 tr.append($("<td></td>").html("否"));
+            tr.append($("<td></td>").text(data[i].integral));
             tr.append($("<td></td>")
                 .append($('<button style="margin-right:20px;" class="btn mini green" onclick="edit(' + data[i].id + ')"><i class="fa fa-edit"></i> 编辑</button>'))
                 .append($('<button class="btn mini red" onclick="del(' + data[i].id + ',this)"><i class="fa fa-trash"></i> 删除</button>')));

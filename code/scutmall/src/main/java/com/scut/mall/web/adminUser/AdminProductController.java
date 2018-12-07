@@ -65,7 +65,7 @@ public class AdminProductController {
     @RequestMapping("/list.do")
     public ResultBean<List<Product>> listProduct(int pageindex,
                                                  @RequestParam(value = "pageSize", defaultValue = "15") int pageSize) {
-        Pageable pageable =PageRequest.of(pageindex, pageSize, Sort.by(Sort.Direction.ASC,"id"));
+        Pageable pageable = new PageRequest(pageindex, pageSize, null);
         List<Product> list = productService.findAll(pageable).getContent();
         return new ResultBean<>(list);
     }
@@ -73,7 +73,7 @@ public class AdminProductController {
     @ResponseBody
     @RequestMapping("/getTotal")
     public ResultBean<Integer> getTotal() {
-        Pageable pageable =PageRequest.of(1, 15, Sort.by(Sort.Direction.ASC,"id"));
+        Pageable pageable = new PageRequest(1, 15, null);
         int total = (int) productService.findAll(pageable).getTotalElements();
         return new ResultBean<>(total);
     }
@@ -93,6 +93,7 @@ public class AdminProductController {
                     int isHot,
                     String desc,
                     int csId,
+                    int integral,
                     HttpServletRequest request,
                     HttpServletResponse response) throws Exception {
         Product product = new Product();
@@ -101,6 +102,7 @@ public class AdminProductController {
         product.setShopPrice(shopPrice);
         product.setDescription(desc);
         product.setIsHot(isHot);
+        product.setIntegral(integral);
         product.setCsId(csId);
         product.setDate(new Date());
         String imgUrl = FileUtil.saveFile(image);
@@ -110,7 +112,7 @@ public class AdminProductController {
             request.setAttribute("message", "添加失败！");
             request.getRequestDispatcher("toAdd.html").forward(request, response);
         } else {
-            request.getRequestDispatcher("toEdit.html?id=" + id).forward(request, response);
+            request.getRequestDispatcher("toList.html").forward(request, response);
         }
     }
 
@@ -121,7 +123,8 @@ public class AdminProductController {
                        Double marketPrice,
                        Double shopPrice,
                        String desc,
-                       int productCategoryId,
+                       int integral,
+                       int csId,
                        int isHot,
                        MultipartFile image,
                        HttpServletRequest request,
@@ -131,8 +134,9 @@ public class AdminProductController {
         product.setMarketPrice(marketPrice);
         product.setShopPrice(shopPrice);
         product.setDescription(desc);
+        product.setIntegral(integral);
         product.setIsHot(isHot);
-        product.setCsId(productCategoryId);
+        product.setCsId(csId);
         product.setDate(new Date());
         String imgUrl = FileUtil.saveFile(image);
         if (StringUtils.isNotBlank(imgUrl)) {
