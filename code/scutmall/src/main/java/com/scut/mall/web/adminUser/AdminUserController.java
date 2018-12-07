@@ -6,6 +6,7 @@ import com.scut.mall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,7 +50,7 @@ public class AdminUserController {
     @RequestMapping("/list.do")
     public ResultBean<List<User>> findAllUser(int pageindex,
                                               @RequestParam(value = "pageSize", defaultValue = "15") int pageSize){
-        Pageable pageable =new PageRequest(pageindex,pageSize,null);
+        Pageable pageable =PageRequest.of(pageindex, pageSize, Sort.by(Sort.Direction.ASC,"id"));
         List<User> users=userService.findAll(pageable).getContent();
         return new ResultBean<>(users);
     }

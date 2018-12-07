@@ -34,7 +34,7 @@ public class ProductCategoryImpl implements ProductCategoryService {
 
     @Override
     public Page<ProductCategory> findAll(int type,Pageable pageable) {
-        return productCategoryDao.findByType(type,pageable);
+        return productCategoryDao.findProductCategoryByType(type,pageable);
     }
 
     @Override

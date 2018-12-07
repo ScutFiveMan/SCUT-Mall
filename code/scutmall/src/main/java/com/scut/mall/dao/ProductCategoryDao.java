@@ -39,7 +39,7 @@ public interface ProductCategoryDao extends JpaRepository<ProductCategory, Integ
      * @Param: pageable
      * @return 
      */
-    Page<ProductCategory> findByType(int type, Pageable pageable);
+    Page<ProductCategory> findProductCategoryByType(int type, Pageable pageable);
 
     /**
      * create by: Bin Liu

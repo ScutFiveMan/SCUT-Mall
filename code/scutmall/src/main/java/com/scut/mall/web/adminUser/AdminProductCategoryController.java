@@ -6,6 +6,7 @@ import com.scut.mall.service.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -121,13 +122,13 @@ public class AdminProductCategoryController {
     @RequestMapping("/list.do")
     @ResponseBody
     public ResultBean<List<ProductCategory>> findAll(int type,
-                                                     int pageindex, @RequestParam(value = "pageSize", defaultValue = "15") int pageSize) {
+                                                    int pageindex, @RequestParam(value = "pageSize", defaultValue = "15") int pageSize) {
         List<ProductCategory> list = new ArrayList<>();
         if (pageindex == -1)
             list = productCategoryService.findAll(type);
         else {
-            Pageable pageable = new PageRequest(pageindex, pageSize, null);
-            list = productCategoryService.findAll(type,pageable).getContent();
+            Pageable pageable =PageRequest.of(pageindex, pageSize, Sort.by(Sort.Direction.ASC,"id"));
+            list = productCategoryService.findAll(type, pageable).getContent();
         }
         return new ResultBean<>(list);
     }
@@ -135,8 +136,8 @@ public class AdminProductCategoryController {
     @ResponseBody
     @RequestMapping("/getTotal.do")
     public ResultBean<Integer> getTotal(int type) {
-        Pageable pageable = new PageRequest(1, 15, null);
-        int count = (int) productCategoryService.findAll(type,pageable).getTotalElements();
+        Pageable pageable =PageRequest.of(1, 15, Sort.by(Sort.Direction.ASC,"id"));
+        int count = (int) productCategoryService.findAll(type, pageable).getTotalElements();
         return new ResultBean<>(count);
     }
 }
