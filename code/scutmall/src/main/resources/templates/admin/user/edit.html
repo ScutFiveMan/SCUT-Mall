@@ -52,17 +52,11 @@
 							<div class="control-group">
 								<label class="control-label">用户名称：</label>
 								<div class="controls">
-									<input name="username" th:value="${user.username }" type="text" class="m-wrap media" />
+									<input name="username" th:value="${user.userName }" type="text" class="m-wrap media" />
 									<span class="help-inline">username</span>
 								</div>
 							</div>
-							<div class="control-group">
-								<label class="control-label">真实姓名：</label>
-								<div class="controls">
-									<input name="name" th:value="${user.name }" type="text" class="m-wrap media" />
-									<span class="help-inline">name</span>
-								</div>
-							</div>
+
 							<div class="control-group">
 								<label class="control-label">电话号码：</label>
 								<div class="controls">
@@ -77,17 +71,11 @@
 									<span class="help-inline">password</span>
 								</div>
 							</div>
+
 							<div class="control-group">
-								<label class="control-label">邮箱：</label>
+								<label class="control-label">积分：</label>
 								<div class="controls">
-									<input name="email" th:value="${user.email }" type="text" class="m-wrap media" />
-									<span class="help-inline">email</span>
-								</div>
-							</div>
-							<div class="control-group">
-								<label class="control-label">地址：</label>
-								<div class="controls">
-									<textarea name="addr" class="large m-wrap" rows="3" th:text="${user.addr }"></textarea>
+									<textarea name="addr" class="large m-wrap" rows="3" th:text="${user.integration }"></textarea>
 								</div>
 							</div>
 							<div class="form-actions">

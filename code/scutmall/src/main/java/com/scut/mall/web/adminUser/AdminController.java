@@ -79,7 +79,17 @@ public class AdminController {
     public  String toAdminList(){
         return "/admin/adminUser/list";
     }
-
+    /**
+     * 获取所有订单的总数
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/getTotal.do")
+    public ResultBean<Integer> getTotal() {
+        Pageable pageable =PageRequest.of(1, 15, Sort.by(Sort.Direction.ASC,"id"));
+        int total = (int) adminUserService.findAll(pageable).getTotalElements();
+        return new ResultBean<>(total);
+    }
     /**
      * create by: Kobe
      * description:超级管理员查看业务员信息
@@ -96,17 +106,7 @@ public class AdminController {
         return new ResultBean<>(adminUsers);
     }
 
-    /**
-     * 获取所有订单的总数
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping("/getTotal.do")
-    public ResultBean<Integer> getTotal() {
-        Pageable pageable =PageRequest.of(1, 15, Sort.by(Sort.Direction.ASC,"id"));
-        int total = (int) adminUserService.findAll(pageable).getTotalElements();
-        return new ResultBean<>(total);
-    }
+
     @ResponseBody
     @RequestMapping("/addAdmin.do")
     public ResultBean<Boolean> addAdmin(String userName,String password,Integer isSaleman){

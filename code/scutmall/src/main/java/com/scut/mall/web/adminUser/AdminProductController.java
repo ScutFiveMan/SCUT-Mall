@@ -60,7 +60,13 @@ public class AdminProductController {
         map.put("product", product);
         return "admin/product/edit";
     }
-
+    @ResponseBody
+    @RequestMapping("/getTotal")
+    public ResultBean<Integer> getTotal() {
+        Pageable pageable =  PageRequest.of(1, 15, Sort.by(Sort.Direction.ASC,"id"));
+        int total = (int) productService.findAll(pageable).getTotalElements();
+        return new ResultBean<>(total);
+    }
     @ResponseBody
     @RequestMapping("/list.do")
     public ResultBean<List<Product>> listProduct(int pageindex,
@@ -70,13 +76,7 @@ public class AdminProductController {
         return new ResultBean<>(list);
     }
 
-    @ResponseBody
-    @RequestMapping("/getTotal")
-    public ResultBean<Integer> getTotal() {
-        Pageable pageable =  PageRequest.of(1, 15, null);
-        int total = (int) productService.findAll(pageable).getTotalElements();
-        return new ResultBean<>(total);
-    }
+
 
     @RequestMapping("/del.do")
     @ResponseBody

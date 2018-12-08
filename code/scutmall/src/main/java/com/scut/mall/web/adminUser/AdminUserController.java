@@ -9,10 +9,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author kobe
@@ -27,6 +29,20 @@ public class AdminUserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * create by: Cillivian
+     * description:映射编辑用户信息
+     * create time: 15:58 2018/12/8 0008
+     *
+      * @Param: null
+     * @return
+     */
+    @RequestMapping("/toEdit.html")
+    public String toEdit(int id, Map<String, Object> map) {
+        User user = userService.findById(id);
+        map.put("user", user);
+        return "admin/user/edit";
+    }
     /**
      * create by: Kobe
      * description:查看用户列表，映射前端路径
@@ -50,7 +66,7 @@ public class AdminUserController {
     @ResponseBody
     @RequestMapping("/getTotal.do")
     public ResultBean<Integer> getTotal() {
-        Pageable pageable = new PageRequest(1, 15, null);
+        Pageable pageable =  PageRequest.of(1, 15, Sort.by(Sort.Direction.ASC,"id"));
         int total = (int) userService.findAll(pageable).getTotalElements();
         return new ResultBean<>(total);
     }
@@ -82,6 +98,21 @@ public class AdminUserController {
     @RequestMapping("/del.do")
     public ResultBean<Boolean> del(Integer id){
         userService.delById(id);
+        return new ResultBean<>(true);
+    }
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/update.do")
+    public ResultBean<Boolean> update(int id,String username,
+                                      String password,
+                                      String phone,int integration) {
+        // 更新前先查询
+        User user = userService.findById(id);
+        user.setId(id);
+       user.setUserName( username );
+        user.setPassword(password);
+        user.setIntegration( integration );
+        user.setPhone(phone);
+        userService.update(user);
         return new ResultBean<>(true);
     }
 
