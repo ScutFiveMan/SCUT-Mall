@@ -117,11 +117,18 @@ public class AddressController {
     }
 
     /**
-     * 用户删除地址
+     * create by: Bin Liu
+     * description: 用户删除地址
+     * create time: 2018/12/8 16:55
+     * @Param: id
+     * @Param: response
+     * @return
      */
-    @RequestMapping("/delete.do")
-    public void deleteAddress(Integer id,Integer userId,HttpServletResponse response){
+    @ResponseBody
+    @RequestMapping("/del.do")
+    public ResultBean<Boolean> deleteAddress(Integer id,HttpServletResponse response){
         addressService.deleteById(id);
+        return new ResultBean<>(true);
     }
 
 }

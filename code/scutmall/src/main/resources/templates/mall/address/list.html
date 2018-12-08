@@ -139,7 +139,7 @@
                 tr.append($("<td width='80'>" + item.detail + "</td>"));
                 tr.append($("<td width='80'>" + item.phone+ "</td>"));
                 var operter = $("<td ><button onclick='edit(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-primary'>编辑</button></td>");
-                    operter.append($("<button onclick='recieve(" + item.id + ",this)' class='layui-btn layui-btn-radius layui-btn-danger'>删除</button>"));
+                    operter.append($("<button onclick='del(" + item.id + ",this)' class='layui-btn layui-btn-radius layui-btn-danger'>删除</button>"));
                 tr.append(operter);
                 tbody.append(tr);
 
