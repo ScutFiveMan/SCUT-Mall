@@ -36,9 +36,24 @@ public class AdminUserController {
      */
     @RequestMapping("/toList.html")
     public String toList(){
-        return "admin/user/List";
+        return "admin/user/list";
     }
 
+    /**
+     * create by: Cillivian
+     * description:page方法
+     * create time: 13:57 2018/12/8 0008
+     *
+      * @Param: null
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/getTotal.do")
+    public ResultBean<Integer> getTotal() {
+        Pageable pageable =  PageRequest.of(1, 15, null);
+        int total = (int) userService.findAll(pageable).getTotalElements();
+        return new ResultBean<>(total);
+    }
     /**
      * create by: Kobe
      * description:查看所有用户

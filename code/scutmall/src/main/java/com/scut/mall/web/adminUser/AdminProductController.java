@@ -65,7 +65,7 @@ public class AdminProductController {
     @RequestMapping("/list.do")
     public ResultBean<List<Product>> listProduct(int pageindex,
                                                  @RequestParam(value = "pageSize", defaultValue = "15") int pageSize) {
-        Pageable pageable = new PageRequest(pageindex, pageSize, null);
+        Pageable pageable = PageRequest.of(pageindex, pageSize, Sort.by(Sort.Direction.ASC,"id"));
         List<Product> list = productService.findAll(pageable).getContent();
         return new ResultBean<>(list);
     }
@@ -73,7 +73,7 @@ public class AdminProductController {
     @ResponseBody
     @RequestMapping("/getTotal")
     public ResultBean<Integer> getTotal() {
-        Pageable pageable = new PageRequest(1, 15, null);
+        Pageable pageable =  PageRequest.of(1, 15, null);
         int total = (int) productService.findAll(pageable).getTotalElements();
         return new ResultBean<>(total);
     }

@@ -94,8 +94,8 @@ public interface ProductService {
      * @Param: id
      * @return
      */
-    void deleteById(int id);
 
+    void deleteById(int id);
     /**
      * create by: Bin Liu
      * description: 通过标题搜索商品

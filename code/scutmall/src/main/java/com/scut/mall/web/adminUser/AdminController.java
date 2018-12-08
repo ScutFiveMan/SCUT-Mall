@@ -75,9 +75,9 @@ public class AdminController {
      *
      * @return
      */
-    @RequestMapping("/toAdminList.html")
+    @RequestMapping("admin/toList.html")
     public  String toAdminList(){
-        return "/admin/adminList.html";
+        return "/admin/adminUser/list";
     }
 
     /**
@@ -86,13 +86,26 @@ public class AdminController {
      * create time: 12:33 2018/11/30
      * @return
      */
+
     @ResponseBody
-    @RequestMapping("/adminlist.do")
+    @RequestMapping("/list.do")
     public ResultBean<List<AdminUser>> findAllUser(int pageindex,
                                                    @RequestParam(value = "pageSize", defaultValue = "15") int pageSize){
         Pageable pageable =PageRequest.of(pageindex, pageSize, Sort.by(Sort.Direction.ASC,"id"));
         List<AdminUser> adminUsers=adminUserService.findAll(pageable).getContent();
         return new ResultBean<>(adminUsers);
+    }
+
+    /**
+     * 获取所有订单的总数
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/getTotal.do")
+    public ResultBean<Integer> getTotal() {
+        Pageable pageable =PageRequest.of(1, 15, Sort.by(Sort.Direction.ASC,"id"));
+        int total = (int) adminUserService.findAll(pageable).getTotalElements();
+        return new ResultBean<>(total);
     }
     @ResponseBody
     @RequestMapping("/addAdmin.do")
