@@ -33,16 +33,6 @@ public class Order implements Serializable {
     @Column
     private Date orderTime;
     /**
-     * 收货人姓名
-     */
-    @Column(name = "`name`")
-    private String name;
-    /**
-     * 收货人联系电话
-     */
-    @Column
-    private String phone;
-    /**
      * 收货地址Id
      */
     @Column
@@ -59,12 +49,10 @@ public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Order(Double total, Integer state, Date orderTime, String name, String phone, Integer addressId, Integer userId, Integer totalIntegral) {
+    public Order(Double total, Integer state, Date orderTime, Integer addressId, Integer userId, Integer totalIntegral) {
         this.total = total;
         this.state = state;
         this.orderTime = orderTime;
-        this.name = name;
-        this.phone = phone;
         this.addressId = addressId;
         this.userId = userId;
         this.totalIntegral = totalIntegral;
@@ -104,22 +92,6 @@ public class Order implements Serializable {
 
     public void setOrderTime(Date orderTime) {
         this.orderTime = orderTime;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
     }
 
     public Integer getAddressId() {
@@ -165,8 +137,6 @@ public class Order implements Serializable {
                 && (this.getTotal() == null ? other.getTotal() == null : this.getTotal().equals(other.getTotal()))
                 && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()))
                 && (this.getOrderTime() == null ? other.getOrderTime() == null : this.getOrderTime().equals(other.getOrderTime()))
-                && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-                && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
                 && (this.getAddressId() == null ? other.getAddressId() == null : this.getAddressId().equals(other.getAddressId()))
                 && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
                 && (this.getTotalIntegral() == null ? other.getTotalIntegral() == null : this.getTotalIntegral().equals(other.getTotalIntegral()));
@@ -180,8 +150,6 @@ public class Order implements Serializable {
         result = prime * result + ((getTotal() == null) ? 0 : getTotal().hashCode());
         result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
         result = prime * result + ((getOrderTime() == null) ? 0 : getOrderTime().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
         result = prime * result + ((getAddressId() == null) ? 0 : getAddressId().hashCode());
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getTotalIntegral() == null) ? 0 : getTotalIntegral().hashCode());
@@ -198,8 +166,6 @@ public class Order implements Serializable {
         sb.append(", total=").append(total);
         sb.append(", state=").append(state);
         sb.append(", orderTime=").append(orderTime);
-        sb.append(", name=").append(name);
-        sb.append(", phone=").append(phone);
         sb.append(", addrressId=").append(addressId);
         sb.append(", userId=").append(userId);
         sb.append(", serialVersionUID=").append(serialVersionUID);

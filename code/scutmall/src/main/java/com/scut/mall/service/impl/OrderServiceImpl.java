@@ -143,22 +143,18 @@ public class OrderServiceImpl implements OrderService {
     /**
      * 提交订单
      *
-     * @param name
-     * @param phone
      * @param addressId
      * @param request
      * @param response
      */
     @Override
     @Transactional
-    public void submit(String name, String phone, Integer addressId, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void submit(Integer addressId, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Object user = request.getSession().getAttribute("user");
         if (user == null)
             throw new LoginException("请登录！");
         User loginUser = (User) user;
         Order order = new Order();
-        order.setName(name);
-        order.setPhone(phone);
         order.setAddressId(addressId);
         order.setOrderTime(new Date());
         order.setUserId(loginUser.getId());

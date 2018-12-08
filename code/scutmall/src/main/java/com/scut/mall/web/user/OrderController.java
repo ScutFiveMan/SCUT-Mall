@@ -65,19 +65,15 @@ public class OrderController {
     /**
      * 提交订单
      *
-     * @param name
-     * @param phone
      * @param addressId
      * @param request
      * @param response
      */
     @RequestMapping("/submit.do")
-    public void submit(String name,
-                       String phone,
-                       Integer addressId,
+    public void submit(Integer addressId,
                        HttpServletRequest request,
                        HttpServletResponse response) throws Exception {
-        orderService.submit(name, phone, addressId, request, response);
+        orderService.submit(addressId, request, response);
     }
 
     /**

@@ -136,14 +136,12 @@ public interface OrderService {
      * create by: Bin Liu
      * description: 提交订单
      * create time: 2018/11/22 23:53
-     * @param name
-     * @param phone
      * @param addressId
      * @param request
      * @param response
      * @return
      */
-    void submit(String name, String phone, Integer addressId, HttpServletRequest request, HttpServletResponse response) throws Exception;
+    void submit(Integer addressId, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
     /**
      * create by: Bin Liu
