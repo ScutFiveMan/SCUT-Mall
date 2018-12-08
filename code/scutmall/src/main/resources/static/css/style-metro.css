@@ -244,112 +244,121 @@ Metro icons
 
 /*  Misc */
 .btn.icn-only {
-  min-width: 14px;
+    min-width: 14px;
 }
+
 .btn.bigicn-only {
-  min-width: 34px;
+    min-width: 34px;
 }
+
 .m-icon-swapright {
-  background-position: -27px -10px;
+    background-position: -27px -10px;
 }
+
 .m-icon-swapdown {
-  background-position: -68px -10px;
+    background-position: -68px -10px;
 }
+
 .m-icon-swapleft {
-  background-position: -8px -10px;
+    background-position: -8px -10px;
 }
+
 .m-icon-swapup {
-  background-position: -46px -10px;
+    background-position: -46px -10px;
 }
-.m-icon-big-swapright{
-  background-position: -42px -28px;
+
+.m-icon-big-swapright {
+    background-position: -42px -28px;
 }
-.m-icon-big-swapdown{
-  background-position: -115px -28px;
+
+.m-icon-big-swapdown {
+    background-position: -115px -28px;
 }
-.m-icon-big-swapleft{
-  background-position: -6px -28px;
+
+.m-icon-big-swapleft {
+    background-position: -6px -28px;
 }
-.m-icon-big-swapup{
-  background-position: -78px -28px;
+
+.m-icon-big-swapup {
+    background-position: -78px -28px;
 }
 
 /***
 Glyphicons icons
 ***/
 .btn > .halflings-icon {
-  margin-top:2px;
-  margin-right: 2px;
+    margin-top: 2px;
+    margin-right: 2px;
 }
 
 .btn.mini > .halflings-icon {
-  margin-top: -1px;
-  margin-right: 2px;
+    margin-top: -1px;
+    margin-right: 2px;
 }
 
 .btn.icn-only > .halflings-icon {
-  margin-right: 0px !important;
-} 
+    margin-right: 0px !important;
+}
 
 /***
 Dropdowns
 ***/
 .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  display: none;
-  float: left;
-  list-style: none;
-  text-shadow: none;
-  padding: 0px;
-  margin:0px;
-  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);  
-  font-size: 14px;
-  font-family: "Segoe UI",Helvetica, Arial, sans-serif;
-  border: 1px solid #ddd;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    list-style: none;
+    text-shadow: none;
+    padding: 0px;
+    margin: 0px;
+    -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    border: 1px solid #ddd;
 }
 
-.dropdown:hover .caret, 
+.dropdown:hover .caret,
 .open.dropdown .caret {
-  opacity: 1;
-  filter: alpha(opacity=100);
+    opacity: 1;
+    filter: alpha(opacity=100);
 }
 
 .dropdown-menu.bottom-up {
-  top: auto;
-  bottom: 100%;
-  margin-bottom: 2px;
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 2px;
 }
 
 .dropdown-menu li > a {
-  padding: 6px 0 6px 13px;
-  color: #333;
-  text-decoration: none;
-  display: block;
-  clear: both;
-  font-weight: normal;
-  line-height: 18px;
-  white-space: nowrap;
+    padding: 6px 0 6px 13px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    white-space: nowrap;
 }
 
-.dropdown-menu li > a:hover, 
-.dropdown-menu .active > a, 
+.dropdown-menu li > a:hover,
+.dropdown-menu .active > a,
 .dropdown-menu .active > a:hover {
-  text-decoration: none;
-  background-image: none;
-  background-color: #eee;
-  color: #333;
-  filter:none;
+    text-decoration: none;
+    background-image: none;
+    background-color: #eee;
+    color: #333;
+    filter: none;
 }
 
 .dropdown.open .dropdown-toggle {
-  color: #08c;
-  background: #ccc;
-  background: rgba(0, 0, 0, 0.3);
+    color: #08c;
+    background: #ccc;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 /***
@@ -360,9 +369,9 @@ input.m-wrap,
 button.m-wrap,
 select.m-wrap,
 textarea.m-wrap {
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
 
 }
 
@@ -370,12 +379,12 @@ input.m-wrap,
 button.m-wrap,
 select.m-wrap,
 textarea.m-wrap {
-  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 label.m-wrap {
-  display: block;
-  margin-bottom: 5px;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .uneditable-input,
@@ -394,33 +403,35 @@ input[type="url"].m-wrap,
 input[type="search"].m-wrap,
 input[type="tel"].m-wrap,
 input[type="color"].m-wrap {
-  -webkit-appearance: none !important;   
-	color: #333333; 		
-  outline: 0;
-  height: 20px;
-	padding: 6px 6px !important;
-  line-height: 20px;
-  font-size: 14px;
-  font-weight: normal;
-  vertical-align: top;  
-	background-color: #ffffff;
-	background-image: none !important;
-  filter: none !important;
-	  -webkit-box-shadow: none !important;
-	     -moz-box-shadow: none !important;
-	          box-shadow: none !important;
-	  -webkit-border-radius: 0px;
-	     -moz-border-radius: 0px;
-	          border-radius: 0px;
-  background: transparent;   
+    -webkit-appearance: none !important;
+    position: relative;
+    top: 5px;
+    color: #333333;
+    outline: 0;
+    height: 35px;
+    padding: 6px 6px !important;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    vertical-align: top;
+    background-color: #ffffff;
+    background-image: none !important;
+    filter: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 3px;
+    background: transparent;
 }
 
 input.m-wrap {
-  border: 1px solid #e5e5e5;
+    border: 1px solid #e5e5e5;
 }
 
 textarea.m-wrap {
-  height: auto;
+    height: auto;
 }
 
 .uneditable-input.focus,
@@ -441,69 +452,68 @@ input[type="search"].m-wrap:focus,
 input[type="tel"].m-wrap:focus,
 input[type="color"].m-wrap:focus,
 .m-uneditable-input:focus {
-  border-color: #999999;
-  outline: 0 !important;
-  /* IE6-9 */
-  -webkit-box-shadow: none;
-     -moz-box-shadow: none;
-          box-shadow: none;      
+    border-color: #999999;
+    outline: 0 !important;
+    /* IE6-9 */
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 
 input[disabled],
 select[disabled],
 textarea[disabled] {
-  cursor: not-allowed;
-  background-color: #F4F4F4 !important;
+    cursor: not-allowed;
+    background-color: #F4F4F4 !important;
 }
 
 input[readonly],
 select[readonly],
 textarea[readonly] {
-  cursor: not-allowed;
-  background-color: #F9F9F9 !important;
+    cursor: not-allowed;
+    background-color: #F9F9F9 !important;
 }
-
 
 input[type="radio"][disabled],
 input[type="checkbox"][disabled],
 input[type="radio"][readonly],
 input[type="checkbox"][readonly] {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 input[type="radio"].m-wrap,
 input[type="checkbox"].m-wrap {
-  	margin: 4px 0 0;
-  	margin-top: 1px \9;
-  	*margin-top: 0;
-  	line-height: normal;
-	  cursor: pointer;		
-  	-webkit-box-sizing: border-box;
-	     -moz-box-sizing: border-box;
-	          box-sizing: border-box;		
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    *margin-top: 0;
+    line-height: normal;
+    cursor: pointer;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 select.m-wrap,
 input[type="file"].m-wrap {
-  height: 34px !important;
-  /* In IE7, the height of the select element cannot be changed by height, only font-size */
-  *margin-top: 4px;
-  /* For IE7, add top margin to align select with labels */
-  line-height: 30px;
+    height: 34px !important;
+    /* In IE7, the height of the select element cannot be changed by height, only font-size */
+    *margin-top: 4px;
+    /* For IE7, add top margin to align select with labels */
+    line-height: 30px;
 }
 
 select.m-wrap {
-  width: 220px;
-  background-color: #ffffff;
-  background-image: none !important;
-  filter: none !important;
-  border: 1px solid #e5e5e5;
-  outline: none;          
+    width: 220px;
+    background-color: #ffffff;
+    background-image: none !important;
+    filter: none !important;
+    border: 1px solid #e5e5e5;
+    outline: none;
 }
 
 select[multiple].m-wrap,
 select[size].m-wrap {
-  height: auto !important;
+    height: auto !important;
 }
 
 select.m-wrap:focus,
