@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <title>用户列表</title>
+    <title>管理员列表</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -22,14 +22,14 @@
 <body>
 <div class="container-fluid">
     <div class="row-fluid">
-        <h3 class="page-title"><i class="fa fa-user-circle"></i>用户管理</h3>
+        <h3 class="page-title"><i class="fa fa-user-circle"></i>管理员管理</h3>
         <ul class="breadcrumb">
             <li>
                 <a href="#"><i class="fa fa-home"></i>用户管理</a>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <a href="#">用户列表</a>
+                <a href="#">管理员列表</a>
             </li>
         </ul>
     </div>
@@ -38,11 +38,11 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-reorder"></i>
-                    用户列表
+                    管理员列表
                 </div>
             </div>
             <div class="portlet-body">
-                <table id="userTable" class="table table-bordered table-striped">
+                <table id="adminUserTable" class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th>序号</th>
@@ -85,7 +85,7 @@
 <script th:inline="javascript" type="text/javascript">
     //<![CDATA[
     function edit(id){
-        $("#mainFrame",window.parent.document).attr("src","user/toEdit.html?id="+id);
+        $("#mainFrame",window.parent.document).attr("src","admin/toEdit.html?id="+id);
     }
 
     function del(id,btn){
@@ -147,7 +147,7 @@
 
     function showList(data){
         //清空表
-        var tbody = $("#userTable tbody").eq(0);
+        var tbody = $("#adminUserTable tbody").eq(0);
         tbody.html("");
         for(var i=0;i<data.length;i++){
             var tr = $("<tr style='display:none;'></tr>");
