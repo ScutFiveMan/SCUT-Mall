@@ -47,14 +47,12 @@
                         <label class="control-label">商品ID：</label>
                         <div class="controls">
                             <input readonly="readonly" name="id" th:value="${product.id }" type="text" class="m-wrap"/>
-                            <span class="help-inline">id</span>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">商品名称：</label>
                         <div class="controls">
                             <input name="title" th:value="${product.title }" type="text" class="m-wrap large"/>
-                            <span class="help-inline">name</span>
                         </div>
                     </div>
                     <div class="control-group">
@@ -76,7 +74,6 @@
                                 <input name="marketPrice" th:value="${product.marketPrice }" type="text"
                                        class="m-wrap small"/>
                             </div>
-                            <span class="help-inline">price</span>
                         </div>
                     </div>
                     <div class="control-group">
@@ -86,7 +83,6 @@
                                 <span class="add-on">￥</span>
                                 <input name="shopPrice" th:value="${product.shopPrice }" type="text" class="m-wrap small"/>
                             </div>
-                            <span class="help-inline">price</span>
                         </div>
                     </div>
 
