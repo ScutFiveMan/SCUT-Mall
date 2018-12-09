@@ -56,7 +56,10 @@ Login page
 }
 
 .login .content .input-icon .m-wrap {  
-  margin: 0px !important;
+  margin: 0px !important
+  position: relative;
+  top: 2px;
+  height:25px
 }
 
 .login .content .forget-form {

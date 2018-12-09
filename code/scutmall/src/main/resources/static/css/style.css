@@ -2213,6 +2213,8 @@ textarea.placeholder {
 
 .control-label {
   margin-top: 2px;
+  position: relative;
+  top: 10px;
 }
 
 .control-label .required {
