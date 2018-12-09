@@ -119,7 +119,7 @@ public class AdminController {
     }
 
     @ResponseBody
-    @RequestMapping("/delAdmin.do")
+    @RequestMapping("admin/del.do")
     public ResultBean<Boolean> delAdmin(Integer id){
         adminUserService.delById(id);
         return  new ResultBean<>(true);
