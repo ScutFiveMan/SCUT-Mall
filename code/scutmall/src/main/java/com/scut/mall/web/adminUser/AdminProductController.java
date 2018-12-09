@@ -112,6 +112,7 @@ public class AdminProductController {
             request.setAttribute("message", "添加失败！");
             request.getRequestDispatcher("toAdd.html").forward(request, response);
         } else {
+            request.setAttribute("message", "添加成功！");
             request.getRequestDispatcher("toList.html").forward(request, response);
         }
     }
@@ -151,6 +152,8 @@ public class AdminProductController {
         }
         if (!flag) {
             request.setAttribute("message", "更新失败！");
+        }else {
+            request.setAttribute("message", "更新成功！");
         }
         response.sendRedirect("toList.html");
     }
