@@ -61,7 +61,7 @@ public class AdminProductController {
         return "admin/product/edit";
     }
     @ResponseBody
-    @RequestMapping("/getTotal")
+    @RequestMapping("/getTotal.do")
     public ResultBean<Integer> getTotal() {
         Pageable pageable =  PageRequest.of(1, 15, Sort.by(Sort.Direction.ASC,"id"));
         int total = (int) productService.findAll(pageable).getTotalElements();
