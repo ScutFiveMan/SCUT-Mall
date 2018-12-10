@@ -102,16 +102,16 @@ public class AdminUserController {
     }
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/update.do")
-    public ResultBean<Boolean> update(int id,String username,
-                                      String password,
-                                      String phone,int integration) {
+    public ResultBean<Boolean> update(int id,String userName,
+                                      String phone,String password,int integration) {
         // 更新前先查询
         User user = userService.findById(id);
         user.setId(id);
-       user.setUserName( username );
-        user.setPassword(password);
-        user.setIntegration( integration );
+        user.setUserName(userName);
         user.setPhone(phone);
+        user.setPassword(password);
+        user.setIntegration(integration);
+
         userService.update(user);
         return new ResultBean<>(true);
     }

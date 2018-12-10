@@ -141,7 +141,6 @@ public class AdminController {
         adminUser.setUserName( userName );
         adminUser.setPassword(password);
         adminUser.setIsSaleMan(isSaleMan);
-
         adminUserService.update(adminUser);
         return new ResultBean<>(true);
     }
