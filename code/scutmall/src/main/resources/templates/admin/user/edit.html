@@ -52,11 +52,10 @@
 							<div class="control-group">
 								<label class="control-label">用户名称：</label>
 								<div class="controls">
-									<input name="username" th:value="${user.userName }" type="text" class="m-wrap media" />
-									<span class="help-inline">username</span>
+									<input name="userName" th:value="${user.userName }" type="text" class="m-wrap media" />
+									<span class="help-inline">userName</span>
 								</div>
 							</div>
-
 							<div class="control-group">
 								<label class="control-label">电话号码：</label>
 								<div class="controls">
@@ -71,11 +70,10 @@
 									<span class="help-inline">password</span>
 								</div>
 							</div>
-
 							<div class="control-group">
 								<label class="control-label">积分：</label>
 								<div class="controls">
-									<textarea name="addr" class="large m-wrap" rows="3" th:text="${user.integration }"></textarea>
+									<textarea name="integration" class="large m-wrap" rows="3" th:text="${user.integration }"></textarea>
 								</div>
 							</div>
 							<div class="form-actions">
@@ -110,7 +108,7 @@
 			});
 			
 			function update(){
-				if(!confirm("确定更新改用户信？")){
+				if(!confirm("确定更新改用户信息？")){
 					return;
 				}
 

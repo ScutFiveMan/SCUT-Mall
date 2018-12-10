@@ -60,7 +60,7 @@
                     <div class="control-group">
                         <label class="control-label">是否业务员：</label>
                         <div class="controls">
-                            <select name="issaleman" class="small m-wrap small">
+                            <select name="isSaleMan" class="small m-wrap small">
                                 <option th:if="${adminUser.isSaleMan}==1" selected="selected" value="1">是</option>
                                 <option th:if="${adminUser.isSaleMan}==1" value="0">否</option>
                                 <option th:if="${adminUser.isSaleMan}==0" value="1">是</option>
@@ -125,7 +125,7 @@
             success: function(result) {
                 if(result.state==0){
                     alert("修改成功！");
-                    window.location.href = "toList.html?";
+                    window.location.href = "toList.html";
                 }else{
                     alert(result.message);
                 }

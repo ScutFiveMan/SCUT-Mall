@@ -1,7 +1,5 @@
 package com.scut.mall.entity;
 
-import org.aspectj.weaver.ast.Not;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,16 +11,16 @@ import java.io.Serializable;
 public class AdminUser implements Serializable {
     @Id
     @GeneratedValue
-    @Column(nullable = false)
+    @Column
     private Integer id;
 
-    @Column(nullable = false)
+    @Column
     private String userName;
 
-    @Column(nullable = false)
+    @Column
     private String password;
 
-    @Column(nullable = false)
+    @Column
     private Integer isSaleMan;
 
     public AdminUser(Integer id,String userName,String password,Integer isSaleMan){
