@@ -104,8 +104,8 @@
             },
             success: function (result) {
                 if (result.state == 0) {
-                    window.location.href = "classification/toList.html?type=1";
                     alert("修改成功！");
+                    window.location.href = "toList.html?type=1";
                 } else {
                     alert(result.message);
                 }
