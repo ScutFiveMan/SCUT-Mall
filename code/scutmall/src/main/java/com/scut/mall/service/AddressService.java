@@ -30,6 +30,8 @@ public interface AddressService {
      */
     Address findByIdAndUserId(Integer id,Integer userId);
 
+    Address fingById(Integer id);
+
     /**
      * 查看用户所有相关的地址
      * @param request

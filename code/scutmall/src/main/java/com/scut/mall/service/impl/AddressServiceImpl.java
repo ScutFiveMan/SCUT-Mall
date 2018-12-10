@@ -23,9 +23,15 @@ public class AddressServiceImpl implements AddressService {
         return addressDao.save(address).getId();
     }
 
+
     @Override
     public Address findByIdAndUserId(Integer id, Integer userId) {
         return addressDao.findByIdAndUserId(id,userId);
+    }
+
+    @Override
+    public Address fingById(Integer id) {
+        return addressDao.getOne(id);
     }
 
     @Override

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/address")
@@ -51,7 +52,9 @@ public class AddressController {
      * @return
      */
     @RequestMapping("/toEdit.html")
-    public String toEditAddress(){
+    public String toEditAddress(int id, Map<String, Object> map){
+        Address address=addressService.fingById(id);
+        map.put("address", address);
         return "mall/address/edit";
     }
 
@@ -86,7 +89,8 @@ public class AddressController {
     /**
      * 用户修改地址
      */
-    @RequestMapping("/edit.do")
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/edit.do")
     public void changeAddress(Integer id , String province,String city,
                                 String district,String detail,
                               String receiver,String phone,HttpServletRequest request,
