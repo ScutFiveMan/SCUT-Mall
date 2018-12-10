@@ -125,6 +125,7 @@
             success: function(result) {
                 if(result.state==0){
                     alert("修改成功！");
+                    window.location.href = "toList.html?";
                 }else{
                     alert(result.message);
                 }
