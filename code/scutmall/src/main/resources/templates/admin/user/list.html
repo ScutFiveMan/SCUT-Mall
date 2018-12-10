@@ -48,6 +48,7 @@
 									<th>序号</th>
 									<th>用户名</th>
 									<th>手机号码</th>
+									<th>商城总积分</th>
 									<th>操作</th>
 								</tr>
 							</thead>
@@ -154,6 +155,7 @@
 					tr.append($("<td></td>").text(data[i].id));
 					tr.append($("<td></td>").text(data[i].userName));
 					tr.append($("<td></td>").text(data[i].phone));
+                    tr.append($("<td></td>").text(data[i].integration));
 					tr.append($("<td></td>")
 							.append($('<button style="margin-right:20px;" class="btn mini green" onclick="edit('+data[i].id+')"><i class="fa fa-edit"></i> 编辑</button>'))
 							.append($('<button class="btn mini red" onclick="del('+data[i].id+',this)"><i class="fa fa-trash"></i> 删除</button>')));

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin")
@@ -90,6 +91,12 @@ public class AdminController {
         int total = (int) adminUserService.findAll(pageable).getTotalElements();
         return new ResultBean<>(total);
     }
+    @RequestMapping("admin/toEdit.html")
+    public String toEdit(int id, Map<String, Object> map) {
+        AdminUser adminUser = adminUserService.findById(id);
+        map.put("adminUser", adminUser);
+        return "admin/adminUser/edit";
+    }
     /**
      * create by: Kobe
      * description:超级管理员查看业务员信息
@@ -123,6 +130,20 @@ public class AdminController {
     public ResultBean<Boolean> delAdmin(Integer id){
         adminUserService.delById(id);
         return  new ResultBean<>(true);
+    }
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "admin/update.do")
+    public ResultBean<Boolean> update(int id,String userName,
+                                      String password, Integer isSaleMan) {
+        // 更新前先查询
+        AdminUser adminUser = adminUserService.findById(id);
+        adminUser.setId(id);
+        adminUser.setUserName( userName );
+        adminUser.setPassword(password);
+        adminUser.setIsSaleMan(isSaleMan);
+
+        adminUserService.update(adminUser);
+        return new ResultBean<>(true);
     }
 
 }

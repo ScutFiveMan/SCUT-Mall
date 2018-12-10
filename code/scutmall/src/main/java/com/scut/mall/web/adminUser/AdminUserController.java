@@ -34,7 +34,7 @@ public class AdminUserController {
      * description:映射编辑用户信息
      * create time: 15:58 2018/12/8 0008
      *
-      * @Param: null
+      * @Param: id
      * @return
      */
     @RequestMapping("/toEdit.html")
