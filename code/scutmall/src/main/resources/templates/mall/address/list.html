@@ -133,8 +133,8 @@
         function appendToPage(items, tbody) {
             $(items).each(function (index, item) {
                 var tr = $("<tr></tr>");
-                tr.append($("<td width='200'>" + item.id + "</td>"));
-                tr.append($("<td width='200'>" + item.receiver + "</td>"));
+                tr.append($("<td width='80'>" + item.id + "</td>"));
+                tr.append($("<td width='100'>" + item.receiver + "</td>"));
                 tr.append($("<td width='80'>" + item.province+ "</td>"));
                 tr.append($("<td width='100'>" + item.city+ "</td>"));
                 tr.append($("<td width='100'>" + item.district + "</td>"));
