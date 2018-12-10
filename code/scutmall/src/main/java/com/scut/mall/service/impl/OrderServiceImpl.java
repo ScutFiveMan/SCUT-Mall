@@ -59,6 +59,8 @@ public class OrderServiceImpl implements OrderService {
     public int getUserSum(){
         return orderDao.getUserSum();
     }
+    @Override
+    public int[][] getMonthly() {return orderDao.getMonthly();}
 
     @Override
     public List<Order> findAllExample(Example<Order> example) {
