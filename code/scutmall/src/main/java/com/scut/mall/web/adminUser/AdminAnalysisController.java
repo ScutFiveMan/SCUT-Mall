@@ -4,8 +4,12 @@ import com.scut.mall.entity.pojo.ResultBean;
 import com.scut.mall.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import  java.util.Map;
 
 import java.util.List;
 
@@ -21,6 +25,10 @@ public class AdminAnalysisController {
     @Autowired
     private OrderService orderService;
 
+    @RequestMapping("/toList.html")
+    public  String toAnalysisList(){
+        return "admin/analysis/list";
+    }
     /**
      * 获取历史订单总金额
      * @param
@@ -28,10 +36,18 @@ public class AdminAnalysisController {
      */
     @ResponseBody
     @RequestMapping("/getMoneySum.do")
-    public ResultBean<Integer> getMoneySum() {
+    public ResultBean<Integer> getMoneySum(Map<String,Integer>map) {
         int sum = orderService.getMoneySum();
+        map.put("sum",sum);
         return new ResultBean<>(sum);
     }
+
+    @RequestMapping("/getMoneySum.do")
+    public String list(Model model) {
+        model.addAttribute("users", users);
+        return "user/闪电st";
+    }
+
 
     /**
      * 获取历史用户总数
