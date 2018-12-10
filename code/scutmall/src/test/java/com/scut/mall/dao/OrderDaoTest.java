@@ -31,4 +31,7 @@ public class OrderDaoTest {
     public void findByUserId() {
         orderDao.findByUserId(1);
     }
+    @Test
+    public  void getMoneySum(){ orderDao.getMoneySum(); }
+
 }
