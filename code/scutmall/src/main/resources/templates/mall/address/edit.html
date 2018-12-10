@@ -44,7 +44,13 @@
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <form class="form-horizontal" enctype="multipart/form-data" method="post" action="edit.do">
+                        <form class="form-horizontal"  enctype="multipart/form-data" method="post" action="edit.do">
+                            <div class="control-group">
+                                <label class="control-label">地址ID：</label>
+                                <div class="controls">
+                                    <input readonly="readonly" name="id" th:value="${address.id }" type="text" class="m-wrap"/>
+                                </div>
+                            </div>
                             <div class="control-group">
                                 <label class="control-label">收货人：</label>
                                 <div class="controls">
@@ -62,7 +68,6 @@
                                 <div class="control-group">
                                     <label class="control-label">省份：</label>
                                     <div class="controls" >
-
                                         <label class="sr-only" for="province1" >Province</label>
                                         <select class="small m-wrap small" id="province1" name="province" ></select>
                                     </div>
@@ -144,7 +149,7 @@
         $.ajax({
             cache: true,
             type: "POST",
-            url:"edit.do",
+            url: "edit.do",
             data:$('.form-horizontal').serialize(),// 你的formid
             async: false,
             error: function(request) {
@@ -153,6 +158,7 @@
             success: function(result) {
                 if(result.state==0){
                     alert("修改成功！");
+                    window.location.href = "toAddress.html";
                 }else{
                     alert(result.message);
                 }
@@ -164,3 +170,4 @@
 </body>
 
 </html>
+

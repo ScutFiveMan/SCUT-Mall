@@ -30,7 +30,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address fingById(Integer id) {
+    public Address findAddressById(Integer id) {
         return addressDao.getOne(id);
     }
 

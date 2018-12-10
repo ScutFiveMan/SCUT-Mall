@@ -19,6 +19,14 @@ public interface AddressDao extends JpaRepository<Address,Integer> {
     Address findByIdAndUserId(Integer id,Integer userId);
 
     /**
+     * create by: Kobe
+     * description:通过id查找地址
+     * create time: 17:06 2018/12/10
+     * @return
+     */
+
+
+    /**
      * 根据用户id 返回其所有地址
      * @param userId
      * @return

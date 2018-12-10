@@ -37,7 +37,7 @@ public class AdminUserController {
       * @Param: id
      * @return
      */
-    @RequestMapping("/toEdit.html")
+    @RequestMapping("user/toEdit.html")
     public String toEdit(int id, Map<String, Object> map) {
         User user = userService.findById(id);
         map.put("user", user);
@@ -100,6 +100,9 @@ public class AdminUserController {
         userService.delById(id);
         return new ResultBean<>(true);
     }
+
+
+
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/update.do")
     public ResultBean<Boolean> update(int id,String userName,

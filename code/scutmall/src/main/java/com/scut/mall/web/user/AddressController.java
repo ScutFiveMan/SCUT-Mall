@@ -53,7 +53,7 @@ public class AddressController {
      */
     @RequestMapping("/toEdit.html")
     public String toEditAddress(int id, Map<String, Object> map){
-        Address address=addressService.fingById(id);
+        Address address=addressService.findAddressById(id);
         map.put("address", address);
         return "mall/address/edit";
     }
@@ -90,34 +90,20 @@ public class AddressController {
      * 用户修改地址
      */
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, value = "/edit.do")
-    public void changeAddress(Integer id , String province,String city,
-                                String district,String detail,
-                              String receiver,String phone,HttpServletRequest request,
-                              HttpServletResponse response) throws Exception {
-        Object user = request.getSession().getAttribute("user");
-        if (user == null)
-            throw new LoginException("请登录！");
-        User loginUser = (User) user;
-        Address address=addressService.findByIdAndUserId(id,loginUser.getId());
-        address.setUserId(loginUser.getId());
+    @RequestMapping("/edit.do")
+    public ResultBean<Boolean> changeAddress(Integer id , String province,String city,
+                                             String district,String detail,
+                                             String receiver,String phone,HttpServletRequest request,
+                                             HttpServletResponse response) throws Exception {
+        Address address=addressService.findAddressById(id);
         address.setProvince(province);
         address.setCity(city);
         address.setDistrict(district);
         address.setDetail(detail);
         address.setReceiver(receiver);
         address.setPhone(phone);
-        boolean flag = false;
-        try {
-            addressService.update(address);
-            flag = true;
-        } catch (Exception e) {
-            throw new Exception(e);
-        }
-        if (!flag) {
-            request.setAttribute("message", "更新失败！");
-        }
-        response.sendRedirect("toAddress.html");
+        addressService.update(address);
+        return new ResultBean<>(true);
     }
 
     /**

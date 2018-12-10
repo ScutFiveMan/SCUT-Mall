@@ -91,7 +91,7 @@ public class AdminController {
         int total = (int) adminUserService.findAll(pageable).getTotalElements();
         return new ResultBean<>(total);
     }
-    @RequestMapping("admin/toEdit.html")
+    @RequestMapping("/toEdit.html")
     public String toEdit(int id, Map<String, Object> map) {
         AdminUser adminUser = adminUserService.findById(id);
         map.put("adminUser", adminUser);
