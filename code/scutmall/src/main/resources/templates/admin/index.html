@@ -420,7 +420,6 @@
 
         } else if('admin'==page){
             var adminUser=document.getElementById("loginName").innerText;
-            window.alert("error"+adminUser);
             if(adminUser!='admin'){
                 $("#mainFrame").attr("src", "admin/toError.html");
             }
@@ -431,8 +430,7 @@
             }
         }else {
             $("#" + page).addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
-        }
-        $("#mainFrame").attr("src", page + "/toList.html");
+            $("#mainFrame").attr("src", page + "/toList.html");}
     }
 
     changePage("user");
