@@ -86,7 +86,7 @@
 		<script th:inline="javascript" type="text/javascript">
 			//<![CDATA[
 			function edit(id){
-				$("#mainFrame",window.parent.document).attr("src","user/toEdit.html?id="+id);
+                window.location.href = "user/toEdit.html?id=" + id;
 			}
 
 			function del(id,btn){

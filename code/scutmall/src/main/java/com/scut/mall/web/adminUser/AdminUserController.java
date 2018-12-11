@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -104,9 +106,10 @@ public class AdminUserController {
 
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, value = "/update.do")
+    @RequestMapping(method = RequestMethod.POST, value = "user/update.do")
     public ResultBean<Boolean> update(int id,String userName,
-                                      String phone,String password,int integration) {
+                                      String phone,String password,int integration,HttpServletRequest request,
+                                      HttpServletResponse response) throws Exception  {
         // 更新前先查询
         User user = userService.findById(id);
         user.setId(id);

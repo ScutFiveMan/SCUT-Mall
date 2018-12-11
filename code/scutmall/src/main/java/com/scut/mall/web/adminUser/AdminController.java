@@ -152,10 +152,12 @@ public class AdminController {
         adminUserService.delById(id);
         return  new ResultBean<>(true);
     }
+
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, value = "admin/update.do")
+    @RequestMapping(method = RequestMethod.POST, value = "/update.do")
     public ResultBean<Boolean> update(int id,String userName,
-                                      String password, Integer isSaleMan) {
+                                      String password, Integer isSaleMan,HttpServletRequest request,
+                                      HttpServletResponse response) throws Exception {
         // 更新前先查询
         AdminUser adminUser = adminUserService.findById(id);
         adminUser.setId(id);

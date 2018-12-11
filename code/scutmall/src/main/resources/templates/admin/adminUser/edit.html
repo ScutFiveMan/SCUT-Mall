@@ -52,8 +52,8 @@
                     <div class="control-group">
                         <label class="control-label">管理员名称：</label>
                         <div class="controls">
-                            <input name="userName" th:value="${adminUser.userName }" type="text" class="m-wrap media" />
-                            <span class="help-inline">username</span>
+                            <input name="userName" th:value="${adminUser.userName}" type="text" class="m-wrap media" />
+                            <span class="help-inline">userName</span>
                         </div>
                     </div>
 
@@ -125,7 +125,7 @@
             success: function(result) {
                 if(result.state==0){
                     alert("修改成功！");
-                    window.location.href = "toList.html";
+                    window.location.href = "user/toList.html";
                 }else{
                     alert(result.message);
                 }
