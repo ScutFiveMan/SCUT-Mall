@@ -98,7 +98,7 @@
 
                         <i class="fa fa-user-circle"></i>
 
-                        <span th:text="${session.login_user.userName}"></span>
+                        <span id="loginName" th:text="${session.login_user.userName}"></span>
 
                         <i class="fa fa-caret-down"></i>
 
@@ -195,8 +195,8 @@
                             用户管理
                         </a>
                     </li>
-                    <li id="adminUser">
-                        <a href="javascript:changePage('admin');">
+                    <li id="adminUser" >
+                        <a href="javascript:changePage('admin');" >
                             <i class="fa fa-list"></i>
                             管理员管理
                         </a>
@@ -416,7 +416,20 @@
             $("#category_1").addClass("active");
             $("#mainFrame").attr("src", "classification/toList.html?type=1");
             return;
-        } else {
+
+
+        } else if('admin'==page){
+            var adminUser=document.getElementById("loginName").innerText;
+            window.alert("error"+adminUser);
+            if(adminUser!='admin'){
+                $("#mainFrame").attr("src", "admin/toError.html");
+            }
+            else {
+                $("#userManage").addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
+                $("#adminUser").addClass("active");
+                $("#mainFrame").attr("src", "admin/toList.html");
+            }
+        }else {
             $("#" + page).addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
         }
         $("#mainFrame").attr("src", page + "/toList.html");
