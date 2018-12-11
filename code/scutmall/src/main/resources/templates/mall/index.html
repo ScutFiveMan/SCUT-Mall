@@ -91,6 +91,7 @@
                     var div = $("#product_new");
                     if ((!data.data || data.data.length <= 0) && pageNo > 0) {
                         layer.msg("没有更多了");
+
                     }
                     appendToPage(div, data.data);
                 } else {
