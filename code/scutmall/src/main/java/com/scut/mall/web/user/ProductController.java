@@ -1,8 +1,6 @@
 package com.scut.mall.web.user;
 
-import com.scut.mall.entity.OrderItem;
-import com.scut.mall.entity.Product;
-import com.scut.mall.entity.ProductCategory;
+import com.scut.mall.entity.*;
 import com.scut.mall.entity.pojo.ResultBean;
 import com.scut.mall.service.ProductCategoryService;
 import com.scut.mall.service.ProductService;
@@ -14,7 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.scut.mall.service.AddressService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +33,8 @@ public class ProductController {
     private ProductCategoryService productCategoryService;
     @Autowired
     private ShopCartService shopCartService;
-    
+    @Autowired
+    private AddressService addressService;
     /**
      * create by: Bin Liu
      * description: 获取商品信息
@@ -208,5 +207,19 @@ public class ProductController {
     public ResultBean<List<OrderItem>> listCart(HttpServletRequest request) throws Exception {
         List<OrderItem> orderItems = shopCartService.listCart(request);
         return new ResultBean<>(orderItems);
+    }
+    /**
+     * create by: Cillivian
+     * description:加载地址信息
+     * create time: 15:14 2018/12/11 0011
+     *
+      * @Param: request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/listAddress.do")
+    public ResultBean<List<Address>> listAddress(HttpServletRequest request) throws Exception {
+       List<Address> addresses=addressService.findByUserId( request );
+        return new ResultBean<>(addresses);
     }
 }

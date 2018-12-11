@@ -44,7 +44,7 @@
                 <table class="layui-table" lay-skin="nob" style="min-width: 1140px;">
                     <thead>
                     <tr>
-                        <th>序号</th>
+                        <!--<th>序号</th>-->
                         <th>收件人</th>
                         <th>省份</th>
                         <th>城市</th>
@@ -133,12 +133,12 @@
         function appendToPage(items, tbody) {
             $(items).each(function (index, item) {
                 var tr = $("<tr></tr>");
-                tr.append($("<td width='80'>" + item.id + "</td>"));
+                // tr.append($("<td width='80'>" + item.id + "</td>"));
                 tr.append($("<td width='100'>" + item.receiver + "</td>"));
-                tr.append($("<td width='80'>" + item.province+ "</td>"));
+                tr.append($("<td width='100'>" + item.province+ "</td>"));
                 tr.append($("<td width='100'>" + item.city+ "</td>"));
                 tr.append($("<td width='100'>" + item.district + "</td>"));
-                tr.append($("<td width='80'>" + item.detail + "</td>"));
+                tr.append($("<td width='150'>" + item.detail + "</td>"));
                 tr.append($("<td width='80'>" + item.phone+ "</td>"));
                 var operter = $("<td ><button onclick='edit(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-primary'>编辑</button></td>");
                 operter.append($("<button onclick='del(" + item.id + ",this)' class='layui-btn layui-btn-radius layui-btn-danger'>删除</button>"));
