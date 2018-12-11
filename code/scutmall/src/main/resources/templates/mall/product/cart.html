@@ -40,6 +40,7 @@
                     <div class="layui-form-item">
                         <div class="layui-input-block" style="text-align: right;">
                             <span id="total" class="price1"></span>&emsp;
+                            <span id="totalIntegral" class="price1"></span>&emsp;
                             <button class="layui-btn layui-btn-lg layui-btn-radius layui-btn-danger"
                                     lay-submit="lay-submit" lay-filter="formDemo">提交订单
                             </button>
@@ -102,6 +103,7 @@
             })
         }
         var total = 0;
+        var totalIntegral=0;
 
         function appendToPage(table, items) {
 
@@ -112,21 +114,26 @@
                 tr.append($("<td>单价：" + item.product.shopPrice + "</td>"));
                 tr.append($("<td>数量：" + item.count + "</td>"));
                 tr.append($("<td>总价：￥" + item.subTotal + "</td>"));
-                tr.append($("<td><button onclick='remove(this," + item.product.id + "," + item.subTotal + ")' class='layui-btn layui-btn-radius layui-btn-danger'>删除</button></td>"));
+                tr.append($("<td>总积分："+item.subIntegral+"</td>"));
+                tr.append($("<td><button onclick='remove(this," + item.product.id + "," + item.subTotal + ","+item.subIntegral+")' class='layui-btn layui-btn-radius layui-btn-danger'>删除</button></td>"));
                 table.append(tr);
                 total += item.subTotal;
+                totalIntegral+=item.subIntegral;
             });
             $("#total").html("总价：￥" + total);
+            $("#totalIntegral").html("总积分：" + totalIntegral);
         }
 
         //移除购物车
-        function remove(btn, productId, subTotal) {
+        function remove(btn, productId, subTotal,subIntegral) {
             $.get("delCart.do?productId=" + productId, function (data) {
                 if (data.state == 0) {
                     layer.msg("删除成功！");
                     $(btn).parent().parent().fadeOut();
                     total -= subTotal;
+                    totalIntegral-=subIntegral;
                     $("#total").html("总价：￥" + total);
+                    $("#totalIntegral").html("总积分：" + totalIntegral);
                 } else {
                     layer.msg(data.message);
                 }
