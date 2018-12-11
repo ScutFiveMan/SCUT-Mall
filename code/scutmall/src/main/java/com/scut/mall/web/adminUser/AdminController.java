@@ -14,6 +14,7 @@ import com.scut.mall.entity.AdminUser;
 import com.scut.mall.entity.pojo.ResultBean;
 import com.scut.mall.service.AdminUserService;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -45,6 +46,13 @@ public class AdminController {
     public String toLogin() {
         return "admin/login";
     }
+
+    /**
+     * 添加管理员页面
+     * @return
+     */
+    @RequestMapping("/admin/toAdd.html")
+    public String toAdd(){return "admin/adminUser/add";}
 
 
 
@@ -125,7 +133,7 @@ public class AdminController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/checkUsername.do")
+    @RequestMapping("/admin/checkUsername.do")
     public ResultBean<Boolean> checkUsername(String userName){
         List<AdminUser> adminUsers = adminUserService.findByUserName(userName);
         if (adminUsers==null||adminUsers.isEmpty()){
@@ -136,14 +144,21 @@ public class AdminController {
 
 
     @ResponseBody
-    @RequestMapping("/addAdmin.do")
-    public ResultBean<Boolean> addAdmin(String userName,String password,Integer isSaleman){
+    @RequestMapping(method = RequestMethod.POST,value="/admin/addAdmin.do")
+    public void addAdmin(String userName,String password,
+                         HttpServletRequest request,
+                         HttpServletResponse response) throws ServletException, IOException {
         AdminUser adminUser=new AdminUser();
         adminUser.setUserName(userName);
         adminUser.setPassword(password);
-        adminUser.setIsSaleMan(isSaleman);
-        adminUserService.create(adminUser);
-        return new ResultBean<>(true);
+        adminUser.setIsSaleMan(1);
+        int id=adminUserService.create(adminUser);if (id <= 0) {
+            request.setAttribute("message", "添加失败！");
+            request.getRequestDispatcher("toAdd.html").forward(request,response);
+        } else {
+            request.setAttribute("message", "添加成功！");
+            request.getRequestDispatcher("toList.html").forward(request, response);
+        }
     }
 
     @ResponseBody

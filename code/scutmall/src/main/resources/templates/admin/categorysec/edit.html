@@ -45,7 +45,6 @@
                         <label class="control-label">二级分类ID：</label>
                         <div class="controls">
                             <input readonly="readonly" name="id" th:value="${catese.id }" type="text" class="m-wrap media"/>
-                            <span class="help-inline">ID</span>
                             <input name="type" type="hidden" value="2"/>
                         </div>
                     </div>
@@ -53,7 +52,6 @@
                         <label class="control-label">二级分类名称：</label>
                         <div class="controls">
                             <input name="cname" th:value="${catese.cname }" type="text" class="m-wrap media"/>
-                            <span class="help-inline">name</span>
                         </div>
                     </div>
                     <div class="control-group">
@@ -62,7 +60,6 @@
                             <select name="parentId" class="small m-wrap">
                                 <option th:value="${cate.id }" th:text="${cate.cname }"></option>
                             </select>
-                            <span class="help-inline">一级分类</span>
                         </div>
                     </div>
 

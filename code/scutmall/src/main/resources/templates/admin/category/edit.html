@@ -45,7 +45,6 @@
                         <label class="control-label">一级分类ID：</label>
                         <div class="controls">
                             <input readonly="readonly" name="id" th:value="${cate.id }" type="text" class="m-wrap media"/>
-                            <span class="help-inline">id</span>
                             <input name="type" type="hidden" value="1"/>
                             <input name="parentId" type="hidden" value="0"/>
                         </div>
@@ -54,7 +53,6 @@
                         <label class="control-label">一级分类名称：</label>
                         <div class="controls">
                             <input name="cname" th:value="${cate.cname }" type="text" class="m-wrap media"/>
-                            <span class="help-inline">name</span>
                         </div>
                     </div>
 

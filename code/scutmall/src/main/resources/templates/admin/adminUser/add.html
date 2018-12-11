@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>添加管理员</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/bootstrap-responsive.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style-metro.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style-responsive.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/default.css}" rel="stylesheet" type="text/css" id="style_color"/>
+    <link th:href="@{/css/uniform.default.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/pagination.css}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-fileupload.css}"/>
+    <link rel="shortcut icon" th:href="@{/image/favicon.ico}"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h3 class="page-title"><i class="fa fa-object-group"></i> 管理员管理</h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="list.html"><i class="fa fa-home"></i>管理员管理</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">添加管理员</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row-fluid">
+        <div class="portlet box green">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>
+                    添加管理员
+                </div>
+            </div>
+            <div class="portlet-body">
+                <form class="form-horizontal" enctype="multipart/form-data" method="post" action="addAdmin.do">
+                    <div class="control-group">
+                        <label class="control-label">用户名：</label>
+                        <div class="controls">
+                            <input type="text" name="userName" required="required" onblur="checkUsername()"
+                                   lay-verify="required" placeholder="请输入用户名" class="m-wrap media"  autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">密码：</label>
+                        <div class="controls">
+                            <input name="password" type="password" class="m-wrap media"/>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button id="submit" class="btn blue"
+                                lay-submit="lay-submit" lay-filter="formReg">确定
+                        </button>&emsp;
+                        <button type="button" onclick="javascript:history.back();" class="btn"><i
+                                class="fa fa-times"></i>返回
+                        </button>
+                    </div>
+                </form>
+                <script>
+                    //        <![CDATA[
+                    // 加载layui form模块
+                    layui.use('form', function () {
+                        var form = layui.form;
+                    });
+                    function checkUsername() {
+                        var userName = $("input[name='userName']").val();
+                        window.alert(userName);
+                        $.get("checkUsername.do?userName=" + userName, function (data) {
+                            if (!data.data) {
+                                layer.msg("用户已存在！");
+                                $("#submit").addClass("layui-btn-disabled");
+                            } else {
+                                $("#submit").removeClass("layui-btn-disabled");
+                            }
+                        });
+                    }
+
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
