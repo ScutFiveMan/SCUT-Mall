@@ -98,6 +98,7 @@
             success: function (result) {
                 if (result.state == 0) {
                     alert("创建成功！");
+                    window.location.href = "toList.html?type=1";
                 } else {
                     alert(result.message);
                 }

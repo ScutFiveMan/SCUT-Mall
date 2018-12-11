@@ -177,7 +177,6 @@ public class OrderServiceImpl implements OrderService {
             total += orderItem.getSubTotal();
             totalIntegral +=orderItem.getSubIntegral();
             orderItemDao.save(orderItem);
-
         }
         order.setTotal(total);
         order.setTotalIntegral(totalIntegral);

@@ -23,7 +23,7 @@ public class Product implements Serializable {
     @Column
     private String title;
 
-    @Column
+    @Column(columnDefinition = "varchar(1000) default null")
     private String description;
 
     @Column
