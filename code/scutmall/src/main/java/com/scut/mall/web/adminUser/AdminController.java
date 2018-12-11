@@ -46,6 +46,8 @@ public class AdminController {
         return "admin/login";
     }
 
+
+
     /**
      * 登录请求
      *
@@ -79,6 +81,10 @@ public class AdminController {
     @RequestMapping("admin/toList.html")
     public  String toAdminList(){
         return "/admin/adminUser/list";
+    }
+    @RequestMapping("admin/toError.html")
+    public  String toError(){
+        return "/admin/adminUser/error";
     }
     /**
      * 获取所有订单的总数

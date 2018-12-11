@@ -1,0 +1,62 @@
+<!DOCTYPE html >
+<html lang='cn' xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>管理员列表</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/common.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/layui/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/bootstrap-responsive.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/style-metro.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/style-responsive.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/default.css}" rel="stylesheet" type="text/css" id="style_color" />
+    <link th:href="@{/css/uniform.default.css}" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" th:href="@{/image/favicon.ico}" />
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h3 class="page-title"><i class="fa fa-user-circle"></i>管理员管理</h3>
+        <ul class="breadcrumb">
+            <li>
+                <a href="#"><i class="fa fa-home"></i>用户管理</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">管理员列表</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row-fluid">
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-reorder"></i>
+                    管理员列表
+                </div>
+            </div>
+            <div class="portlet-body">
+<div class="layui-container">
+    <div class="layui-row">
+  <div style="position: center;color:#a9302a"><h1><i class="fa fa-ban"></i> <b style="position: center">你非超级管理员，无权查看！</b></h1></div>
+    </div>
+        <div class="layui-row">
+            <div style="position: center;color: #a9302a"><h1>
+                <b style="position: center">请使用超级管理员账号进行管理！</b></h1></div>
+        </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
