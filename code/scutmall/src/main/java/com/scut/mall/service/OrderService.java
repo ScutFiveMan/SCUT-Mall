@@ -53,12 +53,21 @@ public interface OrderService {
     int getMoneySum();
     /**
      * create by: Shuo Lin
-     * description: 获取历史订单总额
+     * description: 获取用户总数
      * create time: 2018/12/2 23:06
      * @Param:
      * @return
      */
     int getUserSum();
+    /**
+     * create by: Shuo Lin
+     * description: 获取每月统计
+     * create time: 2018/12/2 23:06
+     * @Param:
+     * @return
+     */
+    int[][] getMonthly();
+
     /**
      * create by: Bin Liu
      * description: 按条件查询

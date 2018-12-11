@@ -1,17 +1,17 @@
 package com.scut.mall.web.adminUser;
 
+import com.scut.mall.entity.OrderItem;
 import com.scut.mall.entity.pojo.ResultBean;
 import com.scut.mall.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import  java.util.Map;
-
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
 
 /**
  * @ Author     ：Shuo_Lin
@@ -26,46 +26,14 @@ public class AdminAnalysisController {
     private OrderService orderService;
 
     @RequestMapping("/toList.html")
-    public  String toAnalysisList(){
+    public  String toAnalysisList(ModelMap map){
+        /* 获取历史订单总营业额 */
+        map.addAttribute("moneySum", orderService.getMoneySum());
+        /* 获取历史订单总用户量 */
+        map.addAttribute("userSum", orderService.getUserSum());
+        /* 获取每月订单量与营业额 */
+        map.addAttribute("monthly",orderService.getMonthly());
         return "admin/analysis/list";
     }
-    /**
-     * 获取历史订单总金额
-     * @param
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping("/getMoneySum.do")
-    public ResultBean<Integer> getMoneySum(Map<String,Integer>map) {
-        int sum = orderService.getMoneySum();
-        map.put("sum",sum);
-        return new ResultBean<>(sum);
-    }
-
-    @RequestMapping("/getMoneySum.do")
-    public String list(Model model) {
-        model.addAttribute("users", users);
-        return "user/闪电st";
-    }
-
-
-    /**
-     * 获取历史用户总数
-     * @param
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping("/getUserSum.do")
-    public ResultBean<Integer> getUserSum() {
-        int sum = orderService.getUserSum();
-        return new ResultBean<>(sum);
-    }
-
-    /**
-     * 获取每月订单金额
-     * @param
-     * @param
-     * @return
-     */
 
 }
