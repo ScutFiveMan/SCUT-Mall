@@ -90,6 +90,7 @@ public class AdminController {
     public  String toAdminList(){
         return "/admin/adminUser/list";
     }
+
     @RequestMapping("admin/toError.html")
     public  String toError(){
         return "/admin/adminUser/error";

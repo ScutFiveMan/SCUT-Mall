@@ -121,7 +121,7 @@
 	                success: function(result) {
 	                    if(result.state==0){
 	                    	alert("修改成功！");
-                            $("#mainFrame",window.parent.document).attr("src","toList.html");
+                            window.location.href = "toList.html";
 	                    }else{
 	                    	alert(result.message);
 	                    }

@@ -39,7 +39,7 @@ public class AdminUserController {
       * @Param: id
      * @return
      */
-    @RequestMapping("user/toEdit.html")
+    @RequestMapping("/toEdit.html")
     public String toEdit(int id, Map<String, Object> map) {
         User user = userService.findById(id);
         map.put("user", user);
@@ -53,7 +53,7 @@ public class AdminUserController {
      * @return
      */
     @RequestMapping("/toList.html")
-    public String toList(){
+    public String toList() {
         return "admin/user/list";
     }
 
@@ -106,7 +106,7 @@ public class AdminUserController {
 
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, value = "user/update.do")
+    @RequestMapping(method = RequestMethod.POST, value = "update.do")
     public ResultBean<Boolean> update(int id,String userName,
                                       String phone,String password,int integration,HttpServletRequest request,
                                       HttpServletResponse response) throws Exception  {
