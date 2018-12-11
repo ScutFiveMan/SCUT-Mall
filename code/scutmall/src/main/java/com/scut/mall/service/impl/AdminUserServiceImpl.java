@@ -24,6 +24,11 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     @Override
+    public List<AdminUser> findByUserName(String userName) {
+        return adminUserDao.findAdminUserByUserName(userName);
+    }
+
+    @Override
     public Page<AdminUser> findAll(Pageable pageable) {
         return adminUserDao.findAll(pageable);
     }

@@ -20,7 +20,7 @@ public class AdminUser implements Serializable {
     @Column
     private String password;
 
-    @Column
+    @Column(columnDefinition = "1")
     private Integer isSaleMan;
 
     public AdminUser(Integer id,String userName,String password,Integer isSaleMan){

@@ -3,7 +3,6 @@ package com.scut.mall.service;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpRequest;
 import com.scut.mall.entity.AdminUser;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +16,14 @@ public interface AdminUserService {
      * @return
      */
     AdminUser findById(int id);
+
+    /**
+     * create by: Kobe
+     * description:根据用户名查找管理员
+     * create time: 15:01 2018/12/11
+     * @return
+     */
+    List<AdminUser> findByUserName(String userName);
 
     /**
      * 分页查询所有

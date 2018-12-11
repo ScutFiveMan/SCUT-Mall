@@ -119,6 +119,21 @@ public class AdminController {
         return new ResultBean<>(adminUsers);
     }
 
+    /**
+     * 验证用户名是否唯一
+     * @param userName
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/checkUsername.do")
+    public ResultBean<Boolean> checkUsername(String userName){
+        List<AdminUser> adminUsers = adminUserService.findByUserName(userName);
+        if (adminUsers==null||adminUsers.isEmpty()){
+            return new ResultBean<>(true);
+        }
+        return new ResultBean<>(false);
+    }
+
 
     @ResponseBody
     @RequestMapping("/addAdmin.do")
