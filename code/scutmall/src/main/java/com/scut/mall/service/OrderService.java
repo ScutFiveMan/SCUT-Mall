@@ -52,7 +52,7 @@ public interface OrderService {
      * @Param:
      * @return
      */
-    float getMoneySum();
+    double getMoneySum();
     /**
      * create by: Shuo Lin
      * description: 获取用户总数
