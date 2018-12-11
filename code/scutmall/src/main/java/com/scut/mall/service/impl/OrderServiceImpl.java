@@ -3,6 +3,7 @@ package com.scut.mall.service.impl;
 import com.scut.mall.dao.OrderDao;
 import com.scut.mall.dao.OrderItemDao;
 import com.scut.mall.dao.ProductDao;
+import com.scut.mall.dao.UserDao;
 import com.scut.mall.entity.Order;
 import com.scut.mall.entity.OrderItem;
 import com.scut.mall.entity.Product;
@@ -42,6 +43,8 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ShopCartService shopCartService;
 
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public Order findById(int id) {
@@ -174,11 +177,13 @@ public class OrderServiceImpl implements OrderService {
             total += orderItem.getSubTotal();
             totalIntegral +=orderItem.getSubIntegral();
             orderItemDao.save(orderItem);
+
         }
         order.setTotal(total);
         order.setTotalIntegral(totalIntegral);
-        loginUser.setIntegration(totalIntegral);
+        loginUser.setIntegration(totalIntegral+loginUser.getIntegration());
         orderDao.save(order);
+        userDao.save( loginUser );
 		//清空购物车
         List<Integer> productIds = (List<Integer>) request.getSession().getAttribute("shop_cart_"+ loginUser.getId());
         System.out.println(productIds);
