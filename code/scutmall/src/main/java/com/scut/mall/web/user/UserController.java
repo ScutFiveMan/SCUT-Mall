@@ -1,15 +1,18 @@
 package com.scut.mall.web.user;
 
 import com.scut.mall.entity.User;
+import com.scut.mall.entity.pojo.ResultBean;
 import com.scut.mall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
 @Controller
@@ -84,7 +87,20 @@ public class UserController {
         //未登录的首页
         response.sendRedirect("/mall/index.html");
     }
-
+    /**
+     * 验证用户名是否唯一
+     * @param userName
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/checkUsername.do")
+    public ResultBean<Boolean> checkUsername(String userName){
+        List<User> users = userService.findByUsername(userName);
+        if (users==null||users.isEmpty()){
+            return new ResultBean<>(true);
+        }
+        return new ResultBean<>(false);
+    }
 
     /**
      * 错误页面
