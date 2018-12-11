@@ -1,12 +1,14 @@
 package com.scut.mall.dao;
 
 import com.scut.mall.entity.Order;
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 import org.hibernate.mapping.Table;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Tuple;
 import java.util.List;
 
 /**
@@ -55,7 +57,7 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
      * create time: 2018/12/2 21:59
      */
     @Query(value = "SELECT SUM(total)from `order`;",nativeQuery = true)
-    int getMoneySum();
+    float getMoneySum();
 
     /**
      * create by: Shuo Lin
@@ -70,7 +72,6 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
      * description: 获取每月订单量与每月订单总额
      * create time: 2018/12/9 20:06
      */
-    @Query(value = "SELECT MONTH(order_time),COUNT(MONTH(order_time)),SUM(total) FROM `order` GROUP BY MONTH(order_time);",nativeQuery = true)
-    int[][] getMonthly();
-
+    @Query(value = "SELECT DATE_FORMAT(order_time,'%Y年-%m月') months,COUNT(MONTH(order_time)),SUM(total) FROM `order` GROUP BY months;",nativeQuery = true)
+    List<Tuple> getMonthly();
 }

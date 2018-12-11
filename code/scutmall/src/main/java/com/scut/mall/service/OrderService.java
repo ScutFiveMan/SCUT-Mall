@@ -2,10 +2,12 @@ package com.scut.mall.service;
 
 import com.scut.mall.entity.Order;
 import com.scut.mall.entity.OrderItem;
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import javax.persistence.Tuple;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -50,7 +52,7 @@ public interface OrderService {
      * @Param:
      * @return
      */
-    int getMoneySum();
+    float getMoneySum();
     /**
      * create by: Shuo Lin
      * description: 获取用户总数
@@ -66,7 +68,7 @@ public interface OrderService {
      * @Param:
      * @return
      */
-    int[][] getMonthly();
+    List<Tuple> getMonthly();
 
     /**
      * create by: Bin Liu

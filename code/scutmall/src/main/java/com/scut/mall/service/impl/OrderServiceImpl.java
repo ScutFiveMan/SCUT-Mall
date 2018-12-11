@@ -10,6 +10,7 @@ import com.scut.mall.entity.User;
 import com.scut.mall.service.OrderService;
 import com.scut.mall.service.ShopCartService;
 import com.scut.mall.service.exception.LoginException;
+import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Tuple;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
@@ -52,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public int getMoneySum(){
+    public float getMoneySum(){
         return orderDao.getMoneySum();
     }
     @Override
@@ -60,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.getUserSum();
     }
     @Override
-    public int[][] getMonthly() {return orderDao.getMonthly();}
+    public List<Tuple> getMonthly() {return orderDao.getMonthly();}
 
     @Override
     public List<Order> findAllExample(Example<Order> example) {
