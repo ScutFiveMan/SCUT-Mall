@@ -57,7 +57,7 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
      * create time: 2018/12/2 21:59
      */
     @Query(value = "SELECT SUM(total)from `order`;",nativeQuery = true)
-    float getMoneySum();
+    double getMoneySum();
 
     /**
      * create by: Shuo Lin

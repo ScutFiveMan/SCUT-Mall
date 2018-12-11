@@ -54,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public float getMoneySum(){
+    public double getMoneySum(){
         return orderDao.getMoneySum();
     }
     @Override
