@@ -5,6 +5,7 @@ import com.scut.mall.entity.User;
 import com.scut.mall.entity.pojo.ResultBean;
 import com.scut.mall.service.AddressService;
 import com.scut.mall.service.exception.LoginException;
+import jdk.nashorn.internal.runtime.JSONListAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,8 @@ public class AddressController {
     @RequestMapping("/list.do")
     public ResultBean<List<Address>> list(HttpServletRequest request){
         List<Address> addresses = addressService.findByUserId(request);
+//        JSONListAdapter jsonListAdapterAddress=JSONListAdapter.create(addresses);
+
         return new ResultBean<>(addresses);
     }
 
