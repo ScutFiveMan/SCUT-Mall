@@ -110,7 +110,7 @@
                 var productDiv = $("<div class='layui-col-md3 layui-col-xs6'></div>");
                 var conetDiv = $("<div class='card layui-anim layui-anim-scale'></div>");
                 productDiv.append(conetDiv);
-                var imgdiv = $("<div class='product_image'><img src=" + item.image + "></div>");
+                var imgdiv = $("<div class='product_image'><a class='img_a' href='/mall/product/get.html?id="+item.id+"'><img style='max-width: 100%; max-height: 200px; border-radius: 3px;' src=" + item.image1 + " ></a></div>");
                 conetDiv.append(imgdiv);
                 var priceDiv = $("<div style='text-align: left;'>商城价：<span class='price1'>" + item.shopPrice + "</span></div>");
                 conetDiv.append(priceDiv);

@@ -31,16 +31,17 @@
         </div>
         <div class="layui-row" id="order_form">
             <div class="layui-col-md8 layui-col-sm6 layui-col-xs12 ">
-                <form class="form-horizontal" action="#">
+                <form class="form-horizontal layui-form" action="#">
                     <div class="layui-form-item" style="text-align: left;">
                        <span class="price1" >地址选择</span>
-                        <div class="controls">
-                            <select id="address" name="address" class="small m-wrap" lay-skin="nob" style="font-size: 18px;">
-
-                                <option selected value="">请选择收货信息</option>
+                        <!--<div class="layui-form">-->
+                            <div class="controls">
+                            <select id="address" name="address"  class="small m-wrap small"  lay-skin="nob" style="font-size: 18px;">
+                                 <option selected value="">请选择地址</option>
                             </select>
                         </div>
-                    </div>
+                        </div>
+                    <!--</div>-->
                     <div class="layui-form-item" style="text-align: left;">
 
                             <span id="total" class="price1"></span>&emsp;
@@ -117,7 +118,7 @@
             $(items).each(function (index, item) {
 
                 var tr = $("<tr style='max-height: 200px;'></tr>");
-                tr.append($("<td style=''><img class='img_responsive' src='" + item.product.image + "'/></td>"));
+                tr.append($("<td style=''><img class='img_responsive' src='" + item.product.image1 + "'/></td>"));
                 tr.append($("<td style='text-align: left;width: 180px;'>" + item.product.title + "</td>"));
                 tr.append($("<td>单价：" + item.product.shopPrice + "</td>"));
                 tr.append($("<td>数量：" + item.count + "</td>"));

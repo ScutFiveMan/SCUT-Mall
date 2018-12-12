@@ -79,19 +79,10 @@ public class OrderController {
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/submit.do")
-    public void submit(int address, HttpServletRequest request, HttpServletResponse response) throws Exception{
-        boolean flag = false;
-        try {
+    public ResultBean<Boolean> submit(int address, HttpServletRequest request, HttpServletResponse response) throws Exception{
+
         orderService.submit( address, request, response );
-            flag = true;
-        } catch (Exception e) {
-            throw new Exception(e);
-        }
-        if (!flag) {
-            request.setAttribute("message", "购物失败！");
-        }else {
-            request.setAttribute("message", "购物成功！");
-        }
+        return new ResultBean<>(true);
     }
     /**
      * 支付方法
