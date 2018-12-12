@@ -40,7 +40,6 @@
                 <table class="layui-table" lay-skin="nob" style="min-width: 1140px;">
                     <thead>
                     <tr>
-                        <th>ID</th>
                         <th>订单时间</th>
                         <th>收货人</th>
                         <th>电话</th>
@@ -80,11 +79,10 @@
         function appendToPage(items, tbody) {
             $(items).each(function (index, item) {
                 var tr = $("<tr></tr>");
-                tr.append($("<td>" + item.id + "</td>"));
-                tr.append($("<td width='120'>" + item.orderTime + "</td>"));
-                tr.append($("<td width='60'></td>").text(item.address.receiver==null?"":item.address.receiver));
-                tr.append($("<td width='100'></td>").text(item.address.phone==null?"":item.address.phone));
-                tr.append($("<td width='160'>" + item.address.province + item.address.city +item.address.district +item.address.detail +"</td>"));
+                tr.append($("<td width='160'>" + item.orderTime + "</td>"));
+                tr.append($("<td width='60'>"+ item.address.receiver+ "</td>"));
+                tr.append($("<td width='60'>"+ item.address.phone + "</td>"));
+                tr.append($("<td width='200'>" + item.address.province + item.address.city +item.address.district +item.address.detail +"</td>"));
                 tr.append($("<td width='60'>" + item.total + "</td>"));
                 tr.append($("<td width='60'>" + item.totalIntegral + "</td>"));
                 var state = item.state;
@@ -107,7 +105,7 @@
                         break;
                 }
 
-                tr.append($("<td width='140'>" + status + "</td>"));
+                tr.append($("<td width='100'>" + status + "</td>"));
 
                 var operter = $("<td ><button onclick='getDetail(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-primary'>查看详情</button></td>");
                 if (state == 3) {

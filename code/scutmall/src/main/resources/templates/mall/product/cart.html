@@ -50,21 +50,6 @@
                             </button>
                         </div>
                 </form>
-                <!--<form class="layui-form" action="../order/submit.do">-->
-   <!---->
-
-
-                    <!--<div class="layui-form-item">-->
-                        <!--<div class="layui-input-block" style="text-align: right;">-->
-                            <!--<span id="total" class="price1"></span>&emsp;-->
-                            <!--<span id="totalIntegral" class="price1"></span>&emsp;-->
-                            <!--<button class="layui-btn layui-btn-lg layui-btn-radius layui-btn-danger"-->
-                                    <!--lay-submit="lay-submit" lay-filter="formDemo">提交订单-->
-                            <!--</button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</form>-->
-
             </div>
         </div>
     </div>
@@ -115,21 +100,6 @@
         }
 
         function appendToSelect(select,addresses) {
-            // $(addresses).each(function (index,address) {
-            //     var id=0;
-            //     id=address.id;
-            //
-            //     var option=$("<option  ></option>");
-            //     option.attr("value", address[i].id);
-            //     option.append($("<td>收货人：" + address.receiver + "</td>"));
-            //     option.append($("<td>电话：" + address.phone + "</td>"));
-            //     option.append($("<td>地址：" + address.province + "</td>"));
-            //     option.append($("<td>" + address.city+ "</td>"));
-            //     option.append($("<td>" + address.district+ "</td>"));
-            //     option.append($("<td>" + address.detail+ "</td>"));
-            //     select.append(option);
-            //
-            // })
             select.html("");
             for (var i = 0; i < addresses.length; i++) {
                 var option = $("<option></option>");
@@ -185,7 +155,7 @@
             $.ajax({
                 cache: true,
                 type: "POST",
-                url: "../order/submit.do",
+                url: "/mall/order/submit.do",
                 data: $('.form-horizontal').serialize(),
                 async: false,
                 error: function (request) {
@@ -193,7 +163,8 @@
                 },
                 success: function (result) {
                     if (result.state == 0) {
-                        alert("创建成功！");
+                        alert("购买成功！");
+                        window.location.href = "mall/order/toList.html";
                     } else {
                         alert(result.message);
                     }

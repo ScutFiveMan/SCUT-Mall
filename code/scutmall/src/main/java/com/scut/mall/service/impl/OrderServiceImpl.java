@@ -1,13 +1,8 @@
 package com.scut.mall.service.impl;
 
-import com.scut.mall.dao.OrderDao;
-import com.scut.mall.dao.OrderItemDao;
-import com.scut.mall.dao.ProductDao;
-import com.scut.mall.dao.UserDao;
-import com.scut.mall.entity.Order;
-import com.scut.mall.entity.OrderItem;
-import com.scut.mall.entity.Product;
-import com.scut.mall.entity.User;
+import com.scut.mall.dao.*;
+import com.scut.mall.entity.*;
+import com.scut.mall.service.AddressService;
 import com.scut.mall.service.OrderService;
 import com.scut.mall.service.ShopCartService;
 import com.scut.mall.service.exception.LoginException;
@@ -42,7 +37,8 @@ public class OrderServiceImpl implements OrderService {
     private ProductDao productDao;
     @Autowired
     private ShopCartService shopCartService;
-
+    @Autowired
+    private AddressDao addressDao;
     @Autowired
     private UserDao userDao;
 
@@ -130,6 +126,10 @@ public class OrderServiceImpl implements OrderService {
             throw new LoginException("请登录！");
         User loginUser = (User) user;
         List<Order> orders = orderDao.findByUserId(loginUser.getId());
+        for (Order order : orders) {
+            Address address=addressDao.findAddressById(order.getAddressId());
+            order.setAddress(address);
+        }
         return orders;
     }
 
@@ -163,6 +163,7 @@ public class OrderServiceImpl implements OrderService {
         User loginUser = (User) user;
         Order order = new Order();
         order.setAddressId(addressId);
+        order.setAddress(addressDao.findAddressById(addressId));
         order.setOrderTime(new Date());
         order.setUserId(loginUser.getId());
         order.setState(STATE_NO_PAY);

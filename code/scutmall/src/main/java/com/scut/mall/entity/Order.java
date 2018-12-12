@@ -45,7 +45,11 @@ public class Order implements Serializable {
     /**
     *积分
     */
+    @Column
     private Integer totalIntegral;
+
+    @Transient
+    private Address address;
 
     private static final long serialVersionUID = 1L;
 
@@ -119,6 +123,14 @@ public class Order implements Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override

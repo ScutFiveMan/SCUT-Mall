@@ -40,4 +40,13 @@ public interface AddressDao extends JpaRepository<Address,Integer> {
      * @param
      */
     void deleteById(Integer id);
+
+    /**
+     * create by: Bin Liu
+     * description: 通过id找到address
+     * create time: 2018/12/12 14:40
+     * @Param: null
+     * @return
+     */
+    Address findAddressById(Integer id);
 }
