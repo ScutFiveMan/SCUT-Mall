@@ -139,9 +139,13 @@ public class OrderServiceImpl implements OrderService {
      * @param orderId
      */
     @Override
-    public void pay(int orderId) {
+    public void pay(int orderId,HttpServletRequest request,HttpServletResponse response) throws Exception{
         //具体逻辑就不实现了，直接更改状态为 待发货
         Order order = orderDao.findOrderById(orderId);
+        Object user = request.getSession().getAttribute("user");
+        User loginUser = (User) user;
+        loginUser.setIntegration(order.getTotalIntegral()+loginUser.getIntegration());
+        userDao.save(loginUser);
         if (order == null)
             throw new RuntimeException("订单不存在");
         orderDao.updateState(STATE_WAITE_SEND,order.getId());
@@ -181,9 +185,7 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setTotal(total);
         order.setTotalIntegral(totalIntegral);
-        loginUser.setIntegration(totalIntegral+loginUser.getIntegration());
         orderDao.save(order);
-        userDao.save( loginUser );
 		//清空购物车
         List<Integer> productIds = (List<Integer>) request.getSession().getAttribute("shop_cart_"+ loginUser.getId());
         System.out.println(productIds);
@@ -193,8 +195,6 @@ public class OrderServiceImpl implements OrderService {
                 iterator.remove();
             }
         }
-        //重定向到订单列表页面
-        response.sendRedirect("/mall/order/toList.html");
     }
 
     /**

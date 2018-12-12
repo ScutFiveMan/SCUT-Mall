@@ -30,4 +30,13 @@ public interface UserDao extends JpaRepository<User,Integer> {
      * @return
      */
     void deleteById(int id);
+
+    /**
+     * create by: Bin Liu
+     * description: 通过id找到User
+     * create time: 2018/12/12 18:08
+     * @Param: null
+     * @return
+     */
+    User findUserById(Integer id);
 }

@@ -141,7 +141,7 @@ public interface OrderService {
      * @Param: orderId
      * @return
      */
-    void pay(int orderId);
+    void pay(int orderId, HttpServletRequest request, HttpServletResponse response)throws Exception;
 
     /**
      * create by: Bin Liu

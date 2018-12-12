@@ -100,8 +100,8 @@ public class OrderController {
      */
     @RequestMapping("pay.do")
     @ResponseBody
-    public ResultBean<Boolean> pay(int orderId, HttpServletResponse response) throws IOException {
-        orderService.pay(orderId);
+    public ResultBean<Boolean> pay(int orderId,HttpServletRequest request, HttpServletResponse response) throws Exception,IOException {
+        orderService.pay(orderId,request,response);
         return new ResultBean<>(true);
     }
 
