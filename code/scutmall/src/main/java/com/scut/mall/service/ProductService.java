@@ -101,8 +101,7 @@ public interface ProductService {
      * description: 通过标题搜索商品
      * create time: 2018/12/1 21:39
      * @param keyword
-     * @param pageable
      * @return 
      */
-    List<Product> findByTitleIsLike(String keyword, Pageable pageable);
+    List<Product> findByTitleIsLike(String keyword);
 }

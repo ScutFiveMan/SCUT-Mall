@@ -96,7 +96,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findByTitleIsLike(String keyword, Pageable pageable) {
-        return productDao.findByTitleIsLike(keyword, pageable);
+    public List<Product> findByTitleIsLike(String keyword) {
+        return productDao.findByTitleIsLike(keyword);
     }
 }

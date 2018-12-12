@@ -43,10 +43,9 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
      * description: 通过标题搜索商品
      * create time: 2018/11/23 9:22
      * @param keyword
-     * @param pageable
      * @return
      */
-    List<Product> findByTitleIsLike(String keyword, Pageable pageable);
+    List<Product> findByTitleIsLike(String keyword);
 
     /**
      * create by: Bin Liu

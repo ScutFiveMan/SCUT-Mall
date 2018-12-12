@@ -79,9 +79,10 @@ public class ProductController {
 
     @ResponseBody
     @RequestMapping("/search.do")
-    public ResultBean<List<Product>> findByTitleIsLike(String keyword, Pageable pageable) {
-        List<Product> products = productService.findByTitleIsLike(keyword, pageable);
-        return new ResultBean<>(products);
+    public String toSearchPage(String keyword,Map<String, Object> map) {
+        List<Product> products = productService.findByTitleIsLike(keyword);
+        map.put("products", products);
+        return "mall/product/search";
     }
 
     /**
