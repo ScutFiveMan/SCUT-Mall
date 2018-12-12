@@ -27,7 +27,16 @@ public class Product implements Serializable {
     private String description;
 
     @Column
-    private String image;
+    private String image1;
+
+    @Column
+    private String image2;
+
+    @Column
+    private String image3;
+
+    @Column
+    private String image4;
 
     @Column
     private Integer isHot;
@@ -53,16 +62,20 @@ public class Product implements Serializable {
     @Transient
     private  ProductCategory categorySec;
 
-    public Product(String title, Integer csId, String description, String image, Integer isHot, Double marketPrice, Double shopPrice, Integer integral, Date date) {
+    public Product(String title, String description, String image1, String image2, String image3, String image4, Integer isHot, Double marketPrice, Double shopPrice, Integer csId, Integer integral, Date date, ProductCategory categorySec) {
         this.title = title;
-        this.csId = csId;
         this.description = description;
-        this.image = image;
+        this.image1 = image1;
+        this.image2 = image2;
+        this.image3 = image3;
+        this.image4 = image4;
         this.isHot = isHot;
         this.marketPrice = marketPrice;
         this.shopPrice = shopPrice;
+        this.csId = csId;
         this.integral = integral;
         this.date = date;
+        this.categorySec = categorySec;
     }
 
     public Product() {
@@ -109,12 +122,36 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public String getImage() {
-        return image;
+    public String getImage1() {
+        return image1;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage1(String image1) {
+        this.image1 = image1;
+    }
+
+    public String getImage2() {
+        return image2;
+    }
+
+    public void setImage2(String image2) {
+        this.image2 = image2;
+    }
+
+    public String getImage3() {
+        return image3;
+    }
+
+    public void setImage3(String image3) {
+        this.image3 = image3;
+    }
+
+    public String getImage4() {
+        return image4;
+    }
+
+    public void setImage4(String image4) {
+        this.image4 = image4;
     }
 
     public Integer getIsHot() {
@@ -173,7 +210,10 @@ public class Product implements Serializable {
                 && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
                 && (this.getMarketPrice() == null ? other.getMarketPrice() == null : this.getMarketPrice().equals(other.getMarketPrice()))
                 && (this.getShopPrice() == null ? other.getShopPrice() == null : this.getShopPrice().equals(other.getShopPrice()))
-                && (this.getImage() == null ? other.getImage() == null : this.getImage().equals(other.getImage()))
+                && (this.getImage1() == null ? other.getImage1() == null : this.getImage1().equals(other.getImage1()))
+                && (this.getImage2() == null ? other.getImage2() == null : this.getImage2().equals(other.getImage2()))
+                && (this.getImage3() == null ? other.getImage3() == null : this.getImage3().equals(other.getImage3()))
+                && (this.getImage4() == null ? other.getImage4() == null : this.getImage4().equals(other.getImage4()))
                 && (this.getDescription() == null ? other.getDescription() == null : this.getDescription().equals(other.getDescription()))
                 && (this.getIsHot() == null ? other.getIsHot() == null : this.getIsHot().equals(other.getIsHot()))
                 && (this.getCsId() == null ? other.getCsId() == null : this.getCsId().equals(other.getCsId()))
@@ -189,7 +229,10 @@ public class Product implements Serializable {
         result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
         result = prime * result + ((getMarketPrice() == null) ? 0 : getMarketPrice().hashCode());
         result = prime * result + ((getShopPrice() == null) ? 0 : getShopPrice().hashCode());
-        result = prime * result + ((getImage() == null) ? 0 : getImage().hashCode());
+        result = prime * result + ((getImage1() == null) ? 0 : getImage1().hashCode());
+        result = prime * result + ((getImage2() == null) ? 0 : getImage2().hashCode());
+        result = prime * result + ((getImage3() == null) ? 0 : getImage3().hashCode());
+        result = prime * result + ((getImage4() == null) ? 0 : getImage4().hashCode());
         result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
         result = prime * result + ((getIsHot() == null) ? 0 : getIsHot().hashCode());
         result = prime * result + ((getCsId() == null) ? 0 : getCsId().hashCode());
@@ -208,7 +251,10 @@ public class Product implements Serializable {
         sb.append(", title=").append(title);
         sb.append(", marketPrice=").append(marketPrice);
         sb.append(", shopPrice=").append(shopPrice);
-        sb.append(", image=").append(image);
+        sb.append(", image1=").append(image1);
+        sb.append(", image2=").append(image2);
+        sb.append(", image3=").append(image3);
+        sb.append(", image4=").append(image4);
         sb.append(", description=").append(description);
         sb.append(", isHot=").append(isHot);
         sb.append(", csId=").append(csId);

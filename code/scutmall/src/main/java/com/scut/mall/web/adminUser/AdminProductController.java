@@ -86,7 +86,10 @@ public class AdminProductController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/add.do")
-    public void add(MultipartFile image,
+    public void add(MultipartFile image1,
+                    MultipartFile image2,
+                    MultipartFile image3,
+                    MultipartFile image4,
                     String title,
                     Double marketPrice,
                     Double shopPrice,
@@ -105,8 +108,14 @@ public class AdminProductController {
         product.setIntegral(integral);
         product.setCsId(csId);
         product.setDate(new Date());
-        String imgUrl = FileUtil.saveFile(image);
-        product.setImage(imgUrl);
+        String imgUrl1 = FileUtil.saveFile(image1);
+        String imgUrl2 = FileUtil.saveFile(image2);
+        String imgUrl3 = FileUtil.saveFile(image3);
+        String imgUrl4 = FileUtil.saveFile(image4);
+        product.setImage1(imgUrl1);
+        product.setImage2(imgUrl2);
+        product.setImage3(imgUrl3);
+        product.setImage4(imgUrl4);
         int id = productService.create(product);
         if (id <= 0) {
             request.setAttribute("message", "添加失败！");
@@ -127,7 +136,10 @@ public class AdminProductController {
                        int integral,
                        int csId,
                        int isHot,
-                       MultipartFile image,
+                       MultipartFile image1,
+                       MultipartFile image2,
+                       MultipartFile image3,
+                       MultipartFile image4,
                        HttpServletRequest request,
                        HttpServletResponse response) throws Exception {
         Product product = productService.findById(id);
@@ -139,9 +151,21 @@ public class AdminProductController {
         product.setIsHot(isHot);
         product.setCsId(csId);
         product.setDate(new Date());
-        String imgUrl = FileUtil.saveFile(image);
-        if (StringUtils.isNotBlank(imgUrl)) {
-            product.setImage(imgUrl);
+        String imgUrl1 = FileUtil.saveFile(image1);
+        String imgUrl2 = FileUtil.saveFile(image2);
+        String imgUrl3 = FileUtil.saveFile(image3);
+        String imgUrl4 = FileUtil.saveFile(image4);
+        if (StringUtils.isNotBlank(imgUrl1)) {
+            product.setImage1(imgUrl1);
+        }
+        if (StringUtils.isNotBlank(imgUrl2)) {
+            product.setImage2(imgUrl2);
+        }
+        if (StringUtils.isNotBlank(imgUrl3)) {
+            product.setImage3(imgUrl3);
+        }
+        if (StringUtils.isNotBlank(imgUrl4)) {
+            product.setImage4(imgUrl4);
         }
         boolean flag = false;
         try {
