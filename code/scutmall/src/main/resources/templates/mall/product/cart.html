@@ -27,28 +27,43 @@
             <div class="layui-col-md12">
                 <table class="layui-table" lay-skin="nob" id="cart">
                 </table>
-                <select id="address" name="address">
-
-                    <!--<option selected>请选择收货信息</option>-->
-                </select>
             </div>
         </div>
         <div class="layui-row" id="order_form">
-            <div class="layui-col-md5 layui-col-sm5 layui-col-xs12 layui-col-md-offset7">
-                <form class="layui-form" action="../order/submit.do">
+            <div class="layui-col-md8 layui-col-sm6 layui-col-xs12 ">
+                <form class="form-horizontal" action="#">
+                    <div class="layui-form-item" style="text-align: left;">
+                       <span class="price1" >地址选择</span>
+                        <div class="controls">
+                            <select id="address" name="address" class="small m-wrap" lay-skin="nob" style="font-size: 18px;">
 
+                                <option selected value="">请选择收货信息</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" style="text-align: left;">
 
-
-                    <div class="layui-form-item">
-                        <div class="layui-input-block" style="text-align: right;">
                             <span id="total" class="price1"></span>&emsp;
                             <span id="totalIntegral" class="price1"></span>&emsp;
                             <button class="layui-btn layui-btn-lg layui-btn-radius layui-btn-danger"
-                                    lay-submit="lay-submit" lay-filter="formDemo">提交订单
+                                    lay-submit="lay-submit" lay-filter="formDemo" onclick="add();">提交订单
                             </button>
                         </div>
-                    </div>
                 </form>
+                <!--<form class="layui-form" action="../order/submit.do">-->
+   <!---->
+
+
+                    <!--<div class="layui-form-item">-->
+                        <!--<div class="layui-input-block" style="text-align: right;">-->
+                            <!--<span id="total" class="price1"></span>&emsp;-->
+                            <!--<span id="totalIntegral" class="price1"></span>&emsp;-->
+                            <!--<button class="layui-btn layui-btn-lg layui-btn-radius layui-btn-danger"-->
+                                    <!--lay-submit="lay-submit" lay-filter="formDemo">提交订单-->
+                            <!--</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</form>-->
 
             </div>
         </div>
@@ -59,6 +74,7 @@
             //加载购物车信息
             loadCart();
             loadAddress();
+
         });
 
         layui.use('form', function () {
@@ -99,16 +115,29 @@
         }
 
         function appendToSelect(select,addresses) {
-            $(addresses).each(function (index,address) {
-                var option=$("<option style=' max-height: 50px;' ></option>");
-                option.append($("<td>收货人：" + address.receiver + "</td>"));
-                option.append($("<td>电话：" + address.phone + "</td>"));
-                option.append($("<td>地址：" + address.province + "</td>"));
-                option.append($("<td>" + address.city+ "</td>"));
-                option.append($("<td>" + address.district+ "</td>"));
-                option.append($("<td>" + address.detail+ "</td>"));
+            // $(addresses).each(function (index,address) {
+            //     var id=0;
+            //     id=address.id;
+            //
+            //     var option=$("<option  ></option>");
+            //     option.attr("value", address[i].id);
+            //     option.append($("<td>收货人：" + address.receiver + "</td>"));
+            //     option.append($("<td>电话：" + address.phone + "</td>"));
+            //     option.append($("<td>地址：" + address.province + "</td>"));
+            //     option.append($("<td>" + address.city+ "</td>"));
+            //     option.append($("<td>" + address.district+ "</td>"));
+            //     option.append($("<td>" + address.detail+ "</td>"));
+            //     select.append(option);
+            //
+            // })
+            select.html("");
+            for (var i = 0; i < addresses.length; i++) {
+                var option = $("<option></option>");
+                option.attr("value", addresses[i].id);
+                option.text("收件人："+addresses[i].receiver+" | 地址: "+addresses[i].province+addresses[i].city+addresses[i].district+addresses[i].detail+" | 联系电话:"+addresses[i].phone);
                 select.append(option);
-            })
+            }
+
         }
         var total = 0;
         var totalIntegral=0;
@@ -116,6 +145,7 @@
         function appendToPage(table, items) {
 
             $(items).each(function (index, item) {
+
                 var tr = $("<tr style='max-height: 200px;'></tr>");
                 tr.append($("<td style=''><img class='img_responsive' src='" + item.product.image + "'/></td>"));
                 tr.append($("<td style='text-align: left;width: 180px;'>" + item.product.title + "</td>"));
@@ -147,6 +177,30 @@
                 }
             })
         }
+        function add() {
+            if (!$("[name='address']").val()) {
+                alert("请选择收货信息");
+                return;
+            }
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: "../order/submit.do",
+                data: $('.form-horizontal').serialize(),
+                async: false,
+                error: function (request) {
+                    alert("Connection error");
+                },
+                success: function (result) {
+                    if (result.state == 0) {
+                        alert("创建成功！");
+                    } else {
+                        alert(result.message);
+                    }
+                }
+            });
+        }
+
 
 
         //            ]]>

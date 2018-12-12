@@ -7,6 +7,7 @@ import com.scut.mall.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,21 +62,28 @@ public class OrderController {
         List<OrderItem> orderItems = orderService.findItems(orderId);
         return new ResultBean<>(orderItems);
     }
+//
+//    /**
+//     * 提交订单
+//     *
+//     * @param addressId
+//     * @param request
+//     * @param response
+//     */
+//    @RequestMapping("/submit.do")
+//    public void submit(Integer addressId,
+//                       HttpServletRequest request,
+//                       HttpServletResponse response) throws Exception {
+//        orderService.submit(addressId, request, response);
+//    }
 
-    /**
-     * 提交订单
-     *
-     * @param addressId
-     * @param request
-     * @param response
-     */
-    @RequestMapping("/submit.do")
-    public void submit(Integer addressId,
-                       HttpServletRequest request,
-                       HttpServletResponse response) throws Exception {
-        orderService.submit(addressId, request, response);
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "/submit.do")
+    public ResultBean<Boolean> submit(int address, HttpServletRequest request, HttpServletResponse response) throws Exception{
+    orderService.submit( address, request, response );
+
+        return new ResultBean<>(true);
     }
-
     /**
      * 支付方法
      *

@@ -28,8 +28,20 @@
         <!--<ul class="layui-nav layui-layout-left">-->
         <!---->
         <!--</ul>-->
+
+
+
+
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item" style="color:rgba(37,178,189,0.7);">
+            <li class="layui-nav-item" >
+                <div class="layui-input-block" style="float: left; position: relative;">
+                    <label class="layui-form-label">商品搜索</label>
+                    <input style="width: auto;" type="text" id="select_orderId" name="select_orderId" lay-verify="required" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+                </div>
+                <button class="layui-btn" lay-submit="" id="searchBtn" data-type="getInfo" style="float: left;">搜索</button>
+            </li>
+
+            <li class="layui-nav-item" style="color:#009688;">
                 <a href="javascript:;">分类</a>
                 <dl class="layui-nav-child" id="category">
 
@@ -74,7 +86,7 @@
 
 <!--底部模块-->
 <div class="footer footer-index" th:fragment="foot">
-    <hr style="color: #8fffff;" />
+    <hr style="color: #009688;" />
     <!-- 底部固定区域 -->
     Copyright © SCUTMALL 2018-2019.<br>
     All Rights Reserved.

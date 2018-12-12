@@ -82,9 +82,9 @@
                 var tr = $("<tr></tr>");
                 tr.append($("<td>" + item.id + "</td>"));
                 tr.append($("<td width='120'>" + item.orderTime + "</td>"));
-                tr.append($("<td width='60'>" + item.name + "</td>"));
-                tr.append($("<td width='100'>" + item.phone + "</td>"));
-                tr.append($("<td width='100'>" + item.addr + "</td>"));
+                tr.append($("<td width='60'></td>").text(item.address.receiver==null?"":item.address.receiver));
+                tr.append($("<td width='100'></td>").text(item.address.phone==null?"":item.address.phone));
+                tr.append($("<td width='160'>" + item.address.province + item.address.city +item.address.district +item.address.detail +"</td>"));
                 tr.append($("<td width='60'>" + item.total + "</td>"));
                 tr.append($("<td width='60'>" + item.totalIntegral + "</td>"));
                 var state = item.state;
