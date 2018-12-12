@@ -20,8 +20,8 @@ public class AdminUser implements Serializable {
     @Column
     private String password;
 
-    @Column(columnDefinition = "1")
-    private Integer isSaleMan;
+    @Column
+    private Integer isSaleMan=1;
 
     public AdminUser(Integer id,String userName,String password,Integer isSaleMan){
         this.id=id;

@@ -27,10 +27,10 @@ public class ProductDaoTest {
         productDao.findByCsId(1,null);
     }
 
-    @Test
-    public void findByTitleIsLike() {
-        productDao.findByTitleIsLike("电脑",null);
-    }
+//    @Test
+//    public void findByTitleIsLike() {
+//        productDao.findByTitleIsLike("电脑",null);
+//    }
 
     @Test
     public void findByDateAfter() {
