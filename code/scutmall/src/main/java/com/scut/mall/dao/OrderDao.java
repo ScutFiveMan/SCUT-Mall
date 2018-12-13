@@ -3,6 +3,8 @@ package com.scut.mall.dao;
 import com.scut.mall.entity.Order;
 import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 import org.hibernate.mapping.Table;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -74,4 +76,14 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
      */
     @Query(value = "SELECT DATE_FORMAT(order_time,'%Y年-%m月') months,COUNT(MONTH(order_time)),SUM(total) FROM `order` GROUP BY months;",nativeQuery = true)
     List<Tuple> getMonthly();
+
+    /**
+     * create by: Bin Liu
+     * description:
+     * create time: 2018/12/13 21:54
+     * @Param: null
+     * @return
+     */
+    @Query(value="SELECT * FROM order WHERE user_id = ?1 order by ?#{#pageable},order_time DESC ",nativeQuery = true)
+    Page<Order> findByUserId(Integer userId, Pageable pageable);
 }

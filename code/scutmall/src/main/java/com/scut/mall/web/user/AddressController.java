@@ -7,9 +7,13 @@ import com.scut.mall.service.AddressService;
 import com.scut.mall.service.exception.LoginException;
 import jdk.nashorn.internal.runtime.JSONListAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +38,10 @@ public class AddressController {
 
     @ResponseBody
     @RequestMapping("/list.do")
-    public ResultBean<List<Address>> list(HttpServletRequest request){
-        List<Address> addresses = addressService.findByUserId(request);
-//        JSONListAdapter jsonListAdapterAddress=JSONListAdapter.create(addresses);
-
+    public ResultBean<List<Address>> list(HttpServletRequest request,int pageindex,
+                                          @RequestParam(value = "pageSize", defaultValue = "15") int pageSize){
+        Pageable pageable = PageRequest.of(pageindex, pageSize, Sort.by(Sort.Direction.ASC,"id"));
+        List<Address> addresses = addressService.findByUserId(request,pageable).getContent();
         return new ResultBean<>(addresses);
     }
 

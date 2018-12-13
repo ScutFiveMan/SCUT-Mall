@@ -35,12 +35,12 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<Address> findByUserId(HttpServletRequest request) {
+    public Page<Address> findByUserId(HttpServletRequest request,Pageable pageable) {
         Object user = request.getSession().getAttribute("user");
         if (user == null)
             throw new LoginException("请登录！");
         User loginUser = (User) user;
-        List<Address> addresses=addressDao.findByUserId(loginUser.getId());
+        Page<Address> addresses=addressDao.findByUserId(loginUser.getId(),pageable);
         return addresses;
     }
 

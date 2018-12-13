@@ -5,9 +5,13 @@ import com.scut.mall.entity.OrderItem;
 import com.scut.mall.entity.pojo.ResultBean;
 import com.scut.mall.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,8 +49,10 @@ public class OrderController {
      */
     @RequestMapping("/list.do")
     @ResponseBody
-    public ResultBean<List<Order>> listData(HttpServletRequest request) {
-        List<Order> orders = orderService.findUserOrder(request);
+    public ResultBean<List<Order>> listData(HttpServletRequest request,int pageindex,
+                                            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        Pageable pageable = PageRequest.of(pageindex, pageSize, Sort.by(Sort.Direction.ASC,"id"));
+        List<Order> orders = orderService.findUserOrder(request,pageable).getContent();
         return new ResultBean<>(orders);
     }
 

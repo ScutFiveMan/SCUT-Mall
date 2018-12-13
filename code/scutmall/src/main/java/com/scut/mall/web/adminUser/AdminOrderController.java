@@ -86,4 +86,11 @@ public class AdminOrderController {
         orderService.updateStatus(id,3);
         return new ResultBean<>(true);
     }
+
+    @RequestMapping("/del.do")
+    @ResponseBody
+    public ResultBean<Boolean> del(int id) {
+        orderService.delById(id);
+        return new ResultBean<>(true);
+    }
 }

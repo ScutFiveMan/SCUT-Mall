@@ -37,7 +37,7 @@ public interface AddressService {
      * @param request
      * @return
      */
-    List<Address> findByUserId(HttpServletRequest request);
+    Page<Address> findByUserId(HttpServletRequest request,Pageable pageable);
 
     /**
      * create by: Kobe
