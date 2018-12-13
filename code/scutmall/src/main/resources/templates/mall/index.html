@@ -14,6 +14,12 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body class="site-home">
+<style>
+    a:link {color: #009688; text-decoration:none;}
+    a:active{color: red; text-decoration: none; }
+    a:visited {color:purple;text-decoration:none;}
+
+</style>
 <!--包含 头部模块-->
 <div th:replace="mall/common::head"></div>
 
@@ -114,7 +120,7 @@
                 conetDiv.append(imgdiv);
                 var priceDiv = $("<div style='text-align: left;'>商城价：<span class='price1'>" + item.shopPrice + "</span></div>");
                 conetDiv.append(priceDiv);
-                conetDiv.append($("<div class='product_title'><a href='/mall/product/get.html?id="+item.id+"'>" + item.title + "</a></div>"));
+                conetDiv.append($("<div class='product_title'><a class='img_a' href='/mall/product/get.html?id="+item.id+"'>" + item.title + "</a></div>"));
                 div.append(productDiv);
             });
         }
