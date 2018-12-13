@@ -84,6 +84,6 @@ public interface OrderDao extends JpaRepository<Order, Integer> {
      * @Param: null
      * @return
      */
-    @Query(value="SELECT * FROM order WHERE user_id = ?1 order by ?#{#pageable},order_time DESC ",nativeQuery = true)
+
     Page<Order> findByUserId(Integer userId, Pageable pageable);
 }

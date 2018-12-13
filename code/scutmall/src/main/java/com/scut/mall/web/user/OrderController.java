@@ -44,15 +44,15 @@ public class OrderController {
     /**
      * 查询用户订单列表
      *
-     * @param request
+     * @param pageindex,request
      * @return
      */
     @RequestMapping("/list.do")
     @ResponseBody
-    public ResultBean<List<Order>> listData(HttpServletRequest request,int pageindex,
+    public ResultBean<List<Order>> listData(int pageindex , HttpServletRequest request,
                                             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
         Pageable pageable = PageRequest.of(pageindex, pageSize, Sort.by(Sort.Direction.ASC,"id"));
-        List<Order> orders = orderService.findUserOrder(request,pageable).getContent();
+        List<Order> orders = orderService.findUserOrder(request, pageable).getContent();
         return new ResultBean<>(orders);
     }
 
@@ -114,5 +114,20 @@ public class OrderController {
     public ResultBean<Boolean> receive(int orderId, HttpServletResponse response) throws IOException {
         orderService.receive(orderId);
         return new ResultBean<>(true);
+    }
+    /**
+     * create by: Cillivian
+     * description:分页显示
+     * create time: 22:26 2018/12/13 0013
+     *
+      * @Param: null
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/getTotal.do")
+    public ResultBean<Integer> getTotal() {
+        Pageable pageable =  PageRequest.of(1, 15, Sort.by(Sort.Direction.ASC,"id"));
+        int total = (int) orderService.findAll(pageable).getTotalElements();
+        return new ResultBean<>(total);
     }
 }

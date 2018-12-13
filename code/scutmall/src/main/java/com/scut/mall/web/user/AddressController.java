@@ -127,5 +127,12 @@ public class AddressController {
         addressService.deleteById(id);
         return new ResultBean<>(true);
     }
+    @ResponseBody
+    @RequestMapping("/getTotal.do")
+    public ResultBean<Integer> getTotal() {
+        Pageable pageable =  PageRequest.of(1, 15, Sort.by(Sort.Direction.ASC,"id"));
+        int total = (int) addressService.findAll(pageable).getTotalElements();
+        return new ResultBean<>(total);
+    }
 
 }

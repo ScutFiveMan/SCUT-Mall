@@ -26,6 +26,7 @@ public interface AddressDao extends JpaRepository<Address,Integer> {
      * @return
      */
 
+    List<Address> findByUserId(Integer userId);
 
     /**
      * 根据用户id 返回其所有地址

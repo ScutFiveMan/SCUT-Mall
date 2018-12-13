@@ -220,7 +220,7 @@ public class ProductController {
     @ResponseBody
     @RequestMapping("/listAddress.do")
     public ResultBean<List<Address>> listAddress(HttpServletRequest request) throws Exception {
-       List<Address> addresses=addressService.findByUserId( request );
+       List<Address> addresses=addressService.findByUserId(request );
         return new ResultBean<>(addresses);
     }
 }

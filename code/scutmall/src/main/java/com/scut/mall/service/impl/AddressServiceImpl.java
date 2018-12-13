@@ -24,6 +24,8 @@ public class AddressServiceImpl implements AddressService {
     }
 
 
+
+
     @Override
     public Address findByIdAndUserId(Integer id, Integer userId) {
         return addressDao.findByIdAndUserId(id,userId);
@@ -41,6 +43,16 @@ public class AddressServiceImpl implements AddressService {
             throw new LoginException("请登录！");
         User loginUser = (User) user;
         Page<Address> addresses=addressDao.findByUserId(loginUser.getId(),pageable);
+        return addresses;
+    }
+
+    @Override
+    public List<Address> findByUserId(HttpServletRequest request) {
+        Object user = request.getSession().getAttribute("user");
+        if (user == null)
+            throw new LoginException("请登录！");
+        User loginUser = (User) user;
+        List<Address> addresses=addressDao.findByUserId(loginUser.getId());
         return addresses;
     }
 

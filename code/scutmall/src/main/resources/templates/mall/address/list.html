@@ -12,6 +12,7 @@
     <script th:src="@{/layui/jquery-3.2.1.min.js}"></script>
     <link rel="stylesheet" href="/static/build/layui.css" media="all">
     <script th:src="@{/layui/layui.js}"></script>
+    <link th:href="@{/css/pagination.css}" rel="stylesheet" type="text/css"/>
     <link rel="shortcut icon" th:href="@{/image/favicon.ico}"/>
     <style>
         #list {
@@ -41,7 +42,7 @@
     <div class="layui-row">
         <div class="layui-row" style="overflow: auto;">
             <div class="layui-col-md12" style="overflow: auto;">
-                <table class="layui-table" lay-skin="nob" style="min-width: 1140px;">
+                <table class="layui-table" lay-skin="nob" style="min-width: 1140px;" id="addressTable">
                     <thead>
                     <tr>
                         <!--<th>序号</th>-->
@@ -58,7 +59,7 @@
 
                     </tbody>
                 </table>
-                <div id="test1"></div>
+                <div id="Pagination" class="pagination align_right"><!-- 这里显示分页 --></div>
             </div>
         </div>
 
@@ -76,20 +77,47 @@
     <script th:src="@{/js/jquery.pagination.js}" type="text/javascript"></script>
     <script src="/static/build/layui.js"></script>
     <script th:inline="javascript" type="text/javascript">
-        layui.use('laypage', function(){
-            var laypage = layui.laypage;
-
-            //执行一个laypage实例
-            laypage.render({
-                elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
-                ,count: 50 //数据总数，从服务端得到
-            });
-        });
+        var msg = [[${message}]];
+        if (msg) {
+            alert(msg);
+        }
         //            <![CDATA[
+        var pagetotal;
         $(function () {
-            loadAddress();
+            $.ajax({
+                url: "getTotal.do",
+                type: "get",
+                success: function (result) {
+                    if (result.state == 0) {
+                        pagetotal = result.data;
+                        $("#Pagination").pagination(pagetotal, {
+                            num_edge_entries: 1, //边缘页数
+                            num_display_entries: 5, //主体页数
+                            callback: pageselectCallback,
+                            items_per_page: 15, //每页显示7项
+                            prev_text: "前一页",
+                            next_text: "后一页"
+                        });
+                    } else {
+                        alert(result.message);
+                    }
+                }
+            });
+            // loadAddress();
         });
-
+        function pageselectCallback(page_index, jq) {
+            $.ajax({
+                type: "get",
+                url: "list.do?pageindex=" + page_index,
+                success: function (result) {
+                    if (result.state == 0) {
+                        appendToPage(result.data);
+                    } else {
+                        alert(result.message);
+                    }
+                }
+            });
+        }
 
 
         function edit(id) {
@@ -119,18 +147,23 @@
         }
 
         // 加载我的列表
-        function loadAddress() {
-            $.get("list.do", function (data) {
-                if (data.state == 0) {
-                    var tbody = $("#list");
-                    appendToPage(data.data, tbody);
-                } else {
-                    layer.msg(data.message);
-                }
-            })
-        }
+        // function loadAddress() {
+        //     $.get("list.do", function (data) {
+        //         if (data.state == 0) {
+        //             var tbody = $("#list");
+        //             appendToPage(data.data, tbody);
+        //         } else {
+        //             layer.msg(data.message);
+        //         }
+        //     })
+        // }
         // 将数据渲染进页面
-        function appendToPage(items, tbody) {
+        function appendToPage(items ) {
+            if (!items || !items.length > 0) {
+                return;
+            }
+            var tbody = $("#addressTable tbody").eq(0);
+            tbody.html("");
             $(items).each(function (index, item) {
                 var tr = $("<tr></tr>");
                 // tr.append($("<td width='80'>" + item.id + "</td>"));
@@ -144,7 +177,7 @@
                 operter.append($("<button onclick='del(" + item.id + ",this)' class='layui-btn layui-btn-radius layui-btn-danger'>删除</button>"));
                 tr.append(operter);
                 tbody.append(tr);
-
+                tr.fadeIn();
             });
         }
 

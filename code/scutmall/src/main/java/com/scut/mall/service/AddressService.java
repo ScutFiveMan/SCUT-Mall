@@ -39,6 +39,7 @@ public interface AddressService {
      */
     Page<Address> findByUserId(HttpServletRequest request,Pageable pageable);
 
+    List<Address> findByUserId(HttpServletRequest request);
     /**
      * create by: Kobe
      * description:分页显示用户所有的地址
