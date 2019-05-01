@@ -198,3 +198,8 @@ CPU：1核  内存：2G
 ### 其他计划
     
 项目开发技术选择：springboot
+
+### 数据库
+MySQL+Spring JPA
+先在数据库中创建一个数据库，自动生成字段
+[SQL文件](https://github.com/ScutFiveMan/SCUT-Mall/blob/master/code/scutmall/src/main/resources/sql/scutmall.sql)
